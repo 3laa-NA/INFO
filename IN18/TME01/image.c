@@ -9,22 +9,30 @@
 image_t *creer_image()
 {
   
-  /* a completer */
-  
+  // Allouer de la mémoire pour la structure image_t
+  image_t* img = (image_t*)malloc(sizeof(image_t));
+
+  // Initialiser les champs de la structure
+  img->w = 0;
+  img->h = 0;
+
+  return img;  
 }
 
 void detruire_image(image_t *p)
 {
   
-  /* a completer */
+  free(p->buff);
+  free(p);
   
 }
 
 void negatif(image_t *img)
 {
   
-  /* a completer */
-  /* img->buff[0] permet d'acceder au premier pixel de l'image */
+  for (unsigned long i = 0; i < img->h * img->w; i++) {
+    img->buff[i] = 255 - img->buff[i];
+  }
   
 }
 
