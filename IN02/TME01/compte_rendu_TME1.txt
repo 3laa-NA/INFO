@@ -1,0 +1,36 @@
+Q4.4:
+
+1-
+tilisez les flèches haut ↑ et bas ↓ pour se déplacer dans l’historique des commandes que vous avez déjà
+tapé
+commencez à écrire le début d’une commande (ou le début du nom d’un fichier du répertoire courant),
+puis utilisez la touche Tab (tabulation) pour que la commande (ou le nom du fichier) soit complétée
+automatiquement
+
+2-indentation traduit visuellement la structure du programme, elle met en relief les alternatives, les répé-
+titions, les classes, etc. C’est pourquoi, indenter de manière lisible votre programme permet d’éviter des
+erreurs de programmation et de gagner du temps.
+
+3- pour eviter la perte de programme et pour eviter d'accumuler les erreurs
+
+Q5.1:
+
+public class Bonjour {
+	public static void main (String [] args) {
+		System.out.println ( "Bonjour !" );
+	}
+}
+
+-javac Bonjour.java
+
+-bonjour.class
+
+-java Bonjour
+
+-NON il n'est pas exécuté
+
+Q5.2:
+
+...
+
+Q6.1:
