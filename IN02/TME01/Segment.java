@@ -16,9 +16,3 @@ public class Segment {
         }
     }
 
-
-    public String toString() {
-        return "Segment [" + x + "," + y + "]";
-    }
-
-}
