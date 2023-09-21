@@ -167,7 +167,7 @@ void affiche(const char message[]) {
 
 int main(void) {
 
-  const char* message="WSH MON GARS C COMMENT";
+  const char* message="HELLO WORLD";
   affiche(message);
   return 0;
 }
