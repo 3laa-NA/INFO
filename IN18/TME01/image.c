@@ -39,19 +39,25 @@ void negatif(image_t *img)
 void modifier_lumin(image_t *img, float pourcent)
 {
   
-  /* a completer */
+  for (unsigned long i = 0; i < img->h * img->w; i++) {
+    img->buff[i] = img->buff[i] * pourcent;
+    if( img->buff[i] > 255 ) {
+      img->buff[i] = 255;
+    }
+  }
   
 }
 
 
 image_t *rotation(image_t *src, int angle)
 {
-  image_t *dst;
+  image_t *dst=NULL;
 
   /* a completer */
   
   return dst;
 }
+
 
 
 image_t *charger_image_pgm(char *nom_fichier)
@@ -175,8 +181,24 @@ int sauver_image_pgm(char *nom_fichier, image_t *img)
 
 
 int main(void) {
+  
+  image_t *img = charger_image_pgm("vache.pgm");
 
-  /* a completer */
+  if (img->buff == NULL) {
+      fprintf(stderr, "Échec du chargement de l'image.\n");
+      return 1;
+  }
+
+  modifier_lumin(img , 0.5);
+
+  if (sauver_image_pgm("image_negatif.pgm", img)) {
+      printf("Image négatif sauvegardée avec succès.\n");
+  } else {
+      fprintf(stderr, "Échec de la sauvegarde de l'image négatif.\n");
+  }
+
+  detruire_image(img);
 
   return 0;
 }
+
