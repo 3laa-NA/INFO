@@ -189,7 +189,7 @@ int main(void) {
       return 1;
   }
 
-  modifier_lumin(img , 0.5);
+  negatif(img);
 
   if (sauver_image_pgm("image_negatif.pgm", img)) {
       printf("Image négatif sauvegardée avec succès.\n");
