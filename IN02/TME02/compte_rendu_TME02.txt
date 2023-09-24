@@ -1,0 +1,188 @@
+ALABOUD ALAA
+MOHAMMAD ICHRAQ
+
+___________________________________________EXERCICE 13__________________________________________ 
+
+public class AdressWeb {
+
+    private String protocole;
+    private String domaine;
+    private String chemin;
+
+    public AdressWeb(String protocole, String domaine, String chemin) {
+        this.protocole = protocole;
+        this.domaine = domaine;
+        this.chemin = chemin;
+    }
+
+    public AdressWeb(String domaine, String chemin) {
+        this("https", domaine, chemin);
+    }
+
+    public AdressWeb(String domaine) {
+        this(domaine, "");
+    }
+
+    public String toString() {
+        return protocole + "://www." + domaine + chemin;
+    }
+
+}
+
+
+public class TestAdressWeb {
+    public static void main(String[] args) {
+        AdressWeb adress1 = new AdressWeb("https", "site1.fr", "/dir1/page1.html");
+        AdressWeb adress2 = new AdressWeb("site2.fr", "/dir2/page2.html");
+        AdressWeb adress3 = new AdressWeb("site3.fr");
+
+        System.out.println("Adress 1 : " + adress1.toString());
+        System.out.println("Adress 2 : " + adress2.toString());
+        System.out.println("Adress 3 : " + adress3.toString());
+    }
+}
+
+
+___________________________________________EXERCICE 14__________________________________________ 
+
+
+import java.util.Random;
+
+public class Coureur {
+
+    private int numDossard;
+    private double tempsAu100;
+    private boolean possedeTemoin;
+
+    public Coureur(int numDossard) {
+        this.numDossard = numDossard;
+        this.tempsAu100 = 12 + (Math.random()*4);
+        this.possedeTemoin = false;
+    }
+
+    public Coureur() {
+        this( (int) (Math.random() * 1000) +1 );
+    }
+
+    public int getNumDossard() {
+        return numDossard;
+    }
+
+    public double getTempsAu100() {
+        return tempsAu100;
+    }
+
+    public boolean getPossedeTemoin() {
+        return possedeTemoin;
+    }
+
+    public void setPossedeTemoin(boolean possedeTemoin){
+        this.possedeTemoin = possedeTemoin;
+    }
+    
+    public String toString() {
+        String possedeTemoinString = possedeTemoin ? "oui" : "non";
+        return "Coureur " + numDossard + " tempsAu100 : " + String.format("%.1f", tempsAu100) + "s au 100m possedeTemoin : " + possedeTemoinString;
+    }
+
+    public void passeTemoin(Coureur c){
+        this.possedeTemoin = false;
+        c.possedeTemoin = true;
+        System.out.println("moi, coureur " + this.numDossard + ", je passe le témoin au coureur " +  c.numDossard );
+    }
+
+    public void courir(){
+        System.out.println("je suis le coureur " + this.numDossard + " et je cours" );
+    }
+    
+}
+
+
+
+public class TestCoureur {
+    public static void main(String[] args) {
+        
+        Coureur c1 = new Coureur();
+        Coureur c2 = new Coureur();
+        Coureur c3 = new Coureur();
+        Coureur c4 = new Coureur();
+
+        
+        c1.setPossedeTemoin(true);
+        c1.courir();
+        c1.passeTemoin(c2);
+        c2.courir();
+        c2.passeTemoin(c3);
+        c3.courir();
+        c3.passeTemoin(c4);
+        c4.courir();
+
+        double temps = c1.getTempsAu100()+c2.getTempsAu100()+c3.getTempsAu100()+c4.getTempsAu100();
+        
+        System.out.println("temps totale pour faire les 400m : " + temps );
+
+    }
+}
+
+
+
+___________________________________________EXERCICE 15__________________________________________ 
+
+
+public class Complexe{
+    private double reelle, imag;
+
+    public Complexe(double reelle, double imag){
+        this.reelle = reelle;
+        this.imag = imag;
+    }
+
+    public Complexe(){
+        this(-2 + Math.random() * 4, -2 + Math.random() * 4);
+    }
+
+    public String toString() {
+        return String.format("%.2f", this.reelle) + " + " + String.format("%.2f", this.imag) + "i";
+    }    
+
+    public String estReel() {
+        return (this.imag == 0) ? "oui" : "non" ;
+    }
+
+    public String addition(Complexe z) {
+        //return (this.reelle + z.reelle)+ " + " + (this.imag + z.imag) + " i" ;
+        return String.format("%.2f", (this.reelle + z.reelle)) + " + " + String.format("%.2f", (this.imag + z.imag)) + "i";
+    }
+
+    public String multiplication(Complexe z) {
+        double a1 = this.reelle;
+        double b1 = this.imag;
+        double a2 = z.reelle;
+        double b2 = z.imag;
+    
+        return String.format("%.2f", ((a1 * a2) - (b1 * b2)) ) + " + " + String.format("%.2f", ((a1 * b2) + (b1 * a2)) ) + "i";
+    }    
+
+}
+
+
+public class TestComplexe {
+    public static void main(String[] args) {
+        Complexe z1 = new Complexe(1,0);
+        Complexe z2 = new Complexe();
+        Complexe z3 = new Complexe();
+
+        System.out.println("z1 = " + z1.toString() );
+        System.out.println("z2 = " + z2.toString() );
+        System.out.println("z3 = " + z3.toString() );
+
+        System.out.println("z1 reel? " + z1.estReel() );
+        System.out.println("z2 reel? " + z2.estReel() );
+        System.out.println("z3 reel? " + z3.estReel() );
+
+        System.out.println("z2 + z3 = " + z2.addition(z3) );
+        System.out.println("z2 * z3 = " + z2.multiplication(z3) );
+
+    }
+}
+
