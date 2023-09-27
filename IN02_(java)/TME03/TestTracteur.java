@@ -1,4 +1,4 @@
-public class TesTracteur {
+public class TestTracteur {
     public static void main(String[] args) {
         Roue r1 = new Roue(120);
         Roue r2 = new Roue(120);
