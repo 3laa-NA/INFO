@@ -70,6 +70,7 @@ int main(){
     a = 10;
     b = 3;
 
+    printf("------------------------------------------------------------\n");
     printf("pour les valeurs a = %d , b = %d , p = %d :\n",a,b,p);
     printf("add(a, b, p)  = %d \n",add(a, b, p));
     printf("sub(a, b, p)  = %d \n",sub(a, b, p));
@@ -81,6 +82,7 @@ int main(){
     a = 413;
     b = 74;
 
+    printf("------------------------------------------------------------\n");
     printf("pour les valeurs a = %d , b = %d , p = %d :\n",a,b,p);
     printf("add(a, b, p)  = %d \n",add(a, b, p));
     printf("sub(a, b, p)  = %d \n",sub(a, b, p));
@@ -92,6 +94,7 @@ int main(){
     a = 10903;
     b = 1520;
 
+    printf("------------------------------------------------------------\n");
     printf("pour les valeurs a = %d , b = %d , p = %d :\n",a,b,p);
     printf("add(a, b, p)  = %d \n",add(a, b, p));
     printf("sub(a, b, p)  = %d \n",sub(a, b, p));
