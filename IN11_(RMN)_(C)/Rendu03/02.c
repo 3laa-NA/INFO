@@ -13,7 +13,6 @@ Diakite Gaoussou
 
 void split_64 (uint64_t a, uint32_t *a1, uint32_t *a0){
     uint32_t x=0;
-    uint32_t y=0;
     uint64_t z=a;
 
     while(z>=pow(2,31)){
