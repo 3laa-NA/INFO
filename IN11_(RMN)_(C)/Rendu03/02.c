@@ -2,7 +2,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
-#include <fenv.h>
+
+/*
+Groupe:
+Dicko Daouda
+Mohamed Ichraq
+Alaboud Alaa
+Diakite Gaoussou
+*/
 
 void split_64 (uint64_t a, uint32_t *a1, uint32_t *a0){
     uint32_t x=0;

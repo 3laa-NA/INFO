@@ -2,7 +2,15 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
-#include <fenv.h>
+
+
+/*
+Groupe:
+Dicko Daouda
+Mohamed Ichraq
+Alaboud Alaa
+Diakite Gaoussou
+*/
 
 uint32_t add (uint32_t a, uint32_t b, uint32_t p){
     return (a+b)%p;
