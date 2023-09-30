@@ -4,7 +4,7 @@
 int main(int argc, char const *argv[]){
 
 	if (argc < 2) {
-		printf("arguments manquants! \nUsage : mon_test <des_chaines_de_caractere> \n");
+		printf("arguments manquants! \nUsage : ./helloYou <des_chaines_de_caractere> \n");
 		exit(-1);
 	}
 

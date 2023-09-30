@@ -2,15 +2,18 @@
 #include<stdio.h>
 
 int main(int argc, int const *argv[]){
-    int res=0;
+    int const res=0;
 
 	if (argc < 2) {
-		printf("arguments manquants\n");
+		printf("arguments manquants \nUsage : ./somme <des_entiers> \n");
 		exit(-1);
 	}
 
     for(int i=1; i<argc;i++){
-	    printf("BONJOUR %s !\n", argv[i]);
+        res = res + argv[i];
     }
+
+	printf("somme = %d !\n", res);
+
 	return 0;
 }
