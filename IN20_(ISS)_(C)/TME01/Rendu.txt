@@ -1,0 +1,40 @@
+EX1 :
+
+q1 : rien,
+
+q2 : il se passe rien(windows)
+    retour au rrépertoire personnel (github codespace)
+
+q3 : cd /
+
+q4 : ...
+
+q5 : on peut stocker les commands
+
+EX2 : 
+
+q1 :  mkdir -p /tmp/rep1/rep2
+
+q2 :  ...
+
+EX3 : 
+
+q1 : ...
+
+q2 : ...
+
+q3 : ...
+
+q4 : 
+
+find -type f -name "*63*"
+
+->./LivreIV/E63 //ducoup on va dans ./LivreIV/E63
+
+" Etape_2 : exactement 8 lettres qui finit par 'e' " donc :
+
+find -type f -name "???????e"
+
+->./Burgonde
+
+" Etape_3 : toutes les années multiples de 3 du 6ème siècle après J.-C. "
