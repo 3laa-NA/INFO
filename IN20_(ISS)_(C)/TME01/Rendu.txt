@@ -38,3 +38,27 @@ find -type f -name "???????e"
 ->./Burgonde
 
 " Etape_3 : toutes les années multiples de 3 du 6ème siècle après J.-C. "
+
+find -type f -name "5[0-9][0-9]AD" | sort | xargs -I {} sh -c 'num=$(basename "{}" .AD); ent=$(expr "$num" : "\([0-9]*\)"); if [ $((ent % 3)) -eq 0 ]; then cat "{}"; fi'
+
+->Etape_4 : au moins quatre voyelle
+
+on va dans le fichier etape_4 puis :
+
+find -type f -name "*[aeiouy]*[aeiouy]*[aeiouy]*[aeiouy]*"
+
+->./cuillere
+
+" J'apprecie les fruits au sirop. "
+
+EX4 : 
+
+q1 : ...
+
+q2 : find -type f -name "*.log" -exec rm {} \;
+
+q3 : rm 1001_Albums_You_Must_Hear_Before_You_Die/"*.flac" 
+     rm 1001_Albums_You_Must_Hear_Before_You_Die/"error.flac"
+
+
+
