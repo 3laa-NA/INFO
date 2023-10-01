@@ -28,7 +28,7 @@ echo "graphique de la répartition de ces albums suivant les années (de 1995 à
 printf "\n"
 
 for i in {1995..2016}; do
-printf "$i : "
+    printf "$i : "
     find 1001_Albums_You_Must_Hear_Before_You_Die -type f -name "*-*-$i*" -printf "x"
     printf "\n"
 done

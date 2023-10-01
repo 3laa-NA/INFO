@@ -3,26 +3,45 @@ EX1:
 q1: ...
 q2: ...
 
-#include<stdlib.h>
-#include<stdio.h>
-
-int main(int argc, char const *argv[]){
-
-	if (argc < 2) {
-		printf("arguments manquants\nUsage : mon_test <des_chaines_de_caractere>"");
-		exit(-1);
-	}
-
-    for(int i=1; i<argc;i++){
-	    printf("BONJOUR %s !\n", argv[i]);
-    }
-	return 0;
-}
-
 q3: 
+
 -le nom et le prenom seront traités comme deux prenoms differents
 -il suffit de les mettre entre guillmets pour preciser qu'ils forment une seule chaine de caracteres.
 
 Ex2:
 
-q1
+q1 : ...
+
+q2 : la commande retourne "true is a shell builtin" don c'est bien une commande
+
+q3 : ...
+
+q4 : un processus pour lancer le script puis un processus par nombre ajouté 
+
+q5 : ...
+
+EX3 : 
+
+#include<stdlib.h>
+#include<stdio.h>
+
+int main(int argc, char const *argv[])
+{
+    // on affiche le contenu des variables HOME, PATH et PWD
+    printf("HOME : %s\n\n",getenv("HOME"));
+    printf("PATH : %s\n\n",getenv("PATH"));
+    printf("PWD  : %s\n",getenv("PWD"));
+    return 0;
+}
+
+q1 : seule PWD change 
+
+q2 : TEST_1 a été changé definitivement alors que TEST_2 temporairement
+
+q3 : TEST_1 est presente mais pas TEST_2
+
+q4 : on verifie avec la commande type et env n'est pas un builtin
+
+q5 : ...
+
+q6 : c'est un builtin, parceque c'est une commande qui fait une tache facile et qui doit etre accessible facilement
