@@ -1,0 +1,1 @@
+Compilez mon_test.c avec la commande suivante : gcc mon_test.c -o mon_test

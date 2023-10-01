@@ -1,0 +1,48 @@
+EX 1: 
+
+q1 : ...
+
+q2 : gcc mon_test.c -o mon_test
+
+q3 : ...
+
+q4 : mv mon_test.c est_il_pair.c
+
+q5 : printf("Usage : %s <un_entier>\n",argv[0]);
+
+
+EX2 : 
+
+
+q1 : ...
+
+q2 : est_il_pair n'est pas une variable d'environnement (pas stocké dans PATH) 
+
+q3 : 
+
+PATH_OLD="$PATH"
+export PATH="$PATH:/workspaces/INFO/IN20_(ISS)_(C)/TME02/exo
+
+q4 : ...
+
+q5 : ...
+
+q6 : dans le cas de l'exerciseen le mkdir qui etait appele etait celui dans le repertoire rep1 et non le mkdir dans PATH en fonction de ce qu'etait dans l'executable mkdir j'aurai pu lancer un program malveillants
+
+EX3 : 
+
+q1 : ...
+
+q2 : ...
+
+q3 : non cela ne change pas le nombre de processus créés.
+
+q4 : ...
+
+
+EX04 : 
+
+
+q1 : ...
+
+q2 : ...
