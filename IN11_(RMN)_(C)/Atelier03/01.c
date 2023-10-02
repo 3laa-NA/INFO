@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 void prodmatmat(double *a, double *b, double *p, int n) {
     int i, j, k;
     for (i = 0; i < n; i++) {
@@ -21,6 +22,24 @@ void afficherMatrice(double *matrice, int n) {
         printf("\n");
     }
 }
+
+void prodmatmat_op(double *a, double *b, double *p, int n) {
+    double *pa, *pb, *pp;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            pp = p + i * n + j;
+            *pp = 0;
+            pa = a + i * n;
+            pb = b + j;
+            for (int k = 0; k < n; k++) {
+                *pp += (*pa) * (*pb);
+                pa++;
+                pb += n;
+            }
+        }
+    }
+}
+
 
 int main() {
     double creatures[4][4] = {
