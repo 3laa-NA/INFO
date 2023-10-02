@@ -28,9 +28,14 @@ public class Point {
         return Math.sqrt( Math.pow((x2-x1),2.0) + Math.pow((y2-y1),2.0) );
     }
 
-    public void deplaceToi(int newx, int newy){
+    public void deplaceToi(double newx, double newy){
         this.posx = newx;
         this.posy = newy;
+    }
+
+    public Point(Point p){
+        this.posx = p.posx;
+        this.posy = p.posy;
     }
 
 }

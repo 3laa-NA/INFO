@@ -1,0 +1,351 @@
+ALABOUD ALAA
+MOHAMMAD ICHRAQ
+
+___________________________________________EXERCICE 19__________________________________________ 
+ 
+
+q 19.8 : il faut aussi copier les objets qui forment le tracteur sinon les deux tracteurs vont partager les mêmes pièces
+
+---------------------------------------------------------
+
+public class Roue {
+    private int diametre;
+
+    public Roue (int diametre)
+    {
+        this.diametre = diametre;
+    }
+
+    public Roue()
+    {
+        this(60);
+    }
+
+    public Roue(Roue r1){
+        this.diametre = r1.diametre;
+    }
+
+    public String toString()
+    {
+        return "Le diametre de la roue est : "+ diametre;
+    }
+
+}
+
+---------------------------------------------------------
+
+public class Cabine {
+    private double volume;
+    private String couleur;
+
+    public Cabine(double volume, String couleur)
+    {
+        this.volume = volume;
+        this.couleur = couleur;
+    }
+
+    public void setCouleur(String couleur)
+    {
+        this.couleur = couleur;
+    }
+
+    public Cabine(Cabine c1){
+        this.couleur = c1.couleur;
+        this.volume = c1.volume;
+        
+    }
+
+    public String toString ()
+    {
+        return "volume = " + volume + " m3, couleur = " + couleur;
+    }
+
+}
+
+--------------------------------------------------------
+
+public class Tracteur {
+    private Roue r1, r2, r3, r4;
+    private Cabine c1;
+
+    public Tracteur(Roue r1,Roue r2,Roue r3,Roue r4, Cabine c1){
+        this.r1 = r1;
+        this.r2 = r2;
+        this.r3 = r3;
+        this.r4 = r4;
+        this.c1 = c1;
+        
+    }
+    public Tracteur(){
+        this.r1 = new Roue();
+        this.r2 = new Roue();
+        this.r3 = new Roue();
+        this.r4 = new Roue();
+        this.c1 = new Cabine(3,"bleu");
+        
+    }
+    public String toString(){
+        return "r1 : " + r1 + ", r2 : " +  r2  + ", r3 : " + r3 +  ", r4 : " + r4 + ", c1 : " + c1;
+    }
+
+    public void peindre(String couleur){
+        this.c1.setCouleur(couleur);
+    }
+
+    public Tracteur (Tracteur t1){
+        this.r1 = new Roue (t1.r1);
+        this.r2 = new Roue (t1.r2);
+        this.r3 = new Roue (t1.r3);
+        this.r4 = new Roue (t1.r4);
+        this.c1 = new Cabine (t1.c1);
+
+    }
+
+}
+
+--------------------------------------------------------
+
+public class TestTracteur {
+    public static void main(String[] args) {
+        Roue r1 = new Roue(120);
+        Roue r2 = new Roue(120);
+        Roue r3 = new Roue();
+        Roue r4 = new Roue();
+
+        System.out.println(r1.toString());
+        System.out.println(r2.toString());
+        System.out.println(r3.toString());
+        System.out.println(r4.toString());
+
+
+        Cabine c1 = new Cabine(3,"Bleu");
+
+        System.out.println(c1.toString());
+
+        Tracteur t1 =new Tracteur(r1,r2,r3,r4,c1);
+
+        System.out.println(t1.toString());
+
+        Tracteur t2 = t1;
+
+        t2.peindre("Rouge");
+
+        System.out.println(t1.toString());
+
+        t2 = new Tracteur(t1);
+
+        t2.peindre("Vert");
+
+        System.out.println(t1.toString());
+    }
+
+
+}
+
+
+___________________________________________EXERCICE 20__________________________________________ 
+
+
+q 20.5 : on ajoute un constructeur ou une methode "copie" pour copier les points composant la triangle sinon on aura le méme probléme qu'à la question precedente
+
+q 20.7 : on peut utiliser la méthode " .equals " déjà existante
+--------------------------------------------------------
+
+import java.text.DecimalFormat;
+
+public class Point {
+    private double posx, posy;
+
+    public Point(int posx, int posy){
+        this.posx = posx;
+        this.posy = posy;
+    }
+    
+    public Point (){
+        this.posx = Math.random() * 9;
+        this.posy = Math.random() * 9;
+    }
+
+    public String toString (){
+
+        DecimalFormat df = new DecimalFormat("#.##"); 
+        return "(" + df.format(posx) + ", " + df.format(posy) + ")" ;
+    }
+   
+    public double distance(Point p){
+        double x1 = this.posx;
+        double y1 = this.posy;
+        double x2 = p.posx;
+        double y2 = p.posy;
+
+        return Math.sqrt( Math.pow((x2-x1),2.0) + Math.pow((y2-y1),2.0) );
+    }
+
+    public void deplaceToi(double newx, double newy){
+        this.posx = newx;
+        this.posy = newy;
+    }
+
+    public Point(Point p){
+        this.posx = p.posx;
+        this.posy = p.posy;
+    }
+
+}
+
+
+--------------------------------------------------------
+
+public class Triangle {
+    private Point p1, p2, p3;
+
+    public Triangle(Point p1, Point p2, Point p3){
+        this.p1=p1;
+        this.p2=p2;
+        this.p3=p3;
+    }
+
+    public Triangle(){
+        this.p1= new Point();
+        this.p2= new Point();
+        this.p3= new Point();
+    }
+
+    public String toString(){
+        return "{" + this.p1.toString() + ";" + this.p2.toString() + ";" + this.p3.toString() + "}" ;
+    }
+
+    public double getPerimetre(){
+        return p1.distance(p2) + p2.distance(p3) + p3.distance(p1) ;
+    }
+
+    public Triangle(Triangle t1){
+
+        this.p1 = new Point(t1.p1);
+        this.p2 = new Point(t1.p2);
+        this.p3 = new Point(t1.p3);
+    }
+}
+
+--------------------------------------------------------
+
+public class TestTriangle{
+    public static void main(String[] args) {
+        Point p1 = new Point();
+        Point p2 = new Point();
+        Point p3 = new Point();
+
+        Triangle t1 = new Triangle(p1, p2, p3);
+
+        System.out.println("p1 : " + p1.toString());
+        System.out.println("p2 : " + p2.toString());
+        System.out.println("p3 : " + p3.toString());
+
+        System.out.println("distance p1 à p2 : " + p1.distance(p2));
+
+        System.out.println("t1 : " + t1.toString());
+
+        System.out.println("le périmètre de t1 est de " + t1.getPerimetre());
+
+        Triangle t2 = new Triangle(t1);
+
+        System.out.println("t2 : " + t2.toString());
+
+        p1.deplaceToi(7.3, 3.7);
+
+        System.out.println("t1 apres deplacement de p1 : " + t1.toString());
+
+        System.out.println("t2 apres deplacement de p1 : " + t2.toString());
+
+
+
+    }
+}
+
+
+___________________________________________EXERCICE 21__________________________________________ 
+
+
+--------------------------------------------------------
+
+public class Personne {
+    private String nom;
+    private Personne conjoint;
+
+    public Personne(String nom){
+        this.nom = nom;
+        this.conjoint = null;
+    }
+
+    public Personne(){
+        this.nom = "pers" + (char)('A' + Math.random() * 26);
+        this.conjoint = null;
+    }
+
+    public String toString(){
+        return this.nom + ", " + (this.conjoint == null ? "célibataire" : "marié(e)");
+    }
+    
+    public void epouser(Personne p){
+        if(p == null || this.nom.equals(p.nom)){
+            System.out.println("Le mariage est impossible");
+        }
+
+
+        else if(this.conjoint != null || p.conjoint != null){
+            System.out.println("Le mariage de " + this.toString() + " avec " + p.toString() + " est impossible");
+        }
+
+        else {
+            System.out.println(this.toString() + " se marie avec " + p.toString());
+            this.conjoint = p;
+            p.conjoint = this;
+        }
+    }
+
+    public void divorcer(){
+            
+        if(this.conjoint == null){
+            System.out.println("Le divorce est impossible");
+        }
+
+        else {
+            System.out.println(this.toString() + " divorce de " + this.conjoint.toString());
+            this.conjoint.conjoint = null;
+            this.conjoint = null;
+        }
+        
+    }
+
+    public static void main(String[] args) {
+        Personne p1 = new Personne();
+        Personne p2 = new Personne();
+        Personne p3 = new Personne();
+
+        System.out.println("p1 : " + p1.toString());
+        System.out.println("p2 : " + p2.toString());
+        System.out.println("p3 : " + p3.toString());
+
+        p1.epouser(p2);
+        p1.epouser(p3);
+        p3.epouser(p1);
+        p3.epouser(p3);
+
+        System.out.println("p1 : " + p1.toString());
+        System.out.println("p2 : " + p2.toString());
+        System.out.println("p3 : " + p3.toString());
+
+        p1.divorcer();
+        p3.divorcer();
+        
+        System.out.println("p1 : " + p1.toString());
+        System.out.println("p2 : " + p2.toString());
+        System.out.println("p3 : " + p3.toString());
+    
+
+    }
+}
+
+
+
+--------------------------------------------------------
