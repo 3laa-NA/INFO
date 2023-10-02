@@ -1,6 +1,5 @@
 {
     "ocaml.sandbox": {
-        "kind": "custom",
-        "template": "$prog $args"
+        "kind": "global"
     }
 }

@@ -62,3 +62,13 @@ let y=nth_prime (2);;
 let z=nth_prime (12);;
 let t=nth_prime (1);;
 let l=nth_prime (3);;
+
+let y=6;;
+
+let foo(x : int) : int = x+y
+                         
+let i=foo(4);;
+                         
+let y=18;;
+
+let j=foo(4);;
