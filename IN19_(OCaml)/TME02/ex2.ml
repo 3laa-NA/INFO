@@ -1,8 +1,6 @@
-exception EmptyList 
-
 let rec bin_to_int (i : int list) : int = 
   match i with
-  | [] -> raise EmptyList
+  | [] -> raise (Invalid_argument "empty list")
   | x :: [] -> x
   | (x::xs) -> x + ( 2 *(bin_to_int xs) )
     
@@ -20,10 +18,9 @@ let y = int_to_bin 6;;
 let z = int_to_bin 1;;
 let w = int_to_bin 43;;
   
-exception Invalid_argument
 
 let rec comp_bin (l : int list) (n : int) : int list =
-  if List.length l > n then raise Invalid_argument
+  if List.length l > n then raise (Invalid_argument "comp_bin")
   else if List.length l == n then l
   else comp_bin (l @ [0]) (n)
       
