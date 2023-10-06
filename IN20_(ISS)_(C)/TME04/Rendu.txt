@@ -29,4 +29,6 @@ on a:
 
 EX2 :
 
-q1: 
+q1: ...
+
+q2: for num in {00..99}; do cat chunks/data.$num >> complet ;done
