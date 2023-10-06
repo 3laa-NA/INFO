@@ -1,0 +1,32 @@
+EX1:
+
+q1:...
+
+q2:ce programme prend une clé (cle) en ligne de commande
+et puis prend la chaine des caracters entrée au terminale
+puis decale les lettres de la message entrée par (cle) 
+ex: avec cle=3 les "a" (miniscule) deviennent des "d"
+
+q3:...
+
+q4: on utilise la command suivante
+for num in {1..26}; do printf "% d\n",$num && ./cesar $num < fenetre_sur_coquillage/part1 ;done
+on a "16Le Bash c'est même sous Windows !!!" donc la clé est 16
+
+q5: on utilise la commande 
+for num in {1..9}; do ./cesar 16 < fenetre_sur_coquillage/part$num ;done
+on a:
+               "Le Bash c'est même sous Windows !!!
+                Grâce à Windows Subsystem for Linux (wsl),
+                il est aujourd'hui possible d'exécuter des
+                exécutables binaires Linux (au format ELF)
+                de manière native sur Windows 10. On peut
+                voir ce mécanisme comme une émulation du 
+                "mode user" d'un système gnu-Linux. Une fois
+                activé, on a accès à plusieurs distributions
+                intégrant Bash."
+
+
+EX2 :
+
+q1: 
