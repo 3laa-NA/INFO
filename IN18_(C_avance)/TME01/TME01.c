@@ -4,7 +4,7 @@
 #include <string.h> 
 
 
-int compts_mots_chaine(char *chaine) {
+int compte_mots_chaine(char *chaine) {
     int compteur = 0; // compteur de mots
     bool est_un_mot = false;
 
@@ -23,26 +23,51 @@ int compts_mots_chaine(char *chaine) {
     return compteur; 
 }
 
+char **decompose_chaine(char *chaine)
+{
+    /* Fonction vue en TD, exercice 2, question 7 */
+    char *pc= chaine;
+    int nb_mots=0;
+    char **ptab;
+    char *psrc_mot;
+    int ind_mot=0;
 
-int compte_mots(char *tableau[]) {
-    int mots = 0; // le compteur de mots à zéro
+    //comptages des mots
+    nb_mots=compte_mots_chaine(chaine);
 
-    for (int i = 0; tableau[i] != NULL; i++) { 
-        mots++; 
+    if (nb_mots == 0)
+    return NULL;
+    // allocation du tableau
+
+    ptab = malloc((nb_mots + 1) * sizeof(char *));
+    ptab[nb_mots] = NULL;
+
+    // copie des mots
+
+    pc=chaine;
+    while (*pc)
+    {
+        if(*pc == ' ')
+        {
+            pc++;
+            continue;
+        }
+
+        psrc_mot = pc;
+
+        while((*pc != ' ') && (*pc)) pc++;
+
+        //allocation du mot
+        ptab[ind_mot] = malloc((pc - psrc_mot + 1)* sizeof(char));
+        //copie du mot
+        memcpy(ptab[ind_mot], psrc_mot, pc - psrc_mot);
+        //insertion du marqueur de fin de chaine
+        *(ptab[ind_mot] + (pc - psrc_mot)) = '\0';
+
+        ind_mot++;
     }
-
-    return mots; 
+    return ptab;
 }
-
-
-void affiche_mots(char *tableau[]) {
-    for (int i = 0; tableau[i] != NULL; i++) { 
-        printf("%s ", tableau[i]); 
-    }
-
-    printf("\n"); 
-}
-
 
 char *compose_chaine(char **ptab_mots) {
     int n = 0; 
@@ -73,6 +98,38 @@ char *compose_chaine(char **ptab_mots) {
 
 }
 
+void detruit_tab_mots(char **ptab_mots)
+{
+
+  /* Fonction vue en TD, exercice 2, question 5 */
+
+  int i=0;
+
+  if (ptab_mots)
+    while(ptab_mots[i])
+      free(ptab_mots[i++]);
+
+  free(ptab_mots);
+}
+
+int compte_mots(char *tableau[]) {
+    int mots = 0; // le compteur de mots à zéro
+
+    for (int i = 0; tableau[i] != NULL; i++) { 
+        mots++; 
+    }
+
+    return mots; 
+}
+
+void affiche_tab_mots(char *tableau[]) {
+    for (int i = 0; tableau[i] != NULL; i++) { 
+        printf("%s ", tableau[i]); 
+    }
+
+    printf("\n"); 
+}
+
 
 char **reduit_tab_mots(char **ptab_mots){
 
@@ -92,12 +149,10 @@ char **reduit_tab_mots(char **ptab_mots){
 }
 
 
-
-
 int main() {
 
     char *ch = "Je me nomme Alaa et je broie la langue de Moliere";
-    printf("Nombre de mots dans la chaine : %s\nEst %d\n", ch, compts_mots_chaine(ch));
+    printf("Nombre de mots dans la chaine : %s\nEst %d\n", ch, compte_mots_chaine(ch));
 
     char *tableauMots[] = {"mot1", "et", "mot2", "et", "mot3", NULL};
     int motsDansTableau = compte_mots(tableauMots);
@@ -105,7 +160,7 @@ int main() {
     printf("Mots dans le tableau : %d\n", motsDansTableau);
 
     printf("les mots dans le tableau sont : \n");
-    affiche_mots(tableauMots);
+    affiche_tab_mots(tableauMots);
 
     char *chaineComposee = compose_chaine(tableauMots);
     printf("chaine composée : %s\n", chaineComposee);
@@ -121,4 +176,3 @@ int main() {
     
     return 0;
 }
-
