@@ -27,8 +27,26 @@ on a:
                 intégrant Bash."
 
 
+pour stocker le message ou lieu de just l'afficher:
+for num in {1..9}; do ./cesar 16 < fenetre_sur_coquillage/part$num >> message ;done
+
+
 EX2 :
 
 q1: ...
 
 q2: for num in {00..99}; do cat chunks/data.$num >> complet ;done
+
+q3: ...
+
+q4: ...
+
+EX3 :
+
+q1: On peut utiliser cette commande où on récupère d'abord le contenu du fichier puis on le passe en paramètre en tant qu'une chaîne de caractères : 'wc -c < test'.
+
+q2: ...
+
+q3: ...
+
+q4: ...
