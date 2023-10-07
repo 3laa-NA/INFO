@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h> 
 
 
 int compts_mots_chaine(char *chaine) {
@@ -56,14 +57,14 @@ char *compose_chaine(char **ptab_mots) {
 
     char *res = malloc(sizeof(char) * (n + 1)); // Alloue de la mémoire pour la nouvelle chaîne (+1 pour le caractère nul de fin)
 
-    int index = 0;
+    int ind = 0;
     for (int i = 0; ptab_mots[i] != NULL; i++) {
         for (int j = 0; ptab_mots[i][j] != '\0'; j++) {
-            res[index] = ptab_mots[i][j]; // Copie chaque caractère du mot dans la nouvelle chaîne
-            index++;
+            res[ind] = ptab_mots[i][j]; // Copie chaque caractère du mot dans la nouvelle chaîne
+            ind++;
         }
-        res[index] = ' '; // Ajoute un espace entre les mots
-        index++;
+        res[ind] = ' '; // Ajoute un espace entre les mots
+        ind++;
     }
 
     res[n] = '\0'; // Termine la nouvelle chaîne avec un caractère nul de fin
@@ -72,7 +73,7 @@ char *compose_chaine(char **ptab_mots) {
 
 }
 
-/*
+
 char **reduit_tab_mots(char **ptab_mots){
 
     for (int i = 0; ptab_mots[i] != NULL; i++) {
@@ -81,28 +82,16 @@ char **reduit_tab_mots(char **ptab_mots){
             while ( ptab_mots[i][k] == ptab_mots[j][k] & ptab_mots[j][k] != '\0' ){
                 k++;
             }
-            if(ptab_mots[i][k] == ptab_mots[j][k] & ptab_mots[j][k] == '\0'){
-                free(ptab_mots[j]);
+            if(ptab_mots[i][k] == ptab_mots[j][k] & ptab_mots[j][k] == '\0' ){
                 ptab_mots[j]=ptab_mots[i];
             }
         }
     }
 
     return ptab_mots;
-}*/
-
-char **reduit_tab_mots(char **ptab_mots) {
-    for (int i = 0; ptab_mots[i] != NULL; i++) {
-        for (int j = i + 1; ptab_mots[j] != NULL; j++) {
-            if ( strcmp(ptab_mots[i], ptab_mots[j]) == 0) {
-                free(ptab_mots[j]);
-                ptab_mots[j] = ptab_mots[i]; // Marque la case comme supprimée
-            }
-        }
-    }
-
-    return ptab_mots;
 }
+
+
 
 
 int main() {
@@ -125,10 +114,11 @@ int main() {
 
     char **tab_reduite =reduit_tab_mots(tableauMots);
 
-    char *chaineComposee2 = compose_chaine(tab_reduite);
-    printf("chaine composée du tableau réduite : %s\n", chaineComposee2);
-    
+    char *chaineReduite = compose_chaine(tab_reduite);
+    printf("chaine composée du tableau réduite : %s\n", chaineReduite);
 
+    free(chaineComposee);
+    
     return 0;
 }
 
