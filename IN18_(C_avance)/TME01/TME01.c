@@ -105,12 +105,17 @@ void detruit_tab_mots(char **ptab_mots)
 
   int i=0;
 
-  if (ptab_mots)
-    while(ptab_mots[i])
+  if (ptab_mots){
+    while(ptab_mots[i]!= NULL){
       free(ptab_mots[i++]);
+      i++;
+    }
 
-  free(ptab_mots);
+    free(ptab_mots);
+  }
 }
+
+
 
 int compte_mots(char *tableau[]) {
     int mots = 0; // le compteur de mots à zéro
@@ -148,6 +153,10 @@ char **reduit_tab_mots(char **ptab_mots){
     return ptab_mots;
 }
 
+/*
+EX 4 : 
+q2 : Oui, on simplement modifier la fonction detruit_tab_mots pour qu'elle s'arrête quand on arrive à la fin du tableau (on arrive à NULL).
+*/
 
 int main() {
 
