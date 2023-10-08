@@ -85,12 +85,15 @@ void afficher_ecosys(Animal *liste_proie, Animal *liste_predateur) {
 
   /* on ajoute les predateurs */
   pa = liste_predateur;
+
+  
   while (pa) {
-      if ((ecosys[pa->x][pa->y] == '@') || (ecosys[pa->x][pa->y] == '*')) { /* proies aussi present */
-        ecosys[pa->x][pa->y] = '@';
-      } else {
-        ecosys[pa->x][pa->y] = 'O';
-      }
+    printf("pa->x = %d, pa->y = %d\n", pa->x, pa->y);
+    if ((ecosys[pa->x][pa->y] == '@') || (ecosys[pa->x][pa->y] == '*')) { /* proies aussi present */
+      ecosys[pa->x][pa->y] = '@';
+    } else {
+      ecosys[pa->x][pa->y] = 'O';
+    }
     pa = pa->suivant;
   }
 

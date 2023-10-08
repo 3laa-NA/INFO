@@ -6,6 +6,7 @@
 
 
 #include "ecosys.h"
+#include "ecosys.c"
 
 
 
