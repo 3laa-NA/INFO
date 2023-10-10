@@ -28,7 +28,9 @@ Animal *ajouter_en_tete_animal(Animal *liste, Animal *animal) {
 
 /* A faire. Part 1, exercice 6, question 2 */
 void ajouter_animal(int x, int y,  float energie, Animal **liste_animal) {
-  /*A Completer*/
+  assert (x < SIZE_X && y < SIZE_Y );
+  Animal * new = creer_animal(x,y,energie);
+  *((liste_animal+x)+y) = new ;
 }
 
 /* A Faire. Part 1, exercice 5, question 5 */
@@ -70,8 +72,8 @@ void afficher_ecosys(Animal *liste_proie, Animal *liste_predateur) {
   Animal *pa=NULL;
 
   /* on initialise le tableau */
-  for (i = 0; i < SIZE_Y; ++i) {
-    for (j = 0; j < SIZE_X; ++j) {
+  for (i = 0; i < SIZE_X; ++i) {
+    for (j = 0; j < SIZE_Y; ++j) {
       ecosys[i][j]=' ';
     }
   }
@@ -99,19 +101,19 @@ void afficher_ecosys(Animal *liste_proie, Animal *liste_predateur) {
 
   /* on affiche le tableau */
   printf("+");
-  for (j = 0; j < SIZE_X; ++j) {
+  for (j = 0; j < SIZE_Y; ++j) {
     printf("-");
   }  
   printf("+\n");
-  for (i = 0; i < SIZE_Y; ++i) {
+  for (i = 0; i < SIZE_X; ++i) {
     printf("|");
-    for (j = 0; j < SIZE_X; ++j) {
+    for (j = 0; j < SIZE_Y; ++j) {
       putchar(ecosys[i][j]);
     }
     printf("|\n");
   }
   printf("+");
-  for (j = 0; j<SIZE_X; ++j) {
+  for (j = 0; j<SIZE_Y; ++j) {
     printf("-");
   }
   printf("+\n");

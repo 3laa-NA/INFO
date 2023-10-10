@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <strings.h>
 #include "ecosys.h"
+#include "ecosys.c"
 
 
 
@@ -22,7 +23,26 @@ int temps_repousse_herbe=-15;
 
 
 int main(void) {
+
+  int energie = 10;
  
+  Animal * proie=NULL;
+
+  for (int i=0 ; i < NB_PROIES; i++){
+    Animal *new = creer_animal(rand()%SIZE_X,rand()%SIZE_Y, energie);
+    ajouter_en_tete_animal(proie,new);
+  }
+
+  Animal * pred=NULL;
+
+  for (int i=0 ; i < NB_PROIES; i++){
+    Animal *new = creer_animal(rand()%SIZE_X,rand()%SIZE_Y, energie);
+    ajouter_en_tete_animal(pred,new);
+  }
+
+  printf("nb dans proie : %d\n",compte_animal_it(proie));
+  printf("nb dans pred : %d\n",compte_animal_it(pred));
+  
   /* A completer. Part 2:
    * exercice 4, questions 2 et 4 
    * exercice 6, question 2
