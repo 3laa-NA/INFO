@@ -30,14 +30,14 @@ int main(void) {
 
   for (int i=0 ; i < NB_PROIES; i++){
     Animal *new = creer_animal(rand()%SIZE_X,rand()%SIZE_Y, energie);
-    ajouter_en_tete_animal(proie,new);
+    proie = ajouter_en_tete_animal(proie,new);
   }
 
   Animal * pred=NULL;
 
   for (int i=0 ; i < NB_PROIES; i++){
     Animal *new = creer_animal(rand()%SIZE_X,rand()%SIZE_Y, energie);
-    ajouter_en_tete_animal(pred,new);
+    pred = ajouter_en_tete_animal(pred,new);
   }
 
   printf("nb dans proie : %d\n",compte_animal_it(proie));
