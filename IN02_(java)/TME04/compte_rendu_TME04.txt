@@ -1,0 +1,261 @@
+ALABOUD ALAA
+MOHAMMAD ICHRAQ
+
+___________________________________________EXERCICE 26__________________________________________ 
+
+public class TestTableauMain {
+    public static void main(String[] args) {
+        
+        System.out.println("Il y a " + args.length + " arguments");
+
+        int i = 0;
+        for (String x : args){
+            System.out.println("args[" + i + "]=" + x);
+            i++;
+        }
+    }
+}
+
+___________________________________________EXERCICE 27__________________________________________ 
+
+
+import java.util.Random;
+import java.util.Arrays;
+
+public class VectN{
+    private int []tab;
+
+    public VectN(int n){
+        this.tab = new int [n];
+    }
+
+    public VectN(int n, int valMAX){
+        this(n);
+        for(int i=0 ; i<n; i++){
+            this.tab[i]= (int)(Math.random()*valMAX+1);
+        }
+    }
+
+    public VectN(){
+        this(5,9);
+    }
+
+    public VectN(int a,int b,int c){
+        this(3);
+        this.tab[0]=a;
+        this.tab[1]=b;
+        this.tab[2]=c;
+    }
+
+    //méthode bonus qu'on a ajouter
+    public void affiche(){
+
+        for (int x : this.tab){
+            System.out.print(x + " ");
+        }
+        System.out.println(" ");
+    }
+
+    public int somme(){
+        int res=0;
+        for(int x : this.tab){
+            res += x ; 
+        }
+        return res;
+    }
+
+    public String toString() {
+        return Arrays.toString(tab);
+    }
+
+    int [] getTab(){
+        return this.tab;
+    }
+
+    public int[] getTab2() {
+        return Arrays.copyOf(tab, tab.length);
+    }
+    
+
+    public static void main(String[] args) {
+        VectN v = new VectN();
+        VectN v2 = new VectN(9);
+        VectN v3 = new VectN(10,15);
+        VectN v4 = new VectN(1,2,3);
+
+        v.affiche();
+        v2.affiche();
+        v3.affiche();
+        v4.affiche();
+
+        System.out.println(v.somme());
+
+        System.out.println(v.toString());
+
+        VectN vect = new VectN ( 4 , 5 , 6 ) ;
+        int [] tab=vect.getTab() ;
+        tab [0] = 100;
+        System.out.println(vect);
+
+    }
+
+}
+
+___________________________________________EXERCICE 28__________________________________________ 
+
+Assiette:
+
+public class Assiette{
+    private int diametre;
+
+    public Assiette(){
+        this.diametre = 26;
+    }
+
+    public String toString(){
+        return "Assiette" + this.diametre + "cm";
+    }
+}
+
+PILE:
+
+public class Pile{
+    private Assiette [] tab;
+    private int nbA;
+
+    public Pile(int n){
+        this.tab = new Assiette [n];
+    }
+
+    public boolean estVide(){
+        if(nbA == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean estPleine(){
+        if (tab.length==nbA){
+            return true;
+        }
+        return false;
+    }
+
+    public void empiler(Assiette a){
+        if (!(this.estPleine())){
+            tab[nbA] = a;
+            nbA++; 
+        }   
+    }
+
+    public Assiette depiler(){
+        if(!(this.estVide())){
+            nbA --;
+            return tab[nbA];
+        }
+        return null;
+    }
+
+    public String toString(){
+        if (nbA == 0){
+            return "-VIDE-\n";
+        }
+        String res ="";
+        for(int i=nbA ; i>0 ; i--){
+            res +="\\_____/ \n";
+        }
+        return res;
+    }
+
+}
+
+public class TestPile{
+    public static void main(String[] args) {
+
+        Pile p=new Pile(3);
+        System.out.println(p.toString());
+       
+
+        Assiette a = new Assiette();
+
+        p.empiler(a);
+        p.empiler(a);
+        p.empiler(a);
+
+        System.out.println(p.toString());
+
+        p.depiler();
+
+        System.out.println(p.toString());
+
+        p.empiler(a);
+        p.empiler(a);
+
+        System.out.println(p.toString());
+
+        p.depiler();
+        p.depiler();
+        p.depiler();
+        p.depiler();
+
+        System.out.println(p.toString());
+    }
+}   
+
+___________________________________________EXERCICE 29__________________________________________ 
+
+
+public class TrianglePascal{
+    private int [][] tab;
+
+    public TrianglePascal(int n){
+        this.tab = new int[n][];
+    }
+
+    public void remplirTriangle(){
+        for(int i=0 ; i < this.tab.length ;i++){
+            tab[i] = new int[i + 1];
+            for (int j=0 ; j <=i ; j++){
+                if( j==0 || j==i ){
+                    tab[i][j] = 1;    
+                }
+                else{
+                    tab[i][j] = tab[i-1][j-1] + tab[i-1][j];
+                }
+            }
+        }
+    }
+
+    public String toString(){
+        String res= "";
+        for (int i=0 ; i < this.tab.length ;i++){
+            for (int j=0 ; j <=i ; j++){
+                res += tab[i][j] + "|";
+            }
+            res += "\n";
+        }
+        return res;
+    }
+
+}
+
+public class TestTrianglePascal{
+    public static void main(String[] args) {
+        TrianglePascal t1 = new TrianglePascal(5);
+        t1.remplirTriangle();
+        
+        System.out.print("t1 (n=5) :\n" + t1.toString() + "\n");
+
+
+        TrianglePascal t2 = new TrianglePascal(10);
+        t2.remplirTriangle();
+        
+        System.out.print("t2 (n=10) :\n" + t2.toString() + "\n");
+
+
+        TrianglePascal t3 = new TrianglePascal(20);
+        t3.remplirTriangle();
+        
+        System.out.print("t3 (n=20) :\n" + t3.toString() + "\n");
+    }
+}

@@ -36,6 +36,9 @@ public class Pile{
     }
 
     public String toString(){
+        if (nbA == 0){
+            return "-VIDE-\n";
+        }
         String res ="";
         for(int i=nbA ; i>0 ; i--){
             res +="\\_____/ \n";
