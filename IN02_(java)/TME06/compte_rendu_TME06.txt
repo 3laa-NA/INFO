@@ -1,0 +1,283 @@
+ALABOUD ALAA
+MOHAMMAD ICHRAQ
+
+___________________________________________EXERCICE 41__________________________________________
+
+public class Instrument{
+    private int prix , poids ;
+
+    public Instrument(int po , int pr){
+        this.prix=pr;
+        this.poids=po;
+    }
+
+    public String toString(){
+        return "poids : " + poids + " kg, prix : " + prix + " euros.";
+    }
+
+    public void jouer(){
+        System.out.println("L'instrument joue");
+    }
+}
+
+public class Piano extends Instrument{
+    private int nb;
+
+    public Piano(int touches , int po , int pr){
+        super(po,pr);
+        nb=touches;
+    }
+
+    public String toString(){
+        return "Piano " + nb + " touches " + super.toString();
+    }
+
+    public void jouer(){
+        System.out.println("Le Piano " + nb + " touches joue");
+    }
+}
+
+public class Guitare extends Instrument{
+    private String type;
+
+    public Guitare(String type , int po , int pr){
+        super(po,pr);
+        this.type=type;
+    }
+
+    public String toString(){
+        return "Guitare " + type + " " + super.toString();
+    }
+
+    public void jouer(){
+        System.out.println("La guitare " + type + " joue");
+    }
+}
+
+public class Orchestre {
+    private int max;
+    private Instrument[] l;
+    private int nb_inst=0;
+
+    public Orchestre(int m){
+        max=m;
+        this.l = new Instrument[m];
+    }
+
+    public void ajouterInstrument(Instrument x){
+        if (nb_inst<max){
+            l[nb_inst] = x ;
+            nb_inst ++;
+        }
+        else{System.out.println("pas de place dans l'orchestre");}
+    }
+
+    public void jouer(){
+        for(int i=0 ; i<nb_inst ; i++){
+            l[i].jouer();
+        }
+    }
+}
+
+
+
+public class TestOrchestre {
+    public static void main(String[] args) {
+        Guitare g1 = new Guitare("classique" , 2 , 500);
+        Piano p1 = new Piano(88 , 300 , 700);
+
+        System.out.println(g1.toString());
+        System.out.println(p1.toString());
+
+        Orchestre o1 = new Orchestre(5);
+
+        o1.ajouterInstrument(g1);
+        o1.ajouterInstrument(p1);
+
+        o1.jouer();
+    }
+}
+
+___________________________________________EXERCICE 42__________________________________________
+
+public class Vehicule {
+    public static int cpt=0;
+    protected int id;
+    private String marque;
+    protected double dis=0;
+
+    public Vehicule(String m){
+        marque = m;
+        cpt++;
+        id = cpt;
+    }
+    public String toString(){
+        return id + " de marque " + marque;
+    }
+
+    public void rouler(double distance){
+        dis+=distance;
+        System.out.println( this.toString() + " a roule " + distance + " km" );
+    }
+}
+
+
+public class AMoteur extends Vehicule {
+    private double cap, niv_ess=0;
+
+    public AMoteur(String m, double cap){
+        super(m);
+        this.cap=cap;
+    }
+
+    public String toString(){
+        return super.toString() + " a moteur";
+    }
+
+    public void approvisionner(double nbLitres){
+        niv_ess+=nbLitres;
+        if (niv_ess>cap){
+            niv_ess=cap;
+        }
+    }
+
+    public boolean enPanne(){
+        return niv_ess==0;
+    }
+
+}
+
+
+public class SansMoteur extends Vehicule {
+    public SansMoteur(String m){
+        super(m);
+    }
+
+    public String toString(){
+        return super.toString() + " sans moteur";
+    }
+}
+
+
+public class Velo extends SansMoteur {
+    private int nb_vit;
+    
+    public Velo(String m, int vit){
+        super(m);
+        nb_vit=vit;
+    }
+
+    public String toString(){
+        return "Velo " + super.toString() + ", " + nb_vit + " vitesses";
+    }
+
+    public void transporter(String depart, String arrivee){
+        System.out.println("Le velo " + super.id + " se deplace de " + depart + " a " + arrivee );
+    }
+
+}
+
+
+public class Voiture extends AMoteur {
+    private int nb_plc;
+
+    public Voiture(String m, double cap, int nb){
+        super(m,cap);
+        nb_plc=nb;
+    }
+
+    public String toString(){
+        return "Voiture " + super.toString() + ", " + nb_plc + " places";
+    }
+
+    public void transporter(int nbPers, int km){
+        if(super.enPanne()){
+            System.out.println("La voiture " + super.id + " n'a plus d'essence !");
+        }
+
+        else{
+            if(nbPers>nb_plc){
+            System.out.println("La voiture " + super.id + " n'est pas assez grande !");
+            }
+
+            else{
+            super.dis+=km;
+            System.out.println("La voiture " + super.id + " transporte " + nbPers + " personnes sur " + km + " km");
+            }
+        }
+    }
+}
+
+
+public class Camion extends AMoteur {
+    private double v;
+
+    public Camion(String m, double cap, int vol){
+        super(m,cap);
+        v=vol;
+    }
+
+    public String toString(){
+        return "Camion " + super.toString() + ", volume : " + v;
+    }
+
+    public void transporter(String materiau, int km){
+        if(super.enPanne()){
+            System.out.println("Le camion " + super.id + " n'a plus d'essence !");
+        }
+
+        else{
+            super.dis+=km;
+            System.out.println("Le camion " + super.id + " a transporte des " + materiau + " sur " + km + " km");
+        }
+    }
+}
+
+
+public class TestVehicule {
+    public static void main(String[] args) {
+        
+    Velo velo1 = new Velo("MyVTT",17);
+
+    System.out.println(velo1.toString());
+
+    velo1.transporter("Paris","Lyon");
+
+    velo1.rouler(10);
+
+    Voiture voit1 = new Voiture("MyVTT",50,5);
+   
+    System.out.println(voit1.toString());
+
+    voit1.transporter(5,200);
+
+    voit1.approvisionner(40);
+
+    voit1.transporter(7,200);
+
+    voit1.transporter(5,200);
+
+    Camion cam1 = new Camion("MyVTT",70,500);
+
+    System.out.println(cam1.toString());
+
+    cam1.transporter("tuiles",500);
+
+    cam1.approvisionner(40);
+
+    cam1.transporter("tuiles",500);
+
+    Vehicule[] tab = new Vehicule[3];
+    tab[0] = velo1;
+    tab[1] = voit1;
+    tab[2] = cam1;
+
+    for (Vehicule x : tab){
+        x.rouler(10);
+    }
+
+    }
+}
+    
+//on peut factoriser "transporter" au niveau de "AMoteur" ou "Vehicule" (meme un velo transporte une personne)
+// mais tout les vehicules ne transporte pas la meme chose donc je prefer ne pas factoriser puisque il faut redefinir dans tout les cas
