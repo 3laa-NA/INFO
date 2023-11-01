@@ -16,7 +16,7 @@ $version = "3.03";
 $progname = basename($0);
 $eyes = "oo";
 $tongue = "  ";
-$cowpath = $ENV{'COWPATH'} || 'prog//share/cows';
+$cowpath = $ENV{'COWPATH'} || 'usr/share/cows';
 @message = ();
 $thoughts = "";
 
@@ -174,7 +174,7 @@ sub get_cow {
 	    die "$progname: Could not find $f cowfile!\n";
 	}
     }
-    do $full;
+    do "./$full";
     die "$progname: $@\n" if $@;
 }
 
