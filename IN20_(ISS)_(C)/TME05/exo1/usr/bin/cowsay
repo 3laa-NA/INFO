@@ -16,7 +16,7 @@ $version = "3.03";
 $progname = basename($0);
 $eyes = "oo";
 $tongue = "  ";
-$cowpath = $ENV{'COWPATH'} || 'usr/share/cows';
+$cowpath = $ENV{'COWPATH'} || 'exo1/usr/share/cows';
 @message = ();
 $thoughts = "";
 
