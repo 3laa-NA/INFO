@@ -5,9 +5,9 @@
 #include "ecosys.h"
 
 /* Parametres globaux de l’ecosysteme (externes dans le ecosys.h)*/
-float p_ch_dir=0.1; //probabilite de changer de direction de deplacement
-float p_reproduce_proie=0.4;
-float p_reproduce_predateur=0.5;
+float p_ch_dir=0.3; //probabilite de changer de direction de deplacement
+float p_reproduce_proie=0.25;
+float p_reproduce_predateur=0.03;
 int temps_repousse_herbe=-15;
 
 
@@ -28,7 +28,6 @@ Animal *creer_animal(int x, int y, float energie) {
   return na;
 }
 
-
 /* Fourni */
 Animal *ajouter_en_tete_animal(Animal *liste, Animal *animal) {
   assert(animal);
@@ -39,6 +38,7 @@ Animal *ajouter_en_tete_animal(Animal *liste, Animal *animal) {
 
 /* A faire */
 void ajouter_animal(int x, int y,  float energie, Animal **liste_animal) {
+  //on verifie que x et y appartiennent au bon intervalle
   assert (0 <= x && x < SIZE_X && 0 <= y && y < SIZE_Y );
   Animal * new = creer_animal(x,y,energie);
   *liste_animal = ajouter_en_tete_animal(*liste_animal,new);
@@ -47,7 +47,7 @@ void ajouter_animal(int x, int y,  float energie, Animal **liste_animal) {
 /* A Faire */
 void enlever_animal(Animal **liste, Animal *animal) {
 
-  //oon recupere la liste chainee
+  //on recupere la liste chainee
   Animal *li_ch = *liste;
 
   //on traite le cas ou l'un des arguments est non existant
@@ -93,11 +93,12 @@ void enlever_animal(Animal **liste, Animal *animal) {
 /* A Faire */
 Animal* liberer_liste_animaux(Animal *liste) {
 
-   while(liste){
+  //on parcourt la liste en suprimant tous les animaux
+  while(liste){
     Animal *tmp=liste;
     liste=liste->suivant;
     free(tmp);
-   }
+  }
 
   return NULL;
 }
@@ -117,8 +118,6 @@ unsigned int compte_animal_it(Animal *la) {
   }
   return cpt;
 }
-
-
 
 /* Part 1. Exercice 5, question 1, ATTENTION, ce code est susceptible de contenir des erreurs... */
 void afficher_ecosys(Animal *liste_proie, Animal *liste_predateur) {
@@ -179,12 +178,13 @@ void afficher_ecosys(Animal *liste_proie, Animal *liste_predateur) {
 
 }
 
-
 void clear_screen() {
   printf("\x1b[2J\x1b[1;1H");  /* code ANSI X3.4 pour effacer l'ecran */
 }
 
+
 /* PARTIE 2*/
+
 
 /* A Faire */
 void ecrire_ecosys(const char *nom_fichier, Animal *liste_predateur, Animal *liste_proie){
@@ -210,7 +210,6 @@ void ecrire_ecosys(const char *nom_fichier, Animal *liste_predateur, Animal *lis
   fclose(file);
 }
 
-
 /* A Faire */
 void lire_ecosys(const char *nom_fichier, Animal **liste_predateur, Animal **liste_proie){
 
@@ -228,20 +227,29 @@ void lire_ecosys(const char *nom_fichier, Animal **liste_predateur, Animal **lis
 
   char line[200]; 
 
+  // Lecture du fichier ligne par ligne
   while (fgets(line, sizeof(line), file) != NULL) {
 
     //on est entré dans la boucle donc le fichier n'est pas vide
     vide = 0;
+    
+    // Traitement des lignes correspondant aux proies
     if (strcmp(line, "<proies>\n") == 0){
       while (fgets(line, sizeof(line), file) != NULL && strcmp(line, "</proies>\n") != 0){
         int x,y,dx,dy;
         float energie;
+        
+        // Analyse de la ligne pour extraire les données
         sscanf(line, "x=%d y=%d dir=[%d %d] e=%f\n", &x, &y, &dx, &dy, &energie);
+
+        // Ajout d'une proie à la liste des proies
         ajouter_animal(x,y,energie,liste_proie);
         (*liste_proie)->dir[0]=dx;
         (*liste_proie)->dir[1]=dy;
       }
     }
+
+    // Traitement des lignes correspondant aux prédateurs
     if (strcmp(line, "<predateurs>\n") == 0){
       while (fgets(line, sizeof(line), file) != NULL && strcmp(line, "</predateurs>\n") != 0){
         int x,y,dx,dy;
@@ -261,7 +269,6 @@ void lire_ecosys(const char *nom_fichier, Animal **liste_predateur, Animal **lis
 
   fclose(file);
 }
-
 
 /* A Faire */
 void bouger_animaux(Animal *la) {
@@ -306,7 +313,6 @@ void bouger_animaux(Animal *la) {
 
 }
 
-
 /* A Faire */
 void reproduce(Animal **liste_animal, float p_reproduce) {
 
@@ -330,7 +336,6 @@ void reproduce(Animal **liste_animal, float p_reproduce) {
   }
 
 }
-
 
 /* A Faire */
 void rafraichir_proies(Animal **liste_proie, int monde[SIZE_X][SIZE_Y]) {
@@ -411,7 +416,7 @@ void rafraichir_predateurs(Animal **liste_predateur, Animal **liste_proie) {
 
     if(pro){
       //on simule la predation
-      la->energie += pro->energie;
+      la->energie += (pro->energie) ;
       enlever_animal(liste_proie,pro);
     }
 
