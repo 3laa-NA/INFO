@@ -21,17 +21,15 @@ int main(void) {
   srand(1);
 
   float energie = 30;
- 
-  Animal * new = creer_animal(0,10, energie);
 
-  Animal * proie = new;
+  Animal * proie = NULL;
 
   for (int i=0 ; i < NB_PROIES; i++){
     Animal *new = creer_animal(rand()%SIZE_X,rand()%SIZE_Y, energie);
     proie = ajouter_en_tete_animal(proie,new);
   }
 
-  Animal * pred=NULL;
+  Animal * pred = NULL;
 
   for (int i=0 ; i < NB_PROIES; i++){
     Animal *new = creer_animal(rand()%SIZE_X,rand()%SIZE_Y, energie);
@@ -47,7 +45,7 @@ int main(void) {
 
   while (i < ITER && (proie || pred)){
     clear_screen(); // Effacement de l'écran
-    //rafraichir_monde(monde); // Rafraîchissement du monde (herbe)
+    rafraichir_monde(monde); // Rafraîchissement du monde (herbe)
     rafraichir_proies(&proie, monde); // Rafraîchissement des proies
     rafraichir_predateurs(&pred,&proie); // Rafraîchissement des prédateurs
     afficher_ecosys(proie, pred); // Affichage de l'écosystème
