@@ -1,5 +1,5 @@
-#CFLAGS = -g -Wall -Wextra -pedantic -Wno-unused-parameter
-CFLAGS = -g -Wno-unused-parameter
+CFLAGS = -g -Wall -Wextra -pedantic -Wno-unused-parameter
+#CFLAGS = -g -Wno-unused-parameter
 CC = gcc
 
 PROGRAMS =   tests_ecosys ecosys
@@ -21,8 +21,10 @@ ecosys.o: ecosys.c
 main_tests.o: main_tests.c
 	gcc $(CFLAGS) -c main_tests.c
 
+
 main_ecosys.o: main_ecosys.c 
 	gcc $(CFLAGS) -c main_ecosys.c
+
 
 #Ou plus simplement
 #%.o:%.c %.h

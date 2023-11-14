@@ -29,10 +29,13 @@ void ajouter_animal(int x, int y, float energie, Animal **liste_animal);
 void enlever_animal(Animal **liste, Animal *animal);
 Animal* liberer_liste_animaux(Animal *liste);
 void afficher_ecosys(Animal *liste_predateur, Animal *liste_proie);
+void ecrire_ecosys(const char *nom_fichier, Animal *liste_predateur, Animal *liste_proie);
+void lire_ecosys(const char *nom_fichier, Animal **liste_predateur, Animal **liste_proie);
 
 
 
 void bouger_animaux(Animal *la);
+void reproduce(Animal **liste_animal, float p_reproduce);
 Animal *animal_en_XY(Animal *l, int x, int y);
 void rafraichir_predateurs(Animal **liste_predateur, Animal **liste_proie);
 void rafraichir_proies(Animal **liste_proie, int monde[SIZE_X][SIZE_Y]) ;

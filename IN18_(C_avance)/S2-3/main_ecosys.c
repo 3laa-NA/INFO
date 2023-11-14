@@ -6,19 +6,19 @@
 #include <unistd.h>
 #include <strings.h>
 #include "ecosys.h"
-#include "ecosys.c"
 
 
 
-#define NB_PROIES 40
-#define NB_PREDATEURS 40
-#define T_WAIT 30000
+#define NB_PROIES 5
+#define NB_PREDATEURS 5
+#define T_WAIT 4000
 #define FICHIER "Evol_Pop.txt" //nom du fichier pour stocker les donnees
 #define ITER 500 //n° d'iterations
 
 
 
 int main(void) {
+  srand(1);
 
   float energie = 30;
  
@@ -47,7 +47,7 @@ int main(void) {
 
   while (i < ITER && (proie || pred)){
     clear_screen(); // Effacement de l'écran
-    rafraichir_monde(monde); // Rafraîchissement du monde (herbe)
+    //rafraichir_monde(monde); // Rafraîchissement du monde (herbe)
     rafraichir_proies(&proie, monde); // Rafraîchissement des proies
     rafraichir_predateurs(&pred,&proie); // Rafraîchissement des prédateurs
     afficher_ecosys(proie, pred); // Affichage de l'écosystème

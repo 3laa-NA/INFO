@@ -6,12 +6,10 @@
 
 
 #include "ecosys.h"
-#include "ecosys.c"
 
 
 
 int main(void) {
-  int i;
   Animal *liste_proie = NULL;
   Animal *liste_predateur = NULL;
   float energie=10;
