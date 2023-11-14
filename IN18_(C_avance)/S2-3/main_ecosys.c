@@ -18,7 +18,7 @@
 
 
 int main(void) {
-  srand(1);
+  srand(time(NULL));
 
   float energie = 30;
 
