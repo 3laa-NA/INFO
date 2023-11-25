@@ -52,3 +52,36 @@ let rec decode1 (l : int list) (t : 'a htree) : ('a * (int list)) =
   
   
 let x = decode1 [0; 0; 1; 1; 1] t_msg;;
+
+let rec decode (l : int list) (t : 'a htree) : 'a list = 
+  match l with
+  |[] -> []
+  |_ -> let (msg,code) = decode1 l t in
+      [msg]@decode code t
+          
+let x = decode [0;0;1;1;1;0;1;0;0;0;1;1;1;0;1;0;0;1;1;0;1;0;0;0;1;0;1;1;1;1;0;0;0;1;1;0;1;1;1;1;0] t_msg;;
+
+
+let freq_ht (t : 'a htree) : int = 
+  match t with
+  |Leaf (i,_) -> i
+  |Branch (i,_,_) -> i
+    
+let x = freq_ht (Leaf(3,'B'));;
+let x = freq_ht (Branch(5,Leaf(2,'Z'),Leaf(3,'B')));;
+
+
+let ht_less (t1 : 'a htree) (t2 : 'a htree) : bool = (freq_ht t1) < (freq_ht t2)
+
+let x = ht_less (Leaf(3,'B')) (Branch(5,Leaf(2,'Z'),Leaf(3,'B')));;
+let x = ht_less (Branch(5,Leaf(2,'Z'),Leaf(3,'B'))) (Leaf(3,'B'));;
+
+
+let rec min_sauf_min (lt : ('a htree) list) : ('a htree) * (('a htree) list) =
+  match lt with
+  |[t] -> (t,[])
+  |h::t -> let (min,li) = min_sauf_min t in
+      if (ht_less h min) then (h,min::li)
+      else (min,h::li)
+           
+let x = min_sauf_min [Branch(5,Leaf(2,'Z'),Leaf(3,'W')); Leaf(3,'B'); Leaf(3,'K')];;
