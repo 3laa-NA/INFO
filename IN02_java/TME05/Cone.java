@@ -15,7 +15,7 @@ public class Cone {
 
     
     public double getVolume(){
-        return (1/3)*pi*r*r;
+        return (1.0/3)*pi*r*r*h;
     }
 
     public String toString(){

@@ -221,7 +221,9 @@ let is_tree (l : (int list) list) : bool = pref_complete l
 let x = is_tree (List.map snd (paths_tree tree1));;
 let x  = is_tree [[]; [1]; [1; 0]; [1; 0; 1; 1]];;
 
-let leaves_list (l : ('a * (int list)) list) : 'a list = List.map (fun (c,ch) -> if (is_max_pref2 ch l) then c ) l
-  
-  
+(*let leaves_list (l : ('a * (int list)) list) : 'a list = List.map (fun (c,ch) -> if (is_max_pref2 ch l) then c else [] ) l*) 
+
+let leaves_list (l : ('a * (int list)) list) : 'a list = List.map (fun (a,b) -> a) (max_pref_list2 l)
+
+
 let x = leaves_list (paths_tree tree1);;

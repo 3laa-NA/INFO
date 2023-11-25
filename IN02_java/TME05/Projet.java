@@ -10,14 +10,12 @@ public class Projet {
     }
 
     public Projet(){
-        this.nom = Alea.chaine();
-        this.tr = new Trio();
-        cpt++;
+        this(Alea.chaine());
     }
 
     public static int getNbProjet(){ return cpt; }
 
     public String toString(){
-        return "Projet " + this.nom + " " + tr.toString() ;
+        return "Projet " + this.nom + " " + tr ;
     }
 }
