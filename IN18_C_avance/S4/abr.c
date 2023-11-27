@@ -10,11 +10,10 @@ Lm_mot *part_Lmot(Lm_mot **pl)
   Lm_mot *p = *pl;
   Lm_mot *pivot;
 
-  if (nbm < 3)
-    {
-      *pl = NULL;
-      return p;
-    }
+  if (nbm < 3){
+    *pl = NULL;
+    return p;
+  }
 
   nbm /= 2;
   for(p = *pl; nbm-- > 1; p = p->suiv);

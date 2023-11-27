@@ -1,0 +1,26 @@
+EX 5:
+
+voila les resultats de comparaison 
+
+usr:~/INFO-main/IN18_C_avance/S4$ time ./main_abr "malheureusement" 9000000
+
+real    0m0.882s
+user    0m0.881s
+sys     0m0.000s
+usr:~/INFO-main/IN18_C_avance/S4$ time ./main_arbre "malheureusement" 9000000
+
+real    0m1.208s
+user    0m1.208s
+sys     0m0.001s
+
+on remarque que les Arbre binaire de recherche sont bien plus efficace ici
+
+EX 6:
+
+usr:~/INFO-main/IN18_C_avance/S4$ time ./main_arbre_tab malheureusement 9000000
+
+real    0m0.576s
+user    0m0.566s
+sys     0m0.010s
+
+travailler avec des tableaux apparait encore plus rapide!
