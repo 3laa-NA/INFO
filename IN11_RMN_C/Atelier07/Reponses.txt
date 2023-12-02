@@ -1,0 +1,13 @@
+Exercice 2:
+
+Le schéma de Horner est une méthode efficace pour évaluer des polynômes qui permet de réduire le nombre total d'opérations nécessaires pour évaluer une expression polynomiale par rapport à une méthode naïve.
+
+Dans la méthode naïve, pour évaluer un polynôme de degré \( n \) en une valeur \( x \), il faut calculer toutes les puissances successives de \( x \) jusqu'à \( x^n \), puis effectuer \( n \) multiplications et \( n \) additions pour obtenir le résultat final.
+Ainsi, le nombre total d'opérations est proportionnel à \( n \) pour cette méthode.
+
+Le schéma de Horner, en revanche, réduit le nombre total d'opérations nécessaires en réécrivant le polynôme sous une forme équivalente mais en regroupant les termes de manière à minimiser le nombre de multiplications et d'additions nécessaires.
+Il utilise le fait que les termes de la forme \( x^n \) peuvent être regroupés en commun avec les coefficients pour réduire le nombre d'opérations nécessaires.
+
+Ainsi, le schéma de Horner permet d'évaluer un polynôme de degré \( n \) en utilisant seulement \( n \) multiplications et \( n \) additions, indépendamment du degré du polynôme.
+Cela représente une amélioration significative par rapport à la méthode naïve, surtout pour les polynômes de degré élevé, où la différence de nombre d'opérations devient de plus en plus significative.
+En réduisant le nombre total d'opérations nécessaires pour évaluer un polynôme, le schéma de Horner est particulièrement utile pour les calculs répétitifs et les calculs impliquant des polynômes de degrés élevés, ce qui en fait une méthode précieuse dans de nombreux contextes numériques et algorithmiques.

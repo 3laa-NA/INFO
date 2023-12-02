@@ -4,33 +4,53 @@
 #include "devel.h"
 
 void *dupliquer_str(const void *src) {
-  /* a completer. Exercice 5, question 1 */
-  return NULL; // pour que cela compile
+  const char *strsrc = (const char *)src;
+  char *strdst = malloc(strlen(strsrc) + 1);
+
+  if (strdst == NULL) {
+    affiche_message("Erreur d'allocation");
+    return NULL;
+  }
+
+  strcpy(strdst, strsrc);
+  return (void *)strdst;
 }
 
 void copier_str(const void *src, void *dst) {
-  /* a completer. Exercice 5, question 1 */
+  const char *strsrc = (const char *)src;
+  char *strdst = (char *)dst;
+  strcpy(strdst, strsrc);
 }
 
 void detruire_str(void *data) {
-  /* a completer. Exercice 5, question 1 */
+  free(data);
 }
 
 void afficher_str(const void *data) {
-  /* a completer. Exercice 5, question 1 */
+  const char *strdata = (const char *)data;
+  printf("%s", strdata);
 }
 
 int comparer_str(const void *a, const void *b) {
-  /* a completer. Exercice 5, question 1 */
-  return 0; // pour que cela compile
+  const char *stra = (const char *)a;
+  const char *strb = (const char *)b;
+  return strcmp(stra, strb);
 }
 
 int ecrire_str(const void *data, FILE *f) {
-  /* a completer. Exercice 5, question 1 */
-  return 0; // pour que cela compile
+  const char *strdata = (const char *)data;
+  return fprintf(f, "%s", strdata);
 }
 
-void * lire_str(FILE *f) {
-  /* a completer. Exercice 5, question 1 */
-  return NULL; // pour que cela compile
+void *lire_str(FILE *f) {
+  char ch[1024];
+  int r = fscanf(f, " %1023s", ch);
+
+  if (r < 1) {
+    return NULL;
+  }
+
+  char *pch = malloc(strlen(ch) + 1);
+  strcpy(pch, ch);
+  return pch;
 }
