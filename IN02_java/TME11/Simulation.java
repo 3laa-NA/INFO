@@ -16,6 +16,7 @@ public class Simulation {
 
         tab = new ArrayList<Contenu>() ;
 
+        //on place les m contenu
         for(int i=0; i<m; i++){
             Contenu e;
             if (Math.random()< 0.5){
@@ -27,16 +28,21 @@ public class Simulation {
             tab.add(e);
         }
 
-        String wtv = agent.seDeplacer(0, 0);
+        agent.seDeplacer(0, 0);
     }
 
     public String toString() {
+
+        //on va donner les informations sur le grille est son contenu
         String res = grille + "\n";
 		for (Contenu r : tab) {
 			res +=r + "\n";
 		}
+
+        //puis sur l'agent
         res+= "\n" + agent;
 
+        //mais avant on affiche le grille
         grille.affiche(8);
 
         return res;
@@ -44,8 +50,10 @@ public class Simulation {
 
     public void affiche(){grille.affiche(8);}
     
+    //une fonction récursive
     public void lance(int nbEtapes){
 
+        //condition de sortie
         if(nbEtapes==0){
             System.out.println("---------------FIN DE SIMULATION---------------\n\n");
             System.out.println(this);
@@ -65,10 +73,11 @@ public class Simulation {
                 System.out.println("L'agent s'est deplacé aux coordonnees ("+newx+", "+newy+")!\n"+res+"\n");
             }
 
+            //on relance avec (nbEtapes-1)
             lance(nbEtapes-1);
 
         }catch(DeplacementIncorrectException e){
-            lance(nbEtapes);
+            lance(nbEtapes); //lors d'un mauvais déplacement on relance avec le meme (nbEtapes)
         }
 
     }
