@@ -8,4 +8,3 @@ public class CoordonneesIncorrectesException extends Exception {
         super(message);
     }
 }
-

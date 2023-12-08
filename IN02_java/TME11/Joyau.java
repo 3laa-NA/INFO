@@ -4,15 +4,22 @@
 */
 
 public class Joyau extends Contenu {
+
     private int prix;
-    private static int cpt=1;
+    private static int cpt=0;
     private final int id;
+    private String type;
 
     public Joyau(String type){
-        super(type,cpt);
+        super(type,1);
+        this.type = type;
         prix=(int)(Math.random()*4000)+1;
-        id=cpt;
         cpt++;
+        id=cpt;
     }
+
     public int getPrix(){return prix;}
+
+    public String getType(){return type;}
+
 }
