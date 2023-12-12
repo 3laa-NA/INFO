@@ -11,24 +11,48 @@ public class Simulation {
     private ArrayList<Contenu> tab;
 
     public Simulation(int nbLignes, int nbColonnes, int m) throws CoordonneesIncorrectesException, DeplacementIncorrectException{
-        grille = new Grille(nbLignes, nbColonnes);
-        agent = new Agent4(grille);
 
-        tab = new ArrayList<Contenu>() ;
+        try{
 
-        //on place les m contenu
-        for(int i=0; i<m; i++){
-            Contenu e;
-            if (Math.random()< 0.7){
-                e = new Joyau((Math.random()<0.5) ? "Emeraude" : "Diamant");
-            }else{ e = new Gardien();}
-            
-            grille.setCase((int)(Math.random()*nbLignes), (int)(Math.random()*nbColonnes), e);
+            if(m>nbLignes*nbColonnes){
+                throw new NombreObjetsTresGrand("Il est impossible de placer "+m+" objets dans une grille "+nbLignes+"x"+nbColonnes+" !");
+            }
 
-            tab.add(e);
+            grille = new Grille(nbLignes, nbColonnes);
+            agent = new Agent4(grille);
+
+            tab = new ArrayList<Contenu>() ;
+
+            //on place les m contenu
+            for(int i=0; i<m; i++){
+
+                Contenu e;
+
+                if (Math.random()< 0.8){
+                    e = new Joyau((Math.random()<0.5) ? "Emeraude" : "Diamant");
+                }else{ e = new Gardien();}
+
+                //une varaible qui indique si la case choisi est occupee ou non
+                boolean caseOccupee = true;
+
+                //tant que la case choisi est occupee on recommence
+                while(caseOccupee){
+                    int x = (int)(Math.random()*nbLignes);
+                    int y = (int)(Math.random()*nbColonnes);
+
+                    if(grille.caseEstVide(x, y)){
+                        grille.setCase(x, y, e);
+                        tab.add(e);
+                        caseOccupee = false;
+                    }
+                }
+            }
+
+            agent.seDeplacer(0, 0);
+
+        }catch(NombreObjetsTresGrand e){
+
         }
-
-        agent.seDeplacer(0, 0);
     }
 
     public String toString() {

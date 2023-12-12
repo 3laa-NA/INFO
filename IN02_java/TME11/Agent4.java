@@ -17,7 +17,7 @@ public class Agent4 {
 
     //la méthode renverra des informations sur ce qui s’est produit durant le déplacement
     public String seDeplacer(int xnew, int ynew) throws DeplacementIncorrectException{
-        if(xnew<0 || xnew>grille.nbLignes || ynew<0 || ynew>grille.nbColonnes){
+        if(!grille.sontValides(xnew,ynew)){
             throw new DeplacementIncorrectException();
         }
 
@@ -55,7 +55,7 @@ public class Agent4 {
     //la méthode renverra des informations sur ce qui s’est produit durant le déplacement
     public String seDeplacer(int xnew, int ynew, int f) throws DeplacementIncorrectException{
         
-        if(xnew<0 || xnew>grille.nbLignes || ynew<0 || ynew>grille.nbColonnes){
+        if(!grille.sontValides(xnew,ynew)){
             throw new DeplacementIncorrectException();
         }
 
