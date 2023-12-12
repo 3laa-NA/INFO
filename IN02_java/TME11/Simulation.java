@@ -19,7 +19,7 @@ public class Simulation {
         //on place les m contenu
         for(int i=0; i<m; i++){
             Contenu e;
-            if (Math.random()< 0.5){
+            if (Math.random()< 0.7){
                 e = new Joyau((Math.random()<0.5) ? "Emeraude" : "Diamant");
             }else{ e = new Gardien();}
             
@@ -61,8 +61,8 @@ public class Simulation {
         }
 
         try{
-            int newx = agent.getX() + ((Math.random()<0.5) ? 1 : -1);
-            int newy = agent.getY() + ((Math.random()<0.5) ? 1 : -1);
+            int newx = agent.getX() + ((Math.random()<0.33) ? 1 : ((Math.random()<0.5) ? 0 : -1));
+            int newy = agent.getY() + ((Math.random()<0.33) ? 1 : ((Math.random()<0.5) ? 0 : -1));
 
             if(Math.random()<0.3){
                 int force = (int)(Math.random()*91 +10);
