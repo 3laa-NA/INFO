@@ -90,11 +90,9 @@ public class Simulation {
 
             if(Math.random()<0.3){
                 int force = (int)(Math.random()*91 +10);
-                String res= agent.seDeplacer(newx, newy, force);
-                System.out.println("L'agent s'est deplacé aux coordonnees ("+newx+", "+newy+") avec une force de " + force + "!\n"+res+"\n");
+                agent.seDeplacer(newx, newy, force);
             }else{
-                String res = agent.seDeplacer(newx, newy);
-                System.out.println("L'agent s'est deplacé aux coordonnees ("+newx+", "+newy+")!\n"+res+"\n");
+                agent.seDeplacer(newx, newy);
             }
 
             //on relance avec (nbEtapes-1)

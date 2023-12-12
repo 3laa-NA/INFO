@@ -16,7 +16,7 @@ public class Agent4 {
     }
 
     //la méthode renverra des informations sur ce qui s’est produit durant le déplacement
-    public String seDeplacer(int xnew, int ynew) throws DeplacementIncorrectException{
+    public void seDeplacer(int xnew, int ynew) throws DeplacementIncorrectException{
         if(!grille.sontValides(xnew,ynew)){
             throw new DeplacementIncorrectException();
         }
@@ -30,30 +30,31 @@ public class Agent4 {
         try{
 
             c1 = grille.getCase(xnew,ynew);
+
+            System.out.println("L'agent s'est deplacé aux coordonnees ("+xnew+", "+ynew+")!");
             
             if (c1 instanceof Joyau){
                 sacJoyaux.add((Joyau)c1);
                 grille.videCase(xnew,ynew);
-                res = "L'agent a trouvé un joyau!";
+                System.out.println("L'agent a trouvé un joyau!");
+            }
+            
+            if(c1 instanceof Gardien){
+                sacJoyaux.clear();
+                System.out.println("L'agent s'est fait arrêter par un gardien!");
             }
 
         }catch(CoordonneesIncorrectesException e){
-
+            System.out.println(e);
         }catch(CaseNonPleineException e){
-            
+            System.out.println(e);
         }
 
-        if(c1 instanceof Gardien){
-            sacJoyaux.clear();
-            res = "L'agent s'est fait arrêter par un gardien!";
-        }
-
-        return res;
 
     }
 
     //la méthode renverra des informations sur ce qui s’est produit durant le déplacement
-    public String seDeplacer(int xnew, int ynew, int f) throws DeplacementIncorrectException{
+    public void seDeplacer(int xnew, int ynew, int f) throws DeplacementIncorrectException{
         
         if(!grille.sontValides(xnew,ynew)){
             throw new DeplacementIncorrectException();
@@ -69,33 +70,34 @@ public class Agent4 {
 
             c1 = grille.getCase(xnew,ynew);
             
+            System.out.println("L'agent s'est deplacé aux coordonnees ("+xnew+", "+ynew+")!");
+            
             if (c1 instanceof Joyau){
                 sacJoyaux.add((Joyau)c1);
                 grille.videCase(xnew,ynew);
-                res = "L'agent a trouvé un joyau!";
+                System.out.println("L'agent a trouvé un joyau!");
             }
             
             if(c1 instanceof Gardien){
                 Gardien gard = (Gardien) c1;
                 if(gard.getHp() <= f){
                     grille.videCase(xnew,ynew);
-                    res = "L'agent a tué un gardien!";
+                    System.out.println("L'agent a tué un gardien!");
                 }
                 else{
                     sacJoyaux.clear();
                     gard.hit(f);
-                    res = "L'agent s'est fait arrêter par un gardien!(gardien blessé)";
+                    
+                    System.out.println("L'agent s'est fait arrêter par un gardien!(gardien blessé)");
                 }
                 
             }
 
         }catch(CoordonneesIncorrectesException e){
-
+            System.out.println(e);
         }catch(CaseNonPleineException e){
-            
+            System.out.println(e);
         }
-
-        return res;
         
     }
 
