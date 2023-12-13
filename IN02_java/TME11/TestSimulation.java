@@ -12,7 +12,7 @@ public class TestSimulation {
             System.out.println("Etat du grille au départ:");
             s1.affiche();
 
-            s1.lance(40);
+            s1.lance(20);
 
         }catch(CoordonneesIncorrectesException e){
             System.out.println(e);

@@ -4,14 +4,19 @@
 */
 
 public class SuperGardien extends Gardien implements Teleportable {
-    public int seTeleporter(Grille grille, double proba){
+
+    //la méthode va retourner 1 si le super guardien s'est teleporté et 0 sinon
+    public int seTeleporter(Grille grille, int proba){
 
         //indique si oui ou non le Super guardien s'est teleporte
         int teleportation = 0;
 
-        if (Math.random() < proba) {
+        if (Math.random() < proba/100.) { //on divise par 100 pour passer d'un pourcentage à une probabilité
+
             try {
 
+                //on est rentré dans le if donc il ya teleportation 
+                //on change la valeur à l'interieur du 'try' pour guarder la valeur 0 en cas d'exception
                 teleportation++;
 
                 int x, y;

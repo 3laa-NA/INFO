@@ -4,6 +4,6 @@
 */
 
 public interface Teleportable {
-    int seTeleporter(Grille grille, double proba);
+    int seTeleporter(Grille grille, int proba);
 }
 
