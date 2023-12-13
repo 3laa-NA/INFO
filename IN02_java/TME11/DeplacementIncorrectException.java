@@ -5,6 +5,6 @@
 
 public class DeplacementIncorrectException extends Exception {
     public DeplacementIncorrectException(){
-        super("Un deplacement Incorrect tenté!");
+        super("Un deplacement Incorrect a était essayé!");
     }
 }

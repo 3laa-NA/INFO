@@ -13,7 +13,7 @@ public class Simulation {
 
             //dans le cas ou le nombre d'objets a placé est plus grand que le nombre de cases
             if(m>nbLignes*nbColonnes){
-                throw new NombreObjetsTresGrand("Il est impossible de placer "+m+" objets dans une grille "+nbLignes+"x"+nbColonnes+" !");
+                throw new NombreObjetsEstTresGrand("Il est impossible de placer "+m+" objets dans une grille "+nbLignes+"x"+nbColonnes+" !");
             }
 
             //on initialise les attributs
@@ -52,8 +52,8 @@ public class Simulation {
 
             //agent.seDeplacer(0, 0);
 
-        }catch(NombreObjetsTresGrand e){
-
+        }catch(NombreObjetsEstTresGrand e){
+            System.out.println(e);
         }
     }
 
