@@ -111,6 +111,7 @@ public class Simulation {
                                 System.out.println("L'un des gardiens s'est déplacer dans la case de l'agent et a vider son sac !\n");
                             }
                         } catch (CoordonneesIncorrectesException e) {
+                            System.out.println(e);
                         }
                     }
                 }

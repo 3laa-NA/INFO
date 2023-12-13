@@ -133,4 +133,8 @@ public class Agent4 {
 
     public int getY(){return y;}
 
+    public void viderSacJoyaux() {
+        sacJoyaux.clear();
+    }
+
 }

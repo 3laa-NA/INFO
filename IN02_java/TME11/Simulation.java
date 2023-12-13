@@ -30,7 +30,12 @@ public class Simulation {
 
                 if (Math.random()< 0.8){
                     e = new Joyau((Math.random()<0.5) ? "Emeraude" : "Diamant");
-                }else{ e = new Gardien();}
+                }else{
+                    if(Math.random()<0.5)
+                        e = new Gardien();
+                    else
+                        e = new SuperGardien();
+                }
 
                 //une varaible qui indique si la case choisi est occupee ou non
                 boolean caseOccupee = true;
@@ -42,6 +47,7 @@ public class Simulation {
 
                     if(grille.caseEstVide(x, y)){
                         grille.setCase(x, y, e);
+                        e.setPosition(x,y);
                         tab.add(e);
                         caseOccupee = false;
                     }
@@ -94,6 +100,31 @@ public class Simulation {
             }else{
                 agent.seDeplacer(newx, newy);
             }
+
+            int nb_teleportations = 0;
+            int nb_super_guardien = 0;
+
+            for (Contenu contenu : tab) {
+                if (contenu instanceof SuperGardien) {
+
+                    nb_super_guardien++;
+
+                    int proba = (int)(Math.random()*91 +10); //la probabilité de se teleporter donné sur le modèle du choix de la force pour les agents
+
+                    nb_teleportations += ((SuperGardien) contenu).seTeleporter(grille, proba);
+
+                    // vérifie si le gardien s'est téléporté dans la même case que l'Agent4
+                    if (agent.getX() == ((Gardien)contenu).getX() && agent.getY() == ((Gardien)contenu).getY()) {
+                        // l'Agent4 perd tous ses joyaux
+                        agent.viderSacJoyaux();
+                        System.out.println("L'un des gardiens s'est déplacer dans la case de l'agent et a vider son sac !");
+                    }
+
+                }
+
+            }
+
+            System.out.println(nb_teleportations + " super guardien/s sur " + nb_super_guardien + " se sont/s'est teleporté!\n");
 
             //on relance avec (nbEtapes-1)
             lance(nbEtapes-1);

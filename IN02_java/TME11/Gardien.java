@@ -3,7 +3,7 @@
  Ichraq MOHAMMAD
 */
 
-public class Gardien extends Contenu {
+public class Gardien extends Contenu{
     private int hp;
     private static int cpt=0;
     private final int id;
@@ -20,4 +20,5 @@ public class Gardien extends Contenu {
     public void hit(int f){
         hp-=f;
     }
+
 }
