@@ -3,8 +3,6 @@
  Ichraq MOHAMMAD
 */
 
-import java.util.ArrayList;
-
 public class Simulation {
     private Agent4 agent;
     private Grille grille;
@@ -36,7 +34,7 @@ public class Simulation {
                         e = new Gardien();
                 }
 
-                //une varaible qui indique si la case choisi est occupée ou non
+                //une variable qui indique si la case choisie est occupée ou non
                 boolean caseOccupee = true;
 
                 //tant que la case choisi est occupée on recommence
@@ -103,7 +101,7 @@ public class Simulation {
 
             System.out.println();
             
-            int nb_teleportations = 0; //compteurs de super gardiens qui se sont teleporté
+            int nb_teleportations = 0; //compteurs de super gardiens qui se sont téléporté
             int nb_super_guardien = 0; //compteurs de super gardiens
 
             for (Contenu contenu : grille.lesContenus()) {
@@ -111,7 +109,7 @@ public class Simulation {
 
                     nb_super_guardien++;
 
-                    int proba = (int)(Math.random()*91 +10); //la probabilité de se teleporter donné sur le modèle du choix de la force pour les agents (une valeur entre 10-100)
+                    int proba = (int)(Math.random()*91 +10); //la probabilité de se téléporter donné sur le modèle du choix de la force pour les agents (une valeur entre 10-100)
 
                     nb_teleportations += ((SuperGardien) contenu).seTeleporter(grille, proba);
 
@@ -119,14 +117,14 @@ public class Simulation {
                     if (agent.getX() == ((Gardien)contenu).getX() && agent.getY() == ((Gardien)contenu).getY()) {
                         // l'Agent4 perd tous ses joyaux
                         agent.viderSacJoyaux();
-                        System.out.println("Le super gardien s'est déplacer dans la case de l'agent et a vider son sac !");
+                        System.out.println("Le super gardien s'est téléporté dans la case de l'agent et a vider son sac !");
                     }
 
                 }
 
             }
 
-            System.out.println(nb_teleportations + " super gardien/s sur " + nb_super_guardien + " s'est/se sont teleporté!\n");
+            System.out.println(nb_teleportations + " super gardien/s sur " + nb_super_guardien + " s'est/se sont téléporté!\n");
 
             //on relance avec (nbEtapes-1)
             lance(nbEtapes-1);

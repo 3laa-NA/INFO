@@ -30,7 +30,7 @@ public class Agent4 {
 
             c1 = grille.getCase(xnew,ynew);
 
-            System.out.println("L'agent s'est deplacé aux coordonnees ("+xnew+", "+ynew+")!");
+            System.out.println("L'agent s'est deplacé aux coordonnées ("+xnew+", "+ynew+")!");
             
             if (c1 instanceof Joyau){
                 sacJoyaux.add((Joyau)c1);
@@ -67,7 +67,7 @@ public class Agent4 {
 
             c1 = grille.getCase(xnew,ynew);
             
-            System.out.println("L'agent s'est deplacé aux coordonnees ("+xnew+", "+ynew+")!");
+            System.out.println("L'agent s'est deplacé aux coordonnées ("+xnew+", "+ynew+")!");
             
             if (c1 instanceof Joyau){
                 sacJoyaux.add((Joyau)c1);
