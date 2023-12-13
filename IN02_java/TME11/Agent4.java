@@ -12,16 +12,15 @@ public class Agent4 {
 
     public Agent4 (Grille gr){
         grille = gr;
-        sacJoyaux = new ArrayList<Joyau> ();
+        sacJoyaux = new ArrayList<Joyau>();
     }
 
-    //la méthode renverra des informations sur ce qui s’est produit durant le déplacement
     public void seDeplacer(int xnew, int ynew) throws DeplacementIncorrectException{
+
+        //on leve une exception si les coordonnées ne sont pas valides
         if(!grille.sontValides(xnew,ynew)){
             throw new DeplacementIncorrectException();
         }
-
-        String res="";
 
         x=xnew;
         y=ynew;
@@ -53,14 +52,12 @@ public class Agent4 {
 
     }
 
-    //la méthode renverra des informations sur ce qui s’est produit durant le déplacement
     public void seDeplacer(int xnew, int ynew, int f) throws DeplacementIncorrectException{
         
+        //on leve une exception si les coordonnées ne sont pas valides
         if(!grille.sontValides(xnew,ynew)){
             throw new DeplacementIncorrectException();
         }
-
-        String res="";
 
         x=xnew;
         y=ynew;
@@ -81,13 +78,12 @@ public class Agent4 {
             if(c1 instanceof Gardien){
                 Gardien gard = (Gardien) c1;
                 if(gard.getHp() <= f){
-                    grille.videCase(xnew,ynew);
+                    grille.videCase(xnew,ynew);//on supprime le gardien (il est mort)
                     System.out.println("L'agent a tué un gardien!");
                 }
                 else{
                     sacJoyaux.clear();
-                    gard.hit(f);
-                    
+                    gard.hit(f); //on simmule l'attaque en retirant des hp au gardien
                     System.out.println("L'agent s'est fait arrêter par un gardien!(gardien blessé)");
                 }
                 
@@ -110,22 +106,25 @@ public class Agent4 {
     }
 
     public String contenuSac(){
-        int nb_emeraude = 0;
-        int nb_diamant = 0;
+
+        //on initialise les compteurs
+        int nb_emeraudes = 0;
+        int nb_diamants = 0;
         int autres = 0;
 
         for(Joyau j : sacJoyaux){
             if("Diamant".equals(j.getType())){
-                nb_diamant++;
+                nb_diamants++;
             }else if("Emeraude".equals(j.getType())){
-                nb_emeraude++;
+                nb_emeraudes++;
             }else{autres++;}
         }
 
-        return "Le sac de l'agent contient " + nb_diamant + " diamants, " + nb_emeraude + " emeraude, et " + autres + " joyaux d'autre/s type/s";
+        return "Le sac de l'agent contient " + nb_diamants + " diamants, " + nb_emeraudes + " emeraude, et " + autres + " joyaux d'autre/s type/s";
     }
     
     public String toString() {
+        //on affiche des informations sur l'agent et son sac
         return "L'agent 4 est actuellement en position ("+x+", "+y+")" + " avec un sac contenant "+sacJoyaux.size()+" joyaux et une fortune égale à " + fortune() + " pièces d'or.\n" + contenuSac();
     }
 

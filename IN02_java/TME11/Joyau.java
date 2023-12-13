@@ -5,7 +5,7 @@
 
 public class Joyau extends Contenu {
 
-    private int prix;
+    private int prix; //en pièces d'or
     private static int cpt=0;
     private final int id;
     private String type;

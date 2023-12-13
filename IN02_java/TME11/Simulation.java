@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Simulation {
     private Agent4 agent;
     private Grille grille;
-    private ArrayList<Contenu> tab; //tableau avec les contenus de la grille
 
     public Simulation(int nbLignes, int nbColonnes, int m) throws CoordonneesIncorrectesException, DeplacementIncorrectException{
 
@@ -22,7 +21,6 @@ public class Simulation {
             //on initialise les attributs
             grille = new Grille(nbLignes, nbColonnes);
             agent = new Agent4(grille);
-            tab = new ArrayList<Contenu>() ;
 
             //on place les m contenus
             for(int i=0; i<m; i++){
@@ -49,7 +47,6 @@ public class Simulation {
                     if(grille.caseEstVide(x, y)){
                         grille.setCase(x, y, e);
                         e.setPosition(x,y);
-                        tab.add(e);
                         caseOccupee = false;
                     }
                 }
@@ -64,9 +61,9 @@ public class Simulation {
 
     public String toString() {
 
-        //on va donner les informations sur le grille est son contenu
-        String res = grille + "\n";
-		for (Contenu r : tab) {
+        //on va donner des informations sur le grille est son contenu
+        String res = grille + "\n\nLes contenus:\n";
+		for (Contenu r : grille.lesContenus()) {
 			res +=r + "\n";
 		}
 
@@ -109,7 +106,7 @@ public class Simulation {
             int nb_teleportations = 0; //compteurs de super gardiens qui se sont teleporté
             int nb_super_guardien = 0; //compteurs de super gardiens
 
-            for (Contenu contenu : tab) {
+            for (Contenu contenu : grille.lesContenus()) {
                 if (contenu instanceof SuperGardien){
 
                     nb_super_guardien++;

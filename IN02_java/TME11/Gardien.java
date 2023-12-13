@@ -10,10 +10,11 @@ public class Gardien extends Contenu{
 
     public Gardien(){
         super("Gardien",1);
-        hp=(int)(Math.random()*201);
+        hp=(int)(Math.random()*201); //une valeur aléatoire entre 0 et 200
         cpt++;
         id=cpt;
     }
+    
     public int getHp(){return hp;}
 
     //simulation d'une frappe par l'agent

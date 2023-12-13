@@ -11,7 +11,7 @@ public class SuperGardien extends Gardien implements Teleportable {
         //indique si oui ou non le Super guardien s'est teleporte
         int teleportation = 0;
 
-        if (Math.random() < proba/100.) { //on divise par 100 pour passer d'un pourcentage à une probabilité
+        if (Math.random() < proba/100.) { //on divise par 100 pour passer d'un pourcentage à une probabilité(0-1)
 
             try {
 
@@ -30,7 +30,7 @@ public class SuperGardien extends Gardien implements Teleportable {
                 //vider la case courante et placer le gardien dans la nouvelle case
                 grille.setCase(x, y, grille.videCase(getX(), getY()));
 
-                System.out.println("Un super gardien s'est teleporté aux coordonnees ("+x+", "+y+")!");
+                System.out.println("Un super gardien s'est teleporté aux coordonnées ("+x+", "+y+")!");
                 
                 // met à jour la position du Gardien
                 super.setPosition(x, y);
@@ -45,4 +45,5 @@ public class SuperGardien extends Gardien implements Teleportable {
 
         return teleportation;
     }
+
 }
