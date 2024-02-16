@@ -23,4 +23,6 @@ void liberer_biblio(Biblio* b);
 
 void inserer_en_tete(Biblio* b,int num,char* titre,char* auteur);
 
+void afficher_livre(Livre* l);
+
 #endif

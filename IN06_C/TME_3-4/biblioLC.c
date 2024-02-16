@@ -8,8 +8,8 @@ Livre* creer_livre(int num,char* titre,char* auteur){
     Livre* new = (Livre*)malloc(sizeof(Livre));
 
     new->num = num;
-    new->titre = titre;
-    new->auteur = auteur;
+    new->titre = strdup(titre);
+    new->auteur = strdup(auteur);
     new->suiv = NULL;
 
     return new;
@@ -45,12 +45,54 @@ void inserer_en_tete(Biblio* b,int num,char* titre,char* auteur){
 }
 
 
+void afficher_livre(Livre *l){
+    printf("Livre numéro: %d\n   Titre: %s\n   Auteur: %s\n",l->num,l->titre,l->auteur);
+}
 
-int main(int argc, char const *argv[]){
+void afficher_biblio(Biblio *b){
+    Livre *tmp = b->L;
+    if(tmp){
+        printf("La biblio contient le(s) livre(s):\n");
+    }else{
+        printf("Le biblio est vide\n");
+    }
+    while(tmp){
+        afficher_livre(tmp);
+        tmp = tmp->suiv;
+    }
+}
 
-    char * titre = "ch";
-    Livre* l = creer_livre(05,titre,"mo");
-    titre = "hello";
-    printf("%d %s %s  %s\n", l->num,l->titre , l-> auteur,titre);
-    return 0;
+Livre *recherche_livre_num(Biblio *b,int n){
+    Livre *tmp = b->L;
+    if(!tmp){
+        printf("Le biblio est vide!\n");
+        return NULL;
+    }
+    while(tmp){
+        if(tmp->num == n){
+            return tmp;
+        }
+        tmp=tmp->suiv;
+    }
+    
+    printf("Livre non trouvé par numéro!\n");
+    return NULL;
+}
+
+
+Livre *recherche_livre_titre(Biblio *b,char *tit){
+    Livre *tmp = b->L;
+    if(!tmp){
+        printf("Le biblio est vide!\n");
+        return NULL;
+    }
+    while(tmp){
+        if(strcmp(tmp->titre,tit) == 0){
+            return tmp;
+        }
+        tmp=tmp->suiv;
+    }
+    
+    printf("Livre non trouvé par titre!\n");
+    return NULL;
 }
