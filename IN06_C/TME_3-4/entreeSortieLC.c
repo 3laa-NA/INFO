@@ -2,8 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "biblioLC.c"
-//#include "entreeSortieLC.h"
+#include "entreeSortieLC.h"
 
 Biblio* charger_n_entrees(char* nomfic, int n){
     
@@ -21,7 +20,7 @@ Biblio* charger_n_entrees(char* nomfic, int n){
             //printf("Ligne %d lu!\n", i + 1);
 
         } else {
-            printf("Erreur lors de la lecture de la ligne %d\n", i + 1);
+            printf("Erreur lors de la lecture de la ligne %d\n", i+1);
         }
 
     }
