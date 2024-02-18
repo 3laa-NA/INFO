@@ -1,0 +1,46 @@
+Q.3.1 
+Pour la recherche d'un livre par son numéro ou son titre,
+On voit que la table de hachage est généralement plus rapide car elle donne un accès direct à l'élément recherché en moyenne, 
+temps constant O(1), alors que dans une liste chaînée, la recherche fait un parcours élément par élement, 
+donc équivalent à la taille de la liste (O(n)).
+La table de hachage est donc plus meilleure pour la recherce par numéro et titre.
+
+Pour la recherche d'un livre par son auteur,
+La qualité de recherche dépend de, si la fonction de hachage et de la gestion des collisions dans la table de hachage est optimiser ou non.
+En regardant le pire des cas, la complexité de la recherche dans une table de hachage est la plupart du temps constante, 
+alors que dans une liste chaînée, elle est linéaire.
+Donc la table de hachage est plus approprié pour les recherches par auteur, si la fonction de hachage est assez bien optimiser.
+
+Q.3.2
+Lorsque la taille est trop petite,
+Les temps de calcul sont plus longs. La raison est que,
+si la taille de la table de hachage est trop petite, cela peut entraîner un grand nombre de collisions. 
+Les collisions ralentissent les recherches, les insertion et suppression car plusieurs éléments peuvent être stockés au même index.
+
+
+Lorsque la taille est trop grande,
+Les temps de calcul sont aussi plus longs. La raison ici est que,
+une taille de table de hachage trop grande signifie que la table est très grande par rapport au nombre d'éléments qu'elle doit stocker. 
+Ca peut gaspiller de l'espace mémoire car une grande partie de la table reste vide, et n'est pas utiliser.
+
+Lorsque la taille est optimale
+Les temps de calculs sont le plus optimales donc rapide. La raison est que,
+une taille de table de hachage ni trop grande ou petite minimise le nombre de collisions
+et évite un gaspillage trop important de mémoire.
+
+Q.3.3
+Pas réussit à faire la fonction donc on a décider de déduire pour la 3.4 a partir des questions 3.1,3.2.
+
+Q.3.4
+Dans la liste chainé,
+Dans le pire des cas, la complexité de la recherche dans une liste chaînée est linéaire, c'est-à-dire O(n),
+où n est le nombre d'éléments dans la liste. Lorsque la taille de la bibliothèque augmente,
+le temps de recherche dans une liste chaînée augmente en fonction du nombre d'éléments dans la liste.
+Donc on devrait avoir une courbe de croissance linéaire.
+
+Dans la table de hachage,
+Dans le pire des cas, la complexité de la recherche dans une table de hachage est constante, c'est-à-dire O(1), 
+si les collisions sont évitées. Cela dépend aussi de la qualité du code.
+Les temps de calculs sont donc surement plus bas que les listes, mais si elle n'est pas du tout optimiser, alors il est possible 
+que le temps de calculs soient équivalent ou supérieur au temps de caluls des listes.
+
