@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <time.h>
 
 #include "biblioH.h"
 #include "entreeSortieH.h"
@@ -8,6 +9,8 @@
 void menu(){
     printf("\nACTIONS POSSIBLES: \n0-sortie du programme \n1-Affichage \n2-Inserer ouvrage \n3-Supprimer un ouvrage \n4-rechercher un ouvrage par numéro \n5-rechercher un ouvrage par titre \n6-rechercher les ouvrages d'un auteur \n7-afficher les livres dupliqués(tout les exemplaire) \n\n");
 }
+
+
 
 int main(int argc, char** argv){
     if(argc < 3){
@@ -221,3 +224,39 @@ int main(int argc, char** argv){
     printf ("Merci, et au revoir.\n\n");
     return 0;
 }
+
+
+/*
+int main(){
+
+    FILE *fichier = fopen("v_h", "w");
+
+    clock_t debut, fin;
+    double t_fun=0;
+
+    for(int i=1000; i<50000;){
+        
+        
+        BiblioH *b = charger_n_entrees("GdeBiblio.txt",i);
+        BiblioH *b2 = creer_biblio(1);
+
+        debut = clock();
+        
+        LivreH *dup = dupliques(b);
+        
+        fin = clock();
+        t_fun = ((double) (fin - debut)) / CLOCKS_PER_SEC;
+        
+        b2->T[0]=dup;
+        fusion(b,b2);
+
+        fprintf(fichier,"%d %.2f\n", i, t_fun);
+        
+        i=i*2;
+    }
+
+    fclose(fichier);
+    return 0;
+
+}
+*/
