@@ -16,7 +16,7 @@ int main(int argc, char** argv){
     }
     
     Biblio *b = charger_n_entrees(argv[1],atoi(argv[2]));
-    Biblio *b2 = NULL;
+    Biblio *b2 = creer_biblio();
 
 
     int rep;
@@ -206,13 +206,11 @@ int main(int argc, char** argv){
                 afficher_livre(dup);
                 dup = dup->suiv;
             }
-            res = 88;
-
-            break;
-
-        case 88: ;
+            
             fusion(b,b2);
+
             break;
+
         default:
             printf("veuillez choisir un des numéros aux quelles est associé une action!\n\n");
             break;
