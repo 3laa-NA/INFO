@@ -203,14 +203,11 @@ Livre *dupliques(Biblio *b){
     Livre *res = NULL;
 
     while(tmp){
-        const Livre *s = tmp->suiv;
 
         Livre *tmp2 = tmp->suiv;
         int d=0; //indique si le livre dupliqué est déja dans 'res'
 
         while(tmp2){
-
-            const Livre *s2 = tmp2->suiv;
 
             if(!strcmp(tmp2->titre,tmp->titre) && !strcmp(tmp2->auteur,tmp->auteur) ){
 
@@ -229,10 +226,10 @@ Livre *dupliques(Biblio *b){
                 
             }
 
-            tmp2=(Livre *)s2;
+            tmp2=tmp2->suiv;
         }
 
-        tmp=(Livre *)s;
+        tmp=tmp->suiv;
     }
 
     return res;
