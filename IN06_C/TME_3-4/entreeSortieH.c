@@ -6,7 +6,7 @@
 
 BiblioH* charger_n_entrees(char* nomfic, int n){
     
-    BiblioH* b = creer_biblio(n); 
+    BiblioH* b = creer_biblio(100); 
     FILE *fichier = fopen(nomfic, "r");
 
     for(int i=0; i<n; i++){

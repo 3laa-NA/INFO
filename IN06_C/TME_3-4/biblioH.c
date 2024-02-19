@@ -6,7 +6,7 @@
 
 int fonctionClef(char* auteur){
     int res=0;
-    for(int i=0; i<strlen(auteur); i++){
+    for(int i=0; i<(int)(strlen(auteur)); i++){
         res+=auteur[i];
     }
 
@@ -92,11 +92,11 @@ void afficher_livre(LivreH *l){
 
 void afficher_biblio(BiblioH *b){
     if(!b->nE){
-        printf("\nLe biblio est vide!\n");
+        printf("\nLe biblioH est vide!\n");
         return;
     }
 
-    printf("\nLa biblio contient %d livre(s), le(s) voilà:\n",b->nE);
+    printf("\nLa biblioH contient %d livreH(s), le(s) voilà:\n",b->nE);
     for(int i=0; i<b->m; i++){
         LivreH *l = b->T[i];
 
@@ -113,7 +113,7 @@ void afficher_biblio(BiblioH *b){
 LivreH *recherche_livre_num(BiblioH *b,int n){
     
     if(!b->nE){
-        printf("\nLe biblio est vide!\n");
+        printf("\nLe biblioH est vide!\n");
         return NULL;
     }
 
@@ -138,7 +138,7 @@ LivreH *recherche_livre_num(BiblioH *b,int n){
 LivreH *recherche_livre_titre(BiblioH *b,char *titre){
 
     if(!b->nE){
-        printf("\nLe biblio est vide!\n");
+        printf("\nLe biblioH est vide!\n");
         return NULL;
     }
 
@@ -163,7 +163,7 @@ LivreH *recherche_livre_titre(BiblioH *b,char *titre){
 BiblioH *recherche_livres_auteur(BiblioH *b,char *auteur){
 
     if(!b->nE){
-        printf("\nLe biblio est vide!\n");
+        printf("\nLe biblioH est vide!\n");
         return NULL;
     }
     
@@ -175,7 +175,7 @@ BiblioH *recherche_livres_auteur(BiblioH *b,char *auteur){
     while(l){
         if(!strcmp(l->auteur,auteur)){
             if(!res){ //on fait en sorte que la biblioH ne soit pas créée à moins qu'on a trouvé un livreH
-                res = creer_biblio(1); //meme auteur donc meme clef pas une biblio comme cela suffit
+                res = creer_biblio(1); //meme auteur donc meme clef pas une biblioH comme cela suffit
             }
             inserer(res,l->num,l->titre,l->auteur);
         }
@@ -187,11 +187,11 @@ BiblioH *recherche_livres_auteur(BiblioH *b,char *auteur){
 
 
 
-void supprimer_livre(BiblioH* b,int num,char* titre,char* auteur){
+int supprimer_livre(BiblioH* b,int num,char* titre,char* auteur){
 
     if(!b->nE){
-        printf("\nLe biblio est vide!\n");
-        return NULL;
+        printf("\nLe biblioH est vide!\n");
+        return 0;
     }
 
 
@@ -202,8 +202,7 @@ void supprimer_livre(BiblioH* b,int num,char* titre,char* auteur){
         b->T[i]=tmp->suivant;
         liberer_livre(tmp);
 
-        printf("\nLivre supprimé!\n");
-        return ;
+        return 1;
     }
     
     LivreH *s; //livreH suivant
@@ -212,19 +211,19 @@ void supprimer_livre(BiblioH* b,int num,char* titre,char* auteur){
         s = tmp->suivant;
 
         if(!s){
-            printf("\nLivre non trouvé!\n");
-            return;
+            return 0;
         }
 
         if(s->num==num && !strcmp(s->titre,titre) && !strcmp(s->auteur,auteur)){
             tmp->suivant=s->suivant;
             liberer_livre(s);
 
-            printf("\nLivre supprimé!\n");
-            return ;
+            return 1;
         }
         tmp=tmp->suivant;
     }
+
+    return 0;
     
 }
 
@@ -249,16 +248,16 @@ void fusion(BiblioH *b1, BiblioH *b2){
 
 LivreH *dupliques(BiblioH *b){
 
-    LivreH *tmp = b->L;
     LivreH *res = NULL;
-    
-    for(int i=0; i<b->m; i++){
-        LivreH *tmp = b->T[i];
 
+    for(int i=0; i<b->m; i++){
+
+        LivreH *tmp = b->T[i];
+        
         while(tmp){
 
             LivreH *tmp2 = tmp->suivant;
-            int d=0; //sert a indiquer si le livre dupliqué est déja dans 'res'
+            int d=0; //indique si le livreH dupliqué est déja dans 'res'
 
             while(tmp2){
 
@@ -268,12 +267,15 @@ LivreH *dupliques(BiblioH *b){
                         LivreH* l = creer_livre(tmp->num,tmp->titre,tmp->auteur);
                         l->suivant = res;
                         res = l;
+                        supprimer_livre(b, tmp->num, tmp->titre, tmp->auteur);
+                        d++;
                     }
 
-                    LivreH* l = creer_livre(tmp2->num,tmp2->titre,tmp2->auteur);
-                    l->suivant = res;
-                    res = l;
-
+                    LivreH* l2 = creer_livre(tmp2->num,tmp2->titre,tmp2->auteur);
+                    l2->suivant = res;
+                    res = l2;
+                    supprimer_livre(b, tmp2->num, tmp2->titre, tmp2->auteur);
+                    
                 }
 
                 tmp2=tmp2->suivant;
@@ -281,10 +283,9 @@ LivreH *dupliques(BiblioH *b){
 
             tmp=tmp->suivant;
         }
+
     }
 
-    
 
     return res;
 }
-

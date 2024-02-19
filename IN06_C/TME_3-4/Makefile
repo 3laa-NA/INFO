@@ -1,13 +1,16 @@
 CFLAGS = -g -Wall -Wextra -pedantic -Wno-unused-parameter
 CC = gcc
 
-PROGRAMS = main
+PROGRAMS = mainLC mainH
 
 .PHONY:	all clean
 
 all: $(PROGRAMS)
 
-main: biblioLC.o entreeSortieLC.o main.o
+mainLC: biblioLC.o entreeSortieLC.o mainLC.o
+	$(CC) -o $@ $(CFLAGS) $^
+
+mainH: biblioH.o entreeSortieH.o mainH.o
 	$(CC) -o $@ $(CFLAGS) $^
 	
 biblioLC.o: biblioLC.c
@@ -16,8 +19,14 @@ biblioLC.o: biblioLC.c
 entreeSortieLC.o: entreeSortieLC.c
 	gcc $(CFLAGS) -c entreeSortieLC.c
 
-main.o: main.c
-	gcc $(CFLAGS) -c main.c
+biblioH.o: biblioH.c
+	gcc $(CFLAGS) -c biblioH.c
+
+entreeSortieH.o: entreeSortieH.c
+	gcc $(CFLAGS) -c entreeSortieH.c
+
+mainLC.o: mainLC.c
+	gcc $(CFLAGS) -c mainLC.c
 
 clean:
 	rm -f *.o *~ $(PROGRAMS)
