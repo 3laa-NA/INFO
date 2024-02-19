@@ -2,11 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "entreeSortieLC.h"
+#include "entreeSortieH.h"
 
-Biblio* charger_n_entrees(char* nomfic, int n){
+BiblioH* charger_n_entrees(char* nomfic, int n){
     
-    Biblio* b = creer_biblio(); 
+    BiblioH* b = creer_biblio(n); 
     FILE *fichier = fopen(nomfic, "r");
 
     for(int i=0; i<n; i++){
@@ -15,7 +15,7 @@ Biblio* charger_n_entrees(char* nomfic, int n){
         int j = fscanf(fichier, "%d %s %s", &num, titre, auteur);
 
         if (j == 3) {
-            inserer_en_tete(b, num, titre, auteur);
+            inserer(b, num, titre, auteur);
 
         } else {
             printf("Erreur lors de la lecture de la ligne %d\n", i+1);
@@ -28,16 +28,17 @@ Biblio* charger_n_entrees(char* nomfic, int n){
     return b;
 }
 
-void enregistrer_biblio(Biblio *b, char* nomfic){
+void enregistrer_biblio(BiblioH *b, char* nomfic){
 
     FILE *fichier = fopen(nomfic, "r");
-    Livre *l = b->L;
+    for(int i=0; i<b->m; i++){
+        LivreH *l = b->T[i];
 
-    while(l){
-        printf("%d %s %s\n", l->num, l->titre, l->auteur);
-        l=l->suiv;
+        while(l){
+            printf("%d %s %s\n", l->num, l->titre, l->auteur);
+            l=l->suivant;
+        }
     }
     
     fclose(fichier);
 }
-

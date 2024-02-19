@@ -16,6 +16,8 @@ int main(int argc, char** argv){
     }
     
     Biblio *b = charger_n_entrees(argv[1],atoi(argv[2]));
+    Biblio *b2 = NULL;
+
 
     int rep;
     do{
@@ -111,8 +113,13 @@ int main(int argc, char** argv){
             fgets (auteur_2,sizeof(auteur_2), stdin);
             auteur_2[strlen(auteur_2)-1] = '\0';
 
-            supprimer_livre(b , atoi(num_2) , titre_2 , auteur_2 );
+            int res = supprimer_livre(b , atoi(num_2) , titre_2 , auteur_2 );
+            if(res){
+                printf("Livre supprimé");
+                break;
+            }
 
+            printf("Livre non trouvé");
             break;
 
         case 4: ;
@@ -137,9 +144,9 @@ int main(int argc, char** argv){
             }while(indicateur_3);//pour rester dans la boucle tant que la valeur est invalide
             if(indicateur_3){break;}//pour revenir à la list d'action
 
-            Livre *res = recherche_livre_num(b , atoi(num_2));
-            if(res){
-                afficher_livre(res);
+            Livre *res2 = recherche_livre_num(b , atoi(num_2));
+            if(res2){
+                afficher_livre(res2);
             }
 
             break;
@@ -194,12 +201,18 @@ int main(int argc, char** argv){
             }else{
                 printf("il n'y a pas des livres dupliqués!\n");
             }
+            b2->L=dup;
             while(dup){
                 afficher_livre(dup);
                 dup = dup->suiv;
             }
+            res = 88;
+
             break;
 
+        case 88: ;
+            fusion(b,b2);
+            break;
         default:
             printf("veuillez choisir un des numéros aux quelles est associé une action!\n\n");
             break;

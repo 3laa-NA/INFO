@@ -29,4 +29,20 @@ int fonctionHachage(int cle, int m);
 
 void inserer(BiblioH* b,int num,char* titre,char* auteur);
 
+void afficher_livre(LivreH* l);
+
+void afficher_biblio(BiblioH *b);
+
+LivreH *recherche_livre_num(BiblioH *b,int n);
+
+LivreH *recherche_livre_titre(BiblioH *b,char *titre);
+
+BiblioH *recherche_livres_auteur(BiblioH *b,char *auteur);
+
+void supprimer_livre(BiblioH* b,int num,char* titre,char* auteur);
+
+void fusion(BiblioH *b1, BiblioH *b2);
+
+LivreH *dupliques(BiblioH *b);
+
 #endif

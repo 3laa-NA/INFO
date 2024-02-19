@@ -143,21 +143,20 @@ Biblio *recherche_livres_auteur(Biblio *b,char *auteur){
 
 
 
-void supprimer_livre(Biblio* b,int num,char* titre,char* auteur){
+int supprimer_livre(Biblio* b,int num,char* titre,char* auteur){
 
     Livre *tmp = b->L;
 
     if(!tmp){
         printf("\nLe biblio est vide!\n");
-        return ;
+        return 0;
     }
 
     if(tmp->num==num && !strcmp(tmp->titre,titre) && !strcmp(tmp->auteur,auteur)){
         b->L=tmp->suiv;
         liberer_livre(tmp);
 
-        printf("\nLivre supprimé!\n");
-        return ;
+        return 1;
     }
     
     Livre *s; //livre suivant
@@ -166,20 +165,19 @@ void supprimer_livre(Biblio* b,int num,char* titre,char* auteur){
         s = tmp->suiv;
 
         if(!s){
-            printf("\nLivre non trouvé!\n");
-            return;
+            return 0;
         }
 
         if(s->num==num && !strcmp(s->titre,titre) && !strcmp(s->auteur,auteur)){
             tmp->suiv=s->suiv;
             liberer_livre(s);
 
-            printf("\nLivre supprimé!\n");
-            return ;
+            return 1;
         }
         tmp=tmp->suiv;
     }
     
+    return 0;
 }
 
 
@@ -205,11 +203,14 @@ Livre *dupliques(Biblio *b){
     Livre *res = NULL;
 
     while(tmp){
+        const Livre *s = tmp->suiv;
 
         Livre *tmp2 = tmp->suiv;
         int d=0; //indique si le livre dupliqué est déja dans 'res'
 
         while(tmp2){
+
+            const Livre *s2 = tmp2->suiv;
 
             if(!strcmp(tmp2->titre,tmp->titre) && !strcmp(tmp2->auteur,tmp->auteur) ){
 
@@ -217,18 +218,21 @@ Livre *dupliques(Biblio *b){
                     Livre* l = creer_livre(tmp->num,tmp->titre,tmp->auteur);
                     l->suiv = res;
                     res = l;
+                    supprimer_livre(b, tmp->num, tmp->titre, tmp->auteur);
+                    d++;
                 }
 
-                Livre* l = creer_livre(tmp2->num,tmp2->titre,tmp2->auteur);
-                l->suiv = res;
-                res = l;
-
+                Livre* l2 = creer_livre(tmp2->num,tmp2->titre,tmp2->auteur);
+                l2->suiv = res;
+                res = l2;
+                supprimer_livre(b, tmp2->num, tmp2->titre, tmp2->auteur);
+                
             }
 
-            tmp2=tmp2->suiv;
+            tmp2=(Livre *)s2;
         }
 
-        tmp=tmp->suiv;
+        tmp=(Livre *)s;
     }
 
     return res;

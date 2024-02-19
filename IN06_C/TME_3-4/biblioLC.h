@@ -33,7 +33,7 @@ Livre *recherche_livre_titre(Biblio *b,char *titre);
 
 Biblio *recherche_livres_auteur(Biblio *b,char *auteur);
 
-void supprimer_livre(Biblio* b,int num,char* titre,char* auteur);
+int supprimer_livre(Biblio* b,int num,char* titre,char* auteur);
 
 void fusion(Biblio *b1, Biblio *b2);
 
