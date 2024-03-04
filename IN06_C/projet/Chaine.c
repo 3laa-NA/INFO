@@ -4,7 +4,7 @@
 #include <math.h>
 
 #include "Chaine.h"
-#include "SVGwriter.h"
+#include "SVGwriter.c"
 
 
 Chaines* lectureChaine(FILE *f){
@@ -17,7 +17,12 @@ Chaines* lectureChaine(FILE *f){
     sscanf(input,"Gamma: %d",&(ch->gamma));
 
     while(!feof(f)){
+        
         fgets(input, sizeof(input), f);
+        
+        if(strcmp(input,"\n")==0){
+            continue;
+        }
 
         CellChaine *cch = (CellChaine*)malloc(sizeof(CellChaine));
 
