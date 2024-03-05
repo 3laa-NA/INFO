@@ -1,5 +1,6 @@
 CFLAGS = -g -Wall -Wextra -pedantic -Wno-unused-parameter
 CC = gcc
+LDFLAGS = -lm
 
 PROGRAMS = mainCH mainR
 
@@ -8,7 +9,7 @@ PROGRAMS = mainCH mainR
 all: $(PROGRAMS)
 
 mainCH: SVGwriter.o Chaine.o
-	$(CC) -o $@ $(CFLAGS) $^
+	$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS)
 
 mainR: Chaine.o Reseau.o ReconstitueReseau.o
 	$(CC) -o $@ $(CFLAGS) $^

@@ -4,7 +4,7 @@
 #include <math.h>
 
 #include "Chaine.h"
-#include "SVGwriter.c"
+#include "SVGwriter.h"
 
 
 Chaines* lectureChaine(FILE *f){
@@ -17,9 +17,8 @@ Chaines* lectureChaine(FILE *f){
     sscanf(input,"Gamma: %d",&(ch->gamma));
 
     while(!feof(f)){
-        
         fgets(input, sizeof(input), f);
-        
+
         if(strcmp(input,"\n")==0){
             continue;
         }
@@ -84,7 +83,7 @@ void ecrireChaine(Chaines *C, FILE *f){
 
 
 void afficheChainesSVG(Chaines *C, char* nomInstance){
-    int i;
+    //int i;
     double maxx=0,maxy=0,minx=1e6,miny=1e6;
     CellChaine *ccour;
     CellPoint *pcour;
@@ -174,21 +173,3 @@ int comptePointsTotal(Chaines *C){
 }
 
 
-int main(){
-
-    FILE *fich = fopen("00014_burma.cha","r");
-
-    Chaines *res = lectureChaine(fich);
-    
-    fclose(fich);
-
-    FILE *fich2 = fopen("Test","w");
-
-    ecrireChaine(res, fich2);
-
-    fclose(fich2);
-
-    afficheChainesSVG(res, "test");
-
-    return 0;
-}
