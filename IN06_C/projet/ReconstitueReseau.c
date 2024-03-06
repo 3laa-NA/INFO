@@ -7,61 +7,86 @@
 int main(){
 
     int rep;
+    char input[256];
+    FILE *fich;
 
     do{      
         
-        char input[256];
-        printf("Veuillez ecrire le nom du fichier .cha: ");
+        printf("Veuillez ecrire le nom du fichier .cha (ou tapez 'quit' pour quitter): ");
 
         fgets(input, sizeof(input), stdin);
+
+        input[strcspn(input, "\n")] = '\0';
+
+        if(strcmp(input,"quit") == 0){
+            return 0;
+        }
         
-        FILE *fich = fopen(input,"r");
+        fich = fopen(input,"r");
         if (fich == NULL) {
             perror("erreur lors de l'ouverture du fichier(nom probablement incorrecte)! Réessayez!\n");
             rep = 1;
         }else{rep = 0;}
 
     }while(rep);
-    
-    rep = atoi(input);
-    
-    do{
 
+    int m; //methode
+
+    do{      
         
+        printf("Veuillez choisir la méthode souhaitée parmi les suivanetes:\n1.liste\n2.table de hachage\n3.arbre\n(ou tapez 'quit' pour quitter): ");
 
-        printf("\n");
-        if(!rep && strcmp(input,"0\n")){
-            printf("ceci n'est pas un numéro!!\n");
-            rep=100;
+        fgets(input, sizeof(input), stdin);
+
+        input[strcspn(input, "\n")] = '\0';
+
+        if(strcmp(input,"quit") == 0){
+            return 0;
         }
 
-        switch (atoi(argv[2])) {
-
-            case 0:
-                break;
-
-            default:
-                printf("veuillez choisir un des numéros aux quelles est associé une action!\n\n");
-                break;
-        }
+        m = atoi(input);
+        
+        if(!m || m > 3){
+            printf("insertion non valide!\n");
+            rep = 1;
+        }else{rep = 0;}
 
     }while(rep);
 
-    Chaines *res = lectureChaine(fich);
+    switch (m){
+
+        case 1: ;
+            Chaines *cha = lectureChaines(fich);
+            
+            fclose(fich);
+
+            Reseau *res = reconstitueReseauListe(cha);
+
+            FILE *fich2 = fopen("Test.res","w");
+
+            ecrireReseau(res, fich2);
+
+            fclose(fich2);
+
+            afficheReseauSVG(res, "test");
+
+            break;
+
+        case 2: ;
+            printf("2\n");
+
+            break;
+
+        case 3: ;
+            printf("3\n");
+
+            break;
+
+        default:
+            break;
+
+    }
     
-    fclose(fich);
-
-    FILE *fich2 = fopen("Test","w");
-
-    ecrireChaine(res, fich2);
-
-    fclose(fich2);
-
-    afficheChainesSVG(res, "test");
-
 
     return 0;
 }
-
-
-

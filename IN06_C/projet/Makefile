@@ -2,17 +2,17 @@ CFLAGS = -g -Wall -Wextra -pedantic -Wno-unused-parameter
 CC = gcc
 LDFLAGS = -lm
 
-PROGRAMS = mainCH mainR
+PROGRAMS = mainR #mainCH
 
 .PHONY:	all clean
 
 all: $(PROGRAMS)
 
-mainCH: SVGwriter.o Chaine.o
-	$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS)
+#mainCH: SVGwriter.o Chaine.o
+#	$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS)
 
-mainR: Chaine.o Reseau.o ReconstitueReseau.o
-	$(CC) -o $@ $(CFLAGS) $^
+mainR: SVGwriter.o Chaine.o Reseau.o ReconstitueReseau.o
+	$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS)
 	
 SVGwriter.o: SVGwriter.c
 	gcc $(CFLAGS) -c SVGwriter.c

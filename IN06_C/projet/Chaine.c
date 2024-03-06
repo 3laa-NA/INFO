@@ -7,7 +7,7 @@
 #include "SVGwriter.h"
 
 
-Chaines* lectureChaine(FILE *f){
+Chaines* lectureChaines(FILE *f){
     Chaines *ch = (Chaines*)malloc(sizeof(Chaines));
 
     char input[256];
@@ -54,7 +54,7 @@ Chaines* lectureChaine(FILE *f){
 }
 
 
-void ecrireChaine(Chaines *C, FILE *f){
+void ecrireChaines(Chaines *C, FILE *f){
     fprintf(f, "NbChain: %d\nGamma: %d\n", C->nbChaines, C->gamma);
 
     CellChaine *tmp_c = C->chaines;
