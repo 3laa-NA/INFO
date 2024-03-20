@@ -64,19 +64,11 @@ int main(){
 
             FILE *fich2 = fopen("Test.res","w");
 
-            printf("1\n");
-
             ecrireReseau(res, fich2);
-
-            printf("2\n");
 
             fclose(fich2);
 
-            printf("3\n");
-
             afficheReseauSVG(res, "test");
-
-            printf("4\n");
 
             break;
 
