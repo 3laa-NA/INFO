@@ -153,14 +153,11 @@ void ecrireReseau(Reseau *R, FILE *f){
         CellNoeud *tmp_v = tmp_n->nd->voisins;
 
         while(tmp_v){
-            /*char *l;
-            sprintf(l, "l %d %d\n", tmp_n->nd->num, tmp_v->nd->num); // pour verifier si la liason a été noté déjà
 
-            if(!strstr(lia, l)){
+            if(tmp_v->nd->num < tmp_n->nd->num){
                 sprintf(lia + strlen(lia), "l %d %d\n", tmp_v->nd->num, tmp_n->nd->num);
-            }*/
-
-            sprintf(lia + strlen(lia), "l %d %d\n", tmp_v->nd->num, tmp_n->nd->num);
+            }
+            
             tmp_v = tmp_v->suiv;
         }
 
