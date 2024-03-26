@@ -9,23 +9,26 @@ Noeud* rechercheCreeNoeudListe(Reseau *R, double x, double y){
 
     CellNoeud *tmp_cn = R->noeuds;
 
-    while(tmp_cn){
+    while(tmp_cn){ //on cherche noeud
 
         if(tmp_cn->nd->x == x && tmp_cn->nd->y == y){
-            return tmp_cn->nd;
+            return tmp_cn->nd; //renvoyé si trouvé
         }
         tmp_cn = tmp_cn->suiv;
     }
 
-    Noeud *res = (Noeud*)malloc(sizeof(Noeud));
+    //sinon on le crée:
+
+    Noeud *res = (Noeud*)malloc(sizeof(Noeud)); //allouer le noeud
     res->x = x;
     res->y = y;
     res->num = R->nbNoeuds+1;  
 
-    CellNoeud *CN = (CellNoeud*)malloc(sizeof(CellNoeud));
+    CellNoeud *CN = (CellNoeud*)malloc(sizeof(CellNoeud)); //allouer le Cell noeud
+    
+    //insertion en tete et mise à jour de compteur
     CN->nd = res;
-    CN->suiv = R->noeuds;
-
+    CN->suiv = R->noeuds;                      
     R->noeuds = CN;
     R->nbNoeuds++;
 
@@ -34,14 +37,14 @@ Noeud* rechercheCreeNoeudListe(Reseau *R, double x, double y){
 
 Reseau* reconstitueReseauListe(Chaines *C){
 
-    Reseau *R = (Reseau*)malloc(sizeof(Reseau));
+    Reseau *R = (Reseau*)malloc(sizeof(Reseau)); //allocation du reseau et initialisation des valeurs
     R->nbNoeuds = 0;
     R->gamma = C->gamma;
     R->noeuds = NULL;
     R->commodites = NULL;
 
     CellChaine *tmp_cch = C->chaines;
-    while(tmp_cch){
+    while(tmp_cch){ //on parcourt les chaines
 
         CellPoint *tmp_p = tmp_cch->points;
         Noeud *A = NULL; Noeud *B = NULL; //les extrémités

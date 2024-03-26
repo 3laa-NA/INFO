@@ -8,44 +8,50 @@
 
 
 Chaines* lectureChaines(FILE *f){
-    Chaines *ch = (Chaines*)malloc(sizeof(Chaines));
 
-    char input[256];
-    fgets(input, sizeof(input), f);
-    sscanf(input,"NbChain: %d",&(ch->nbChaines));
-    fgets(input, sizeof(input), f);
-    sscanf(input,"Gamma: %d",&(ch->gamma));
+    Chaines *ch = (Chaines*)malloc(sizeof(Chaines)); //allocation
 
-    while(!feof(f)){
+    char input[256]; //buffer
+
+    fgets(input, sizeof(input), f);
+    sscanf(input,"NbChain: %d",&(ch->nbChaines)); //lire NbChain
+    fgets(input, sizeof(input), f);
+    sscanf(input,"Gamma: %d",&(ch->gamma)); //lire Gamma
+
+    while(!feof(f)){ //lire jusqu'à la fin du fichier
         fgets(input, sizeof(input), f);
 
-        if(strcmp(input,"\n")==0){
+        if(strcmp(input,"\n")==0){ //cas d'une ligne vide
             continue;
         }
 
-        CellChaine *cch = (CellChaine*)malloc(sizeof(CellChaine));
+        CellChaine *cch = (CellChaine*)malloc(sizeof(CellChaine)); //allocation
 
-        int n;
-        sscanf(input,"%d %d",&(cch->numero), &n);
+        int n; //nombre des points
+        sscanf(input,"%d %d",&(cch->numero), &n); //lire numero de la chaine et le nombre des points
 
         int pos = 0;
-        for (int i = 0; i < 2; i++) {
-            pos += strcspn(input + pos, " ") + 1;
-        }
+        for (int i = 0; i < 2; i++) {                   //    stocker dans 'pos' l'indice 
+            pos += strcspn(input + pos, " ") + 1;       //     à partir de quelle on peut
+        }                                               //       lire le premier point
 
-        for (int i = 0; i < n; i++){
-            CellPoint *cp = (CellPoint*)malloc(sizeof(CellPoint));
+        for (int i = 0; i < n; i++){ //lire n points
+            CellPoint *cp = (CellPoint*)malloc(sizeof(CellPoint)); //allocation
             float x, y;
-            sscanf(input+pos, "%f %f", &x, &y);
+            sscanf(input+pos, "%f %f", &x, &y); //lire les Coordonnees du point
+
             for (int i = 0; i < 2; i++) {
-                pos += strcspn(input + pos, " ") + 1;
+                pos += strcspn(input + pos, " ") + 1;  //on met 'pos' à jour
             }
+
+            //on insere le point en tete
             cp->x = x;
             cp->y = y;
             cp->suiv = cch->points;
             cch->points = cp;
         }
 
+        //on insere la chaine en tete
         cch->suiv = ch->chaines;
         ch->chaines = cch;
     }
@@ -64,8 +70,8 @@ void ecrireChaines(Chaines *C, FILE *f){
         
         CellPoint *tmp_p = tmp_c->points;
 
-        int n_p = 0;
-        char pts[256] = "";
+        int n_p = 0; //compteur points
+        char pts[256] = ""; //les points
 
         while(tmp_p){
 
@@ -126,12 +132,13 @@ void afficheChainesSVG(Chaines *C, char* nomInstance){
 double longueurChaine(CellChaine *c){
 
     double res = 0;
-    if(!c->points){
+    if(!c->points){ //si chaine vide => 0
         return res;
     }
 
     CellPoint *tmp = c->points;
-    while(tmp->suiv){
+
+    while(tmp->suiv){ // on calcule la distance entre chaque 2 points consecutives
         res+= sqrt(pow(tmp->suiv->x - tmp->x, 2) + pow(tmp->suiv->y - tmp->y, 2));
 
         tmp = tmp->suiv;
@@ -147,7 +154,7 @@ double longueurTotale(Chaines *C){
     double res = 0;
     CellChaine *tmp = C->chaines;
 
-    while(tmp){
+    while(tmp){ // on somme les longueures de toutes les chaines
         res+= longueurChaine(tmp);
 
         tmp = tmp->suiv;
@@ -166,7 +173,9 @@ int comptePointsTotal(Chaines *C){
         CellPoint *tmp_p = tmp_c->points;
         while(tmp_p){
             res++;
+            tmp_p = tmp_p->suiv;
         }
+        tmp_c = tmp_c->suiv;
     }
     
     return res;

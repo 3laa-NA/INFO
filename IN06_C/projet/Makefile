@@ -11,7 +11,7 @@ all: $(PROGRAMS)
 #mainCH: SVGwriter.o Chaine.o
 #	$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS)
 
-mainR: SVGwriter.o Chaine.o Reseau.o ReconstitueReseau.o
+mainR: SVGwriter.o Chaine.o Reseau.o Hachage.o ReconstitueReseau.o
 	$(CC) -o $@ $(CFLAGS) $^ $(LDFLAGS)
 	
 SVGwriter.o: SVGwriter.c
@@ -22,6 +22,9 @@ Chaine.o: Chaine.c
 
 Reseau.o: Reseau.c
 	gcc $(CFLAGS) -c Reseau.c
+
+Hachage.o: Hachage.c
+	gcc $(CFLAGS) -c Hachage.c
 
 ReconstitueReseau.o: ReconstitueReseau.c
 	gcc $(CFLAGS) -c ReconstitueReseau.c

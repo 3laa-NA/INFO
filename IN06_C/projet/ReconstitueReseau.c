@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Reseau.h"
+#include "Hachage.h"
 
 int main(){
 
@@ -73,7 +73,19 @@ int main(){
             break;
 
         case 2: ;
-            printf("2\n");
+            Chaines *cha_h = lectureChaines(fich);
+            
+            fclose(fich);
+
+            Reseau *res_h = reconstitueReseauHachage(cha_h, 10);
+
+            FILE *fich2_h = fopen("Test.res","w");
+
+            ecrireReseau(res_h, fich2_h);
+
+            fclose(fich2_h);
+
+            afficheReseauSVG(res_h, "test");
 
             break;
 
