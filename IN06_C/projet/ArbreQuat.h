@@ -20,4 +20,6 @@ ArbreQuat* creerArbreQuat(double xc, double yc, double coteX, double coteY);
 
 void insererNoeudArbre(Noeud* n, ArbreQuat** a, ArbreQuat* parent);
 
+Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, double x, double y);
+
 #endif
