@@ -119,18 +119,18 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
     // (cas arbre vide)
     if(!*a){
 
-        Noeud *n = (Noeud*)malloc(sizeof(Noeud));
+        Noeud *n = (Noeud*)malloc(sizeof(Noeud)); //créer le noeud
         n->x = x;
         n->y = y;
         n->num = R->nbNoeuds++;
 
-        CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud));
+        CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud)); // créer la cellule
         cn->nd = n;
 
-        cn->suiv = R->noeuds;
+        cn->suiv = R->noeuds; // inserer dans le reseau
         R->noeuds = cn;
 
-        insererNoeudArbre(n, a, parent);
+        insererNoeudArbre(n, a, parent); //inserer dans le tableau
 
         return n;
     }
@@ -142,34 +142,117 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
             return (*a)->noeud;
         }
 
-        Noeud *tmp = (*a)->noeud;
-        
-        (*a)->noeud = NULL; //on transforme la feuille en cellule interne
-        
-        insererNoeudArbre(n, a, parent); //on insere le nouveau n
+        Noeud *n = (Noeud*)malloc(sizeof(Noeud)); //créer le noeud
+        n->x = x;
+        n->y = y;
+        n->num = R->nbNoeuds++;
 
-        insererNoeudArbre(tmp, a, parent);
+        CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud)); // créer la cellule
+        cn->nd = n;
 
-        return;
+        cn->suiv = R->noeuds; // inserer dans le reseau
+        R->noeuds = cn;
+
+        insererNoeudArbre(n, a, parent); //inserer dans le tableau
+
+        return n;
     }
 
     //else (cas cellule interne)
     
-    if(n->x < (*a)->xc){ //on determine dans quelle sous arbre on doit continuer
+    if(x < (*a)->xc){ //on determine dans quelle sous arbre on doit continuer
 
-        if(n->y < (*a)->yc){
-            insererNoeudArbre(n, &(*a)->so, *a);
+        if(y < (*a)->yc){
+            rechercheCreeNoeudArbre(R, &(*a)->so, *a, x, y);
         }else{
-            insererNoeudArbre(n, &(*a)->no, *a);
+            rechercheCreeNoeudArbre(R, &(*a)->no, *a, x, y);
         }
 
     }else{
 
-        if(n->y < (*a)->yc){
-            insererNoeudArbre(n, &(*a)->se, *a);
+        if(y < (*a)->yc){
+            rechercheCreeNoeudArbre(R, &(*a)->se, *a, x, y);
         }else{
-            insererNoeudArbre(n, &(*a)->ne, *a);
+            rechercheCreeNoeudArbre(R, &(*a)->ne, *a, x, y);
         }
 
     }
+}
+
+Reseau* reconstitueReseauArbre(Chaines* C){
+    Reseau *R = (Reseau*)malloc(sizeof(Reseau)); //allocation du reseau et initialisation des valeurs
+    R->nbNoeuds = 0;
+    R->gamma = C->gamma;
+    R->noeuds = NULL;
+    R->commodites = NULL;
+
+    double *xmin, *ymin, *xmax, *ymax;
+    chaineCoordMinMax(C,xmin, ymin, xmax, ymax);
+    double coteX = xmax - xmin;
+    double coteY = ymax - ymin;
+    double xc = *xmin + (coteX/2);
+    double yc = *ymin + (coteY/2);
+    creerArbreQuat(xc, yc, coteX, coteY); //creation de l'arbre
+
+    CellChaine *tmp_cch = C->chaines;
+    while(tmp_cch){ //on parcourt les chaines
+
+        CellPoint *tmp_p = tmp_cch->points;
+        Noeud *A = NULL; Noeud *B = NULL; //les extrémités
+
+        Noeud *n_prec = NULL; //le noeud precedent(pour mettre à jour les voisins)
+
+
+        while(tmp_p){
+
+            Noeud* tmp_n = rechercheCreeNoeudHachage(R, H, tmp_p->x, tmp_p->y);
+
+            if(!A){//on stock la premiere extrémité
+                A = tmp_n;
+            }
+            if(!tmp_p->suiv){//ici la deuxieme
+                B = tmp_n;
+            }
+
+
+            if(n_prec){
+
+                CellNoeud *voisins_prec = n_prec->voisins;
+                while(voisins_prec){ //on verifie si les 2 noeuds sont deja enregistrés comme des voisins
+                    if(voisins_prec->nd == tmp_n){
+                        break;
+                    }
+                    voisins_prec = voisins_prec->suiv;
+                }
+                
+
+                if(!voisins_prec){ //on met à jour les listes des voisins
+                    CellNoeud *tmp_v = (CellNoeud*)malloc(sizeof(CellNoeud));
+                    tmp_v->nd = tmp_n;
+                    tmp_v->suiv = n_prec->voisins;
+                    n_prec->voisins = tmp_v;
+
+                    CellNoeud *tmp_v1 = (CellNoeud*)malloc(sizeof(CellNoeud));
+                    tmp_v1->nd = n_prec;
+                    tmp_v1->suiv = tmp_n->voisins;
+                    tmp_n->voisins = tmp_v1;
+                }
+            }
+
+            n_prec = tmp_n;
+
+            tmp_p = tmp_p->suiv;
+        }
+
+        CellCommodite *CC = (CellCommodite*)malloc(sizeof(CellCommodite));
+        CC->extrA = A;
+        CC->extrB = B;
+        CC->suiv = R->commodites;
+
+        R->commodites = CC;
+
+        tmp_cch = tmp_cch->suiv;
+    }
+
+    return R;
 }

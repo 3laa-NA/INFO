@@ -22,4 +22,6 @@ void insererNoeudArbre(Noeud* n, ArbreQuat** a, ArbreQuat* parent);
 
 Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, double x, double y);
 
+Reseau* reconstitueReseauArbre(Chaines* C);
+
 #endif
