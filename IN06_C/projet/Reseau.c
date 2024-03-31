@@ -22,7 +22,7 @@ Noeud* rechercheCreeNoeudListe(Reseau *R, double x, double y){
     Noeud *res = (Noeud*)malloc(sizeof(Noeud)); //allouer le noeud
     res->x = x;
     res->y = y;
-    res->num = R->nbNoeuds+1;  
+    res->num = R->nbNoeuds+1;
 
     CellNoeud *CN = (CellNoeud*)malloc(sizeof(CellNoeud)); //allouer le Cell noeud
     

@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "Hachage.h"
+#include "ArbreQuat.h"
 
 int main(){
 
@@ -62,13 +63,13 @@ int main(){
 
             Reseau *res = reconstitueReseauListe(cha);
 
-            FILE *fich2 = fopen("Test.res","w");
+            FILE *fich2 = fopen("Test_ch.res","w");
 
             ecrireReseau(res, fich2);
 
             fclose(fich2);
 
-            afficheReseauSVG(res, "test");
+            afficheReseauSVG(res, "Test_ch_affich");
 
             break;
 
@@ -79,18 +80,30 @@ int main(){
 
             Reseau *res_h = reconstitueReseauHachage(cha_h, 10);
 
-            FILE *fich2_h = fopen("Test.res","w");
+            FILE *fich2_h = fopen("Test_h.res","w");
 
             ecrireReseau(res_h, fich2_h);
 
             fclose(fich2_h);
 
-            afficheReseauSVG(res_h, "test");
+            afficheReseauSVG(res_h, "Test_h_affich");
 
             break;
 
         case 3: ;
-            printf("3\n");
+            Chaines *cha_ar = lectureChaines(fich);
+            
+            fclose(fich);
+
+            Reseau *res_ar = reconstitueReseauArbre(cha_ar);
+
+            FILE *fich2_ar = fopen("Test_ar.res","w");
+
+            ecrireReseau(res_ar, fich2_ar);
+
+            fclose(fich2_ar);
+
+            afficheReseauSVG(res_ar, "Test_ar_affich");
 
             break;
 

@@ -8,23 +8,24 @@
 void chaineCoordMinMax(Chaines* C, double* xmin, double* ymin, double* xmax, double* ymax){
 
     CellChaine *tmp_c = C->chaines;
+
     while(tmp_c){
         CellPoint *tmp_p = tmp_c->points;
         while(tmp_p){
 
-            if(!xmin || *xmin > tmp_p->x){
+            if(*xmin > tmp_p->x){
                 *xmin = tmp_p->x;
             }
 
-            if(!xmax || *xmax < tmp_p->x){
+            if(*xmax < tmp_p->x){
                 *xmax = tmp_p->x;
             }
 
-            if(!ymin || *ymin > tmp_p->y){
+            if(*ymin > tmp_p->y){
                 *ymin = tmp_p->y;
             }
 
-            if(!ymax || *ymax < tmp_p->y){
+            if(*ymax < tmp_p->y){
                 *ymax = tmp_p->y;
             }
 
@@ -122,13 +123,14 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
         Noeud *n = (Noeud*)malloc(sizeof(Noeud)); //créer le noeud
         n->x = x;
         n->y = y;
-        n->num = R->nbNoeuds++;
+        n->num = R->nbNoeuds+1;
 
         CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud)); // créer la cellule
         cn->nd = n;
 
         cn->suiv = R->noeuds; // inserer dans le reseau
         R->noeuds = cn;
+        R->nbNoeuds++;
 
         insererNoeudArbre(n, a, parent); //inserer dans le tableau
 
@@ -145,13 +147,14 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
         Noeud *n = (Noeud*)malloc(sizeof(Noeud)); //créer le noeud
         n->x = x;
         n->y = y;
-        n->num = R->nbNoeuds++;
+        n->num = R->nbNoeuds+1;
 
         CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud)); // créer la cellule
         cn->nd = n;
 
         cn->suiv = R->noeuds; // inserer dans le reseau
         R->noeuds = cn;
+        R->nbNoeuds++;
 
         insererNoeudArbre(n, a, parent); //inserer dans le tableau
 
@@ -163,17 +166,17 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
     if(x < (*a)->xc){ //on determine dans quelle sous arbre on doit continuer
 
         if(y < (*a)->yc){
-            rechercheCreeNoeudArbre(R, &(*a)->so, *a, x, y);
+            return rechercheCreeNoeudArbre(R, &(*a)->so, *a, x, y);
         }else{
-            rechercheCreeNoeudArbre(R, &(*a)->no, *a, x, y);
+            return rechercheCreeNoeudArbre(R, &(*a)->no, *a, x, y);
         }
 
     }else{
 
         if(y < (*a)->yc){
-            rechercheCreeNoeudArbre(R, &(*a)->se, *a, x, y);
+            return rechercheCreeNoeudArbre(R, &(*a)->se, *a, x, y);
         }else{
-            rechercheCreeNoeudArbre(R, &(*a)->ne, *a, x, y);
+            return rechercheCreeNoeudArbre(R, &(*a)->ne, *a, x, y);
         }
 
     }
@@ -186,13 +189,14 @@ Reseau* reconstitueReseauArbre(Chaines* C){
     R->noeuds = NULL;
     R->commodites = NULL;
 
-    double *xmin, *ymin, *xmax, *ymax;
-    chaineCoordMinMax(C,xmin, ymin, xmax, ymax);
+    double xmin, ymin, xmax, ymax;
+    chaineCoordMinMax(C, &xmin, &ymin, &xmax, &ymax);
+
     double coteX = xmax - xmin;
     double coteY = ymax - ymin;
-    double xc = *xmin + (coteX/2);
-    double yc = *ymin + (coteY/2);
-    creerArbreQuat(xc, yc, coteX, coteY); //creation de l'arbre
+    double xc = xmin + (coteX/2);
+    double yc = ymin + (coteY/2);
+    ArbreQuat *AR = creerArbreQuat(xc, yc, coteX, coteY); //creation de l'arbre
 
     CellChaine *tmp_cch = C->chaines;
     while(tmp_cch){ //on parcourt les chaines
@@ -203,9 +207,9 @@ Reseau* reconstitueReseauArbre(Chaines* C){
         Noeud *n_prec = NULL; //le noeud precedent(pour mettre à jour les voisins)
 
 
-        while(tmp_p){
+        while(tmp_p){ //on parcourt les points de la chaine
 
-            Noeud* tmp_n = rechercheCreeNoeudHachage(R, H, tmp_p->x, tmp_p->y);
+            Noeud* tmp_n = rechercheCreeNoeudArbre(R, &AR, AR, tmp_p->x, tmp_p->y);
 
             if(!A){//on stock la premiere extrémité
                 A = tmp_n;
@@ -256,3 +260,4 @@ Reseau* reconstitueReseauArbre(Chaines* C){
 
     return R;
 }
+

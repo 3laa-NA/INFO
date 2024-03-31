@@ -19,8 +19,10 @@ Noeud* rechercheCreeNoeudHachage(Reseau* R, TableHachage* H, double x, double y)
     int cle = fonctionClef(x, y);
     int i = fonctionHachage(cle,H->tailleMax); //on trouve l'indice
 
-    CellNoeud * tmp_cn= H->T[i];
+    CellNoeud *tmp_cn = H->T[i];
+
     while(tmp_cn){ //on cherche dans le tableau de hachage
+
         if(tmp_cn->nd->x==x && tmp_cn->nd->y==y){
             return tmp_cn->nd;
         }
@@ -44,6 +46,7 @@ Noeud* rechercheCreeNoeudHachage(Reseau* R, TableHachage* H, double x, double y)
     cn2->nd = nd;
     cn2->suiv = R->noeuds;
     R->noeuds = cn2;
+    R->nbNoeuds++;
 
     return nd;
 }
@@ -59,7 +62,11 @@ Reseau* reconstitueReseauHachage(Chaines *C, int M){
     TableHachage *H = (TableHachage*)malloc(sizeof(TableHachage)); //allocation du tableau de hachage
     H->nbElement = 0;
     H->tailleMax = M;
-    H->T = (CellNoeud**)malloc(sizeof(CellNoeud*)*M);
+    H->T = (CellNoeud**)malloc(sizeof(CellNoeud*) * M);
+    for(int i = 0; i < M; i++) {
+        H->T[i] = NULL;
+    }
+
 
     CellChaine *tmp_cch = C->chaines;
     while(tmp_cch){ //on parcourt les chaines
@@ -68,7 +75,6 @@ Reseau* reconstitueReseauHachage(Chaines *C, int M){
         Noeud *A = NULL; Noeud *B = NULL; //les extrémités
 
         Noeud *n_prec = NULL; //le noeud precedent(pour mettre à jour les voisins)
-
 
         while(tmp_p){
 
