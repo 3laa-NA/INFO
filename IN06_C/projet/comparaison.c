@@ -25,7 +25,7 @@ int main(){
         printf("avan\nt");
         reconstitueReseauListe(cha);
         reconstitueReseauListe(cha);
-                printf("apres\n");
+        printf("apres\n");
 
         fin = clock();
 
