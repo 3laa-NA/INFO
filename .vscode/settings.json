@@ -1,5 +1,8 @@
 {
     "ocaml.sandbox": {
         "kind": "global"
+    },
+    "files.associations": {
+        "hachage.h": "c"
     }
 }

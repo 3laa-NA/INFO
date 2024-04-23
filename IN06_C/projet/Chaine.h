@@ -28,5 +28,6 @@ void afficheChainesSVG(Chaines *C, char* nomInstance);
 double longueurChaine(CellChaine *c);
 double longueurTotale(Chaines *C);
 int comptePointsTotal(Chaines *C);
+Chaines* generationAleatoire(int nbChaines, int nbPointsChaine, int xmax, int ymax);
 
 #endif	
