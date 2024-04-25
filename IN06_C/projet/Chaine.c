@@ -10,6 +10,7 @@
 Chaines* lectureChaines(FILE *f){
 
     Chaines *ch = (Chaines*)malloc(sizeof(Chaines)); //allocation
+    ch->chaines = NULL;
 
     char input[256]; //buffer
 
@@ -26,6 +27,8 @@ Chaines* lectureChaines(FILE *f){
         }
 
         CellChaine *cch = (CellChaine*)malloc(sizeof(CellChaine)); //allocation
+        cch->points = NULL;
+        cch->suiv = NULL;
 
         int n; //nombre des points
         sscanf(input,"%d %d",&(cch->numero), &n); //lire numero de la chaine et le nombre des points
@@ -187,10 +190,13 @@ Chaines* generationAleatoire(int nbChaines, int nbPointsChaine, int xmax, int ym
     Chaines *ch = (Chaines*)malloc(sizeof(Chaines)); //allocation
     ch->nbChaines = nbChaines;
     ch->gamma = 3;
+    ch->chaines = NULL; 
 
     for(int j=0; j<nbChaines; j++){ //
 
         CellChaine *cch = (CellChaine*)malloc(sizeof(CellChaine)); //allocation
+        cch->suiv = NULL;
+        cch->points = NULL;
 
         for (int i = 0; i < nbPointsChaine; i++){ //lire n points
 

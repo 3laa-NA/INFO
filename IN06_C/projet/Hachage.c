@@ -34,6 +34,7 @@ Noeud* rechercheCreeNoeudHachage(Reseau* R, TableHachage* H, double x, double y)
     nd->x = x;
     nd->y = y;
     nd->num = R->nbNoeuds+1;
+    nd->voisins = NULL;
 
    //on ajoute dans le tableau de hachage 
     CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud));

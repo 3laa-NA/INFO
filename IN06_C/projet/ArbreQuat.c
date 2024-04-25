@@ -124,6 +124,7 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
         n->x = x;
         n->y = y;
         n->num = R->nbNoeuds+1;
+        n->voisins = NULL;
 
         CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud)); // créer la cellule
         cn->nd = n;
@@ -148,6 +149,7 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
         n->x = x;
         n->y = y;
         n->num = R->nbNoeuds+1;
+        n->voisins = NULL;
 
         CellNoeud *cn = (CellNoeud*)malloc(sizeof(CellNoeud)); // créer la cellule
         cn->nd = n;
@@ -189,7 +191,7 @@ Reseau* reconstitueReseauArbre(Chaines* C){
     R->noeuds = NULL;
     R->commodites = NULL;
 
-    double xmin, ymin, xmax, ymax;
+    double xmin = 0, ymin = 0, xmax = 0, ymax = 0;
     chaineCoordMinMax(C, &xmin, &ymin, &xmax, &ymax);
 
     double coteX = xmax - xmin;

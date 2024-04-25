@@ -13,7 +13,7 @@ int main(){
 
     for(int nbCh = 1; nbCh<11; nbCh++){
 
-        cha = generationAleatoire(nbCh*5, 10, 50, 50);
+        cha = generationAleatoire(nbCh*50, 100, 5000, 5000);
 
         clock_t debut, fin;
 
@@ -22,8 +22,7 @@ int main(){
         double t_ch = 0;
 
         debut = clock();
-        printf("avan\nt");
-        reconstitueReseauListe(cha);
+        printf("........................avant\n");
         reconstitueReseauListe(cha);
         printf("apres\n");
 

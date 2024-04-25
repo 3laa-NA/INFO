@@ -1,1 +1,11 @@
 List: 0.000004 Hachage: 0.000004 Arbre: 0.000005
+List: 0.500539 Hachage: 0.243482 Arbre: 0.045028
+List: 1.976143 Hachage: 0.934197 Arbre: 0.084870
+List: 4.346648 Hachage: 2.095265 Arbre: 0.130329
+List: 7.718302 Hachage: 3.830997 Arbre: 0.186155
+List: 12.147288 Hachage: 5.905013 Arbre: 0.267968
+List: 17.576913 Hachage: 8.576393 Arbre: 0.330124
+List: 24.898815 Hachage: 11.900801 Arbre: 0.385219
+List: 32.418021 Hachage: 15.832809 Arbre: 0.428847
+List: 43.013458 Hachage: 20.005799 Arbre: 0.507436
+List: 59.679157 Hachage: 26.358744 Arbre: 0.566321

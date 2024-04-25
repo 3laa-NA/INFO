@@ -23,6 +23,7 @@ Noeud* rechercheCreeNoeudListe(Reseau *R, double x, double y){
     res->x = x;
     res->y = y;
     res->num = R->nbNoeuds+1;
+    res->voisins = NULL;
 
     CellNoeud *CN = (CellNoeud*)malloc(sizeof(CellNoeud)); //allouer le Cell noeud
     
@@ -51,7 +52,6 @@ Reseau* reconstitueReseauListe(Chaines *C){
 
         Noeud *n_prec = NULL; //le noeud precedent(pour mettre à jour les voisins)
 
-
         while(tmp_p){
 
             Noeud* tmp_n = rechercheCreeNoeudListe(R, tmp_p->x, tmp_p->y);
@@ -62,7 +62,6 @@ Reseau* reconstitueReseauListe(Chaines *C){
             if(!tmp_p->suiv){//ici la deuxieme
                 B = tmp_n;
             }
-
 
             if(n_prec){
 
@@ -90,8 +89,15 @@ Reseau* reconstitueReseauListe(Chaines *C){
 
             n_prec = tmp_n;
 
+            //printf("1\n");
+
             tmp_p = tmp_p->suiv;
+
+            //printf("  2\n");
         }
+
+        //printf("    3\n");
+
 
         CellCommodite *CC = (CellCommodite*)malloc(sizeof(CellCommodite));
         CC->extrA = A;
