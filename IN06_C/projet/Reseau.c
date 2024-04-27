@@ -89,15 +89,9 @@ Reseau* reconstitueReseauListe(Chaines *C){
 
             n_prec = tmp_n;
 
-            //printf("1\n");
-
             tmp_p = tmp_p->suiv;
 
-            //printf("  2\n");
         }
-
-        //printf("    3\n");
-
 
         CellCommodite *CC = (CellCommodite*)malloc(sizeof(CellCommodite));
         CC->extrA = A;
@@ -214,3 +208,38 @@ void afficheReseauSVG(Reseau *R, char* nomInstance){
     SVGfinalize(&svg);
 }
 
+/* Libère la mémoire allouée pour la structure Reseau et ses éléments */
+void libererReseau(Reseau *res) {
+    if (res == NULL) // Vérifier si la structure est déjà vide
+        return;
+
+    // Libérer la mémoire associée à chaque maillon de la liste chainée des noeuds
+    CellNoeud *current_noeud = res->noeuds;
+    while (current_noeud != NULL) {
+        CellNoeud *temp_noeud = current_noeud; // Garder une référence temporaire pour supprimer le maillon
+        current_noeud = current_noeud->suiv; // Avancer au maillon suivant
+
+        // Libérer la mémoire associée à chaque maillon de la liste chainée des voisins du noeud
+        CellNoeud *current_voisin = temp_noeud->nd->voisins;
+        while (current_voisin != NULL) {
+            CellNoeud *temp_voisin = current_voisin; // Garder une référence temporaire pour supprimer le maillon de voisin
+            current_voisin = current_voisin->suiv; // Avancer au maillon de voisin suivant
+            free(temp_voisin); // Libérer le maillon de voisin
+        }
+
+        // Libérer le maillon de noeud lui-même
+        free(temp_noeud->nd);
+        free(temp_noeud);
+    }
+
+    // Libérer la mémoire associée à chaque maillon de la liste chainée des commodités
+    CellCommodite *current_commodite = res->commodites;
+    while (current_commodite != NULL) {
+        CellCommodite *temp_commodite = current_commodite; // Garder une référence temporaire pour supprimer le maillon
+        current_commodite = current_commodite->suiv; // Avancer au maillon suivant
+        free(temp_commodite); // Libérer le maillon de commodité
+    }
+
+    // Libérer la structure Reseau elle-même
+    free(res);
+}

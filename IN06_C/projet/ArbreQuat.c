@@ -184,6 +184,21 @@ Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, doub
     }
 }
 
+/* Libère la mémoire allouée pour un arbre quaternaire */
+void libererArbre(ArbreQuat *a) {
+
+    if (a == NULL) return;// Vérifier si l'arbre est déjà vide
+        
+    // Libérer les sous-arbres récursivement
+    libererArbre(a->so);
+    libererArbre(a->se);
+    libererArbre(a->no);
+    libererArbre(a->ne);
+
+    // Libérer la structure ArbreQuat elle-même
+    free(a);
+}
+
 Reseau* reconstitueReseauArbre(Chaines* C){
     Reseau *R = (Reseau*)malloc(sizeof(Reseau)); //allocation du reseau et initialisation des valeurs
     R->nbNoeuds = 0;
@@ -259,6 +274,8 @@ Reseau* reconstitueReseauArbre(Chaines* C){
 
         tmp_cch = tmp_cch->suiv;
     }
+
+    libererArbre(AR);
 
     return R;
 }

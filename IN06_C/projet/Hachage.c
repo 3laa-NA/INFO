@@ -52,6 +52,28 @@ Noeud* rechercheCreeNoeudHachage(Reseau* R, TableHachage* H, double x, double y)
     return nd;
 }
 
+/* Libère la mémoire allouée pour une table de hachage et ses éléments */
+void libererTable(TableHachage *tab) {
+
+    if (tab == NULL) return;// Vérifier si la table est déjà vide
+
+    // Libérer la mémoire associée à chaque liste chainée dans la table
+    for (int i = 0; i < tab->tailleMax; i++) {
+        CellNoeud *current_noeud = tab->T[i];
+        while (current_noeud != NULL) {
+            CellNoeud *temp_noeud = current_noeud; // Garder une référence temporaire pour supprimer le maillon
+            current_noeud = current_noeud->suiv; // Avancer au maillon suivant
+            free(temp_noeud); // Libérer le maillon de la table
+        }
+    }
+
+    // Libérer la mémoire associée au tableau de pointeurs
+    free(tab->T);
+
+    // Libérer la structure TableHachage elle-même
+    free(tab);
+}
+
 Reseau* reconstitueReseauHachage(Chaines *C, int M){
 
     Reseau *R = (Reseau*)malloc(sizeof(Reseau)); //allocation du reseau et initialisation des valeurs
@@ -128,8 +150,11 @@ Reseau* reconstitueReseauHachage(Chaines *C, int M){
         tmp_cch = tmp_cch->suiv;
     }
 
+    libererTable(H);
+
     return R;
 }
+
 
 
 /*

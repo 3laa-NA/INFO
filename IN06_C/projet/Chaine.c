@@ -219,3 +219,23 @@ Chaines* generationAleatoire(int nbChaines, int nbPointsChaine, int xmax, int ym
 
     return ch;
 }
+
+
+void libererChaine(Chaines *ch) {
+    
+    if (ch == NULL) return;// Vérifier si la structure est déjà vide
+
+    CellChaine *current_chaine = ch->chaines;
+    while (current_chaine != NULL) {
+        CellChaine *temp_chaine = current_chaine; // Garder une référence temporaire pour supprimer le maillon
+        current_chaine = current_chaine->suiv; // Avancer au maillon suivant
+        CellPoint *current_point = temp_chaine->points;
+        while (current_point != NULL) {
+            CellPoint *temp_point = current_point; // Garder une référence temporaire pour supprimer le maillon
+            current_point = current_point->suiv; // Avancer au maillon suivant
+            free(temp_point); // Libérer le maillon de point
+        }
+        free(temp_chaine); // Libérer le maillon de chaine
+    }
+    free(ch); // Libérer la structure Chaines elle-même
+}

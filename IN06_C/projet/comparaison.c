@@ -10,10 +10,13 @@
 int main(){
     
     Chaines *cha;
+    Reseau *res;
 
-    for(int nbCh = 1; nbCh<11; nbCh++){
+    for(int i = 1; i<11; i++){
 
-        cha = generationAleatoire(nbCh*50, 100, 5000, 5000);
+        int nbch = i*5;
+
+        cha = generationAleatoire(nbch, 10, 5000, 5000);
 
         clock_t debut, fin;
 
@@ -22,13 +25,14 @@ int main(){
         double t_ch = 0;
 
         debut = clock();
-        printf("........................avant\n");
-        reconstitueReseauListe(cha);
-        printf("apres\n");
+        
+        res = reconstitueReseauListe(cha);
 
         fin = clock();
 
         t_ch = ((double) (fin - debut)) / CLOCKS_PER_SEC;
+
+        libererReseau(res);
 
         /////////Arbre/////////
         
@@ -36,11 +40,13 @@ int main(){
 
         debut = clock();
 
-        reconstitueReseauArbre(cha);
+        res = reconstitueReseauArbre(cha);
         
         fin = clock();
 
         t_ar = ((double) (fin - debut)) / CLOCKS_PER_SEC;
+
+        libererReseau(res);
 
 
         /////////hachage/////////
@@ -51,21 +57,23 @@ int main(){
 
             debut = clock();
 
-            reconstitueReseauHachage(cha, n);
+            res = reconstitueReseauHachage(cha, n);
             
             fin = clock();
 
             t_h += ((double) (fin - debut)) / CLOCKS_PER_SEC;
 
+            libererReseau(res);
+
         }
 
         t_h /= 15;
 
+        libererChaine(cha);
 
+        FILE *res = fopen("comp.txt","a");
 
-        FILE *res = fopen("resultats_de_comp.txt","a");
-
-        fprintf(res, "List: %f Hachage: %f Arbre: %f\n", t_ch, t_h, t_ar);
+        fprintf(res, "%d %f %f %f\n", nbch,t_ch, t_h, t_ar);
 
         fclose(res);
 

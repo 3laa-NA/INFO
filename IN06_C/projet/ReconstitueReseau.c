@@ -53,13 +53,13 @@ int main(){
         }else{rep = 0;}
 
     }while(rep);
+        
+    Chaines *cha = lectureChaines(fich);
+    fclose(fich);
 
     switch (m){
 
         case 1: ;
-            Chaines *cha = lectureChaines(fich);
-            
-            fclose(fich);
 
             Reseau *res = reconstitueReseauListe(cha);
 
@@ -71,14 +71,13 @@ int main(){
 
             afficheReseauSVG(res, "Test_ch_affich");
 
+            libererReseau(res);
+
             break;
 
         case 2: ;
-            Chaines *cha_h = lectureChaines(fich);
-            
-            fclose(fich);
 
-            Reseau *res_h = reconstitueReseauHachage(cha_h, 10);
+            Reseau *res_h = reconstitueReseauHachage(cha, 10);
 
             FILE *fich2_h = fopen("Test_h.res","w");
 
@@ -88,14 +87,13 @@ int main(){
 
             afficheReseauSVG(res_h, "Test_h_affich");
 
+            libererReseau(res_h);
+
             break;
 
         case 3: ;
-            Chaines *cha_ar = lectureChaines(fich);
-            
-            fclose(fich);
 
-            Reseau *res_ar = reconstitueReseauArbre(cha_ar);
+            Reseau *res_ar = reconstitueReseauArbre(cha);
 
             FILE *fich2_ar = fopen("Test_ar.res","w");
 
@@ -105,13 +103,16 @@ int main(){
 
             afficheReseauSVG(res_ar, "Test_ar_affich");
 
+            libererReseau(res_ar);
+
             break;
 
         default:
             break;
 
     }
-    
+
+    libererChaine(cha);
 
     return 0;
 }
