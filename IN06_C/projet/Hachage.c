@@ -57,17 +57,17 @@ void libererTable(TableHachage *tab) {
 
     if (tab == NULL) return;// Vérifier si la table est déjà vide
 
-    // Libérer la mémoire associée à chaque liste chainée dans la table
+    // Libérer la liste chainée dans la table
     for (int i = 0; i < tab->tailleMax; i++) {
         CellNoeud *current_noeud = tab->T[i];
         while (current_noeud != NULL) {
-            CellNoeud *temp_noeud = current_noeud; // Garder une référence temporaire pour supprimer le maillon
-            current_noeud = current_noeud->suiv; // Avancer au maillon suivant
-            free(temp_noeud); // Libérer le maillon de la table
+            CellNoeud *temp_noeud = current_noeud; // Garder une référence temporaire 
+            current_noeud = current_noeud->suiv; 
+            free(temp_noeud); // Libérer la table
         }
     }
 
-    // Libérer la mémoire associée au tableau de pointeurs
+    // Libérer le tableau de pointeurs
     free(tab->T);
 
     // Libérer la structure TableHachage elle-même
