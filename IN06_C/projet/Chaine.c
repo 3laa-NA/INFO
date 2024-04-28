@@ -67,7 +67,7 @@ void ecrireChaines(Chaines *C, FILE *f){
     fprintf(f, "NbChain: %d\nGamma: %d\n", C->nbChaines, C->gamma);
 
     CellChaine *tmp_c = C->chaines;
-    while(tmp_c){
+    while(tmp_c){ //on parcourt les chaines
 
         fprintf(f, "%d", tmp_c->numero);
         
@@ -76,9 +76,9 @@ void ecrireChaines(Chaines *C, FILE *f){
         int n_p = 0; //compteur points
         char pts[256] = ""; //les points
 
-        while(tmp_p){
+        while(tmp_p){ //on parcourt les points de la chaine
 
-            sprintf(pts + strlen(pts), " %.2f %.2f", tmp_p->x, tmp_p->y);
+            sprintf(pts + strlen(pts), " %.2f %.2f", tmp_p->x, tmp_p->y); //on ajoute le point
 
             n_p++;
             tmp_p = tmp_p->suiv;
@@ -131,7 +131,7 @@ void afficheChainesSVG(Chaines *C, char* nomInstance){
     SVGfinalize(&svg);
 }
 
-
+//distance entre les points de la chaine
 double longueurChaine(CellChaine *c){
 
     double res = 0;
@@ -149,7 +149,6 @@ double longueurChaine(CellChaine *c){
 
     return res;
 }
-
 
 
 double longueurTotale(Chaines *C){
@@ -172,9 +171,9 @@ int comptePointsTotal(Chaines *C){
     int res = 0;
 
     CellChaine *tmp_c = C->chaines;
-    while(tmp_c){
+    while(tmp_c){ //on parcourt les chaines
         CellPoint *tmp_p = tmp_c->points;
-        while(tmp_p){
+        while(tmp_p){ //on parcourt les points
             res++;
             tmp_p = tmp_p->suiv;
         }
@@ -192,13 +191,13 @@ Chaines* generationAleatoire(int nbChaines, int nbPointsChaine, int xmax, int ym
     ch->gamma = 3;
     ch->chaines = NULL; 
 
-    for(int j=0; j<nbChaines; j++){ //
+    for(int j=0; j<nbChaines; j++){ //generer les chaines
 
         CellChaine *cch = (CellChaine*)malloc(sizeof(CellChaine)); //allocation
         cch->suiv = NULL;
         cch->points = NULL;
 
-        for (int i = 0; i < nbPointsChaine; i++){ //lire n points
+        for (int i = 0; i < nbPointsChaine; i++){ //generer les points
 
             CellPoint *cp = (CellPoint*)malloc(sizeof(CellPoint)); //allocation
             float x = ((float)rand() / RAND_MAX) * xmax;
@@ -225,17 +224,21 @@ void libererChaine(Chaines *ch) {
     
     if (ch == NULL) return;// Vérifier si la structure est déjà vide
 
-    CellChaine *current_chaine = ch->chaines;
-    while (current_chaine != NULL) {
-        CellChaine *temp_chaine = current_chaine; // Garder une référence temporaire pour supprimer le maillon
-        current_chaine = current_chaine->suiv; // Avancer au maillon suivant
-        CellPoint *current_point = temp_chaine->points;
-        while (current_point != NULL) {
-            CellPoint *temp_point = current_point; // Garder une référence temporaire pour supprimer le maillon
-            current_point = current_point->suiv; // Avancer au maillon suivant
-            free(temp_point); // Libérer le maillon de point
+    CellChaine *cch = ch->chaines;
+
+    while (cch){
+        CellChaine *tmp_ch = cch; 
+        cch = cch->suiv;
+
+        CellPoint *cp = tmp_ch->points;
+        while (cp != NULL){
+            CellPoint *tmp_cp = cp;
+            cp = cp->suiv;
+            free(tmp_cp); // Libérer le point
         }
-        free(temp_chaine); // Libérer le maillon de chaine
+
+        free(tmp_ch); // Libérer la chaine
     }
+
     free(ch); // Libérer la structure Chaines elle-même
 }

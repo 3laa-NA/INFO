@@ -16,13 +16,13 @@ int main(){
 
         int nbch = i*5;
 
-        cha = generationAleatoire(nbch, 10, 5000, 5000);
+        cha = generationAleatoire(nbch, 100, 5000, 5000); //generer les chaines
 
         clock_t debut, fin;
 
         /////////Liste-chainee/////////
 
-        double t_ch = 0;
+        double t_ch = 0; //temps pour les listes chainées
 
         debut = clock();
         
@@ -36,7 +36,7 @@ int main(){
 
         /////////Arbre/////////
         
-        double t_ar = 0;
+        double t_ar = 0; //temps pour l'arbre
 
         debut = clock();
 
@@ -51,9 +51,9 @@ int main(){
 
         /////////hachage/////////
         
-        double t_h = 0;
+        double t_h = 0; //temps pour les tables d'hachage
 
-        for(int n = 6; n<21; n++){
+        for(int n = 6; n<21; n++){ //on varie la taille de la table
 
             debut = clock();
 
@@ -67,11 +67,11 @@ int main(){
 
         }
 
-        t_h /= 15;
+        t_h /= 15; //on calcule la moyenne
 
         libererChaine(cha);
 
-        FILE *res = fopen("comp.txt","a");
+        FILE *res = fopen("comp.txt","a"); //stocker les resultats dans comp.txt
 
         fprintf(res, "%d %f %f %f\n", nbch,t_ch, t_h, t_ar);
 

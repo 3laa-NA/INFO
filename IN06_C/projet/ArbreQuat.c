@@ -5,13 +5,18 @@
 
 #include "ArbreQuat.h"
 
+
+//determine les coordonnees minimales et maximales des points constituant les differentes chaınes du reseau.
 void chaineCoordMinMax(Chaines* C, double* xmin, double* ymin, double* xmax, double* ymax){
 
     CellChaine *tmp_c = C->chaines;
 
-    while(tmp_c){
+    while(tmp_c){ //on parcourt les chaines
+
         CellPoint *tmp_p = tmp_c->points;
-        while(tmp_p){
+        while(tmp_p){ //on parcourt les points de la chaine
+
+            // mise à jour si necessaire
 
             if(*xmin > tmp_p->x){
                 *xmin = tmp_p->x;
@@ -36,9 +41,10 @@ void chaineCoordMinMax(Chaines* C, double* xmin, double* ymin, double* xmax, dou
 
 }
 
+//permet de creer une cellule de l’arbre quaternaire
 ArbreQuat* creerArbreQuat(double xc, double yc, double coteX, double coteY){
 
-    ArbreQuat *arb = (ArbreQuat*)malloc(sizeof(ArbreQuat));
+    ArbreQuat *arb = (ArbreQuat*)malloc(sizeof(ArbreQuat)); // allocation + initialisations
     arb->xc = xc;
     arb->yc = yc;
     arb->coteX = coteX;
@@ -52,6 +58,7 @@ ArbreQuat* creerArbreQuat(double xc, double yc, double coteX, double coteY){
     return arb; 
 }
 
+// permet d’inserer un Noeud du reseau dans un arbre quaternaire
 void insererNoeudArbre(Noeud* n, ArbreQuat** a, ArbreQuat* parent){
 
     // (cas arbre vide)
@@ -114,7 +121,7 @@ void insererNoeudArbre(Noeud* n, ArbreQuat** a, ArbreQuat* parent){
 
 }
 
-
+//trouver un noeud
 Noeud* rechercheCreeNoeudArbre(Reseau* R, ArbreQuat** a, ArbreQuat* parent, double x, double y){
 
     // (cas arbre vide)
@@ -199,6 +206,7 @@ void libererArbre(ArbreQuat *a) {
     free(a);
 }
 
+//reconstruit le reseau R a partir de la liste des chaınes C et en utilisant l’arbre quaternaire
 Reseau* reconstitueReseauArbre(Chaines* C){
     Reseau *R = (Reseau*)malloc(sizeof(Reseau)); //allocation du reseau et initialisation des valeurs
     R->nbNoeuds = 0;
@@ -209,6 +217,7 @@ Reseau* reconstitueReseauArbre(Chaines* C){
     double xmin = 0, ymin = 0, xmax = 0, ymax = 0;
     chaineCoordMinMax(C, &xmin, &ymin, &xmax, &ymax);
 
+    //trouver les dimensions de repere
     double coteX = xmax - xmin;
     double coteY = ymax - ymin;
     double xc = xmin + (coteX/2);
@@ -219,7 +228,7 @@ Reseau* reconstitueReseauArbre(Chaines* C){
     while(tmp_cch){ //on parcourt les chaines
 
         CellPoint *tmp_p = tmp_cch->points;
-        Noeud *A = NULL; Noeud *B = NULL; //les extrémités
+        Noeud *A = NULL; Noeud *B = NULL; //les extrémités de la chaine
 
         Noeud *n_prec = NULL; //le noeud precedent(pour mettre à jour les voisins)
 
@@ -228,20 +237,20 @@ Reseau* reconstitueReseauArbre(Chaines* C){
 
             Noeud* tmp_n = rechercheCreeNoeudArbre(R, &AR, AR, tmp_p->x, tmp_p->y);
 
-            if(!A){//on stock la premiere extrémité
+            if(!A){ //on stock la premiere extrémité
                 A = tmp_n;
             }
-            if(!tmp_p->suiv){//ici la deuxieme
+            if(!tmp_p->suiv){ //ici la deuxieme
                 B = tmp_n;
             }
 
 
-            if(n_prec){
+            if(n_prec){ //condition pour ne pas appliquer ca au premier point de la chaine
 
                 CellNoeud *voisins_prec = n_prec->voisins;
                 while(voisins_prec){ //on verifie si les 2 noeuds sont deja enregistrés comme des voisins
                     if(voisins_prec->nd == tmp_n){
-                        break;
+                        break; //si déjà enregistrés comme des voisins on sort de la boucle
                     }
                     voisins_prec = voisins_prec->suiv;
                 }
@@ -265,7 +274,9 @@ Reseau* reconstitueReseauArbre(Chaines* C){
             tmp_p = tmp_p->suiv;
         }
 
-        CellCommodite *CC = (CellCommodite*)malloc(sizeof(CellCommodite));
+        //apres avoir quité la boucle on aura nos extrémités
+
+        CellCommodite *CC = (CellCommodite*)malloc(sizeof(CellCommodite)); //on alloue et initialise les commodités
         CC->extrA = A;
         CC->extrB = B;
         CC->suiv = R->commodites;
@@ -275,6 +286,7 @@ Reseau* reconstitueReseauArbre(Chaines* C){
         tmp_cch = tmp_cch->suiv;
     }
 
+    //on libere la memoire
     libererArbre(AR);
 
     return R;

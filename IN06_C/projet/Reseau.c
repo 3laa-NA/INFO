@@ -112,10 +112,10 @@ int nbLiaisons(Reseau *R){
     int res = 0;
     CellNoeud *tmp_n = R->noeuds;
 
-    while(tmp_n){
+    while(tmp_n){ //on parcourt les noeuds
 
         CellNoeud *tmp_v = tmp_n->nd->voisins;
-        while(tmp_v){
+        while(tmp_v){ //on parcourt la liste des voisins
             res++;
             tmp_v = tmp_v->suiv;
         }
@@ -123,7 +123,7 @@ int nbLiaisons(Reseau *R){
         tmp_n = tmp_n->suiv;
     }
 
-    return res/2;
+    return res/2; //les liaison ont etait compté 2 fois
 }
 
 
@@ -132,7 +132,7 @@ int nbCommodites(Reseau *R){
 
     CellCommodite *tmp_c = R->commodites;
 
-    while(tmp_c){
+    while(tmp_c){ //on parcourt la liste chainee des commodites
         res++;
         tmp_c = tmp_c->suiv;
     }
@@ -143,20 +143,23 @@ int nbCommodites(Reseau *R){
 
 void ecrireReseau(Reseau *R, FILE *f){
 
+    // Écriture des informations de base du réseau dans le fichier
     fprintf(f, "NbNoeuds: %d\nNbLiaisons: %d\nNbCommodites: %d\nGamma: %d\n\n", R->nbNoeuds, nbLiaisons(R), nbCommodites(R), R->gamma);
 
     CellNoeud *tmp_n = R->noeuds;
 
-    char lia[256] = "";
+    char lia[256] = ""; // Chaîne pour stocker les liaisons entre les nœuds
 
-    while(tmp_n){
+    while(tmp_n){ // Parcours des nœuds du réseau
 
+        // Écriture des coordonnées des nœuds dans le fichier
         fprintf(f, "v %d %.2f %.2f\n", tmp_n->nd->num, tmp_n->nd->x, tmp_n->nd->y);
 
         CellNoeud *tmp_v = tmp_n->nd->voisins;
 
-        while(tmp_v){
+        while(tmp_v){ // Parcours des voisins de chaque nœud
 
+            // Ajout de la liaison à la chaîne si elle n'a pas déjà été ajoutée
             if(tmp_v->nd->num < tmp_n->nd->num){
                 sprintf(lia + strlen(lia), "l %d %d\n", tmp_v->nd->num, tmp_n->nd->num);
             }
@@ -168,11 +171,12 @@ void ecrireReseau(Reseau *R, FILE *f){
 
     }
 
-    fprintf(f, "\n%s\n", lia);
+    fprintf(f, "\n%s\n", lia); // Écriture des liaisons dans le fichier
 
     CellCommodite *tmp_c = R->commodites;
-    while(tmp_c){
+    while(tmp_c){ // Parcours des commodités du réseau
 
+        // Écriture des commodités dans le fichier
         fprintf(f, "k %d %d\n", tmp_c->extrA->num, tmp_c->extrB->num);
         tmp_c = tmp_c->suiv;
     }
@@ -210,34 +214,31 @@ void afficheReseauSVG(Reseau *R, char* nomInstance){
 
 /* Libère la mémoire allouée pour la structure Reseau et ses éléments */
 void libererReseau(Reseau *res) {
-    if (res == NULL) // Vérifier si la structure est déjà vide
-        return;
 
-    // Libérer la mémoire associée à chaque maillon de la liste chainée des noeuds
-    CellNoeud *current_noeud = res->noeuds;
-    while (current_noeud != NULL) {
-        CellNoeud *temp_noeud = current_noeud; // Garder une référence temporaire pour supprimer le maillon
-        current_noeud = current_noeud->suiv; // Avancer au maillon suivant
+    if (res == NULL) return; // Vérifier si la structure est déjà vide
+        
+    CellNoeud *cn = res->noeuds;
+    while (cn != NULL) {
+        CellNoeud *tmp_cn = cn; // Garder une référence temporaire
+        cn = cn->suiv; 
 
-        // Libérer la mémoire associée à chaque maillon de la liste chainée des voisins du noeud
-        CellNoeud *current_voisin = temp_noeud->nd->voisins;
-        while (current_voisin != NULL) {
-            CellNoeud *temp_voisin = current_voisin; // Garder une référence temporaire pour supprimer le maillon de voisin
-            current_voisin = current_voisin->suiv; // Avancer au maillon de voisin suivant
-            free(temp_voisin); // Libérer le maillon de voisin
+        CellNoeud *cn_v = tmp_cn->nd->voisins;
+        while (cn_v != NULL) {
+            CellNoeud *tmp_v = cn_v; // Garder une référence temporaire
+            cn_v = cn_v->suiv;
+            free(tmp_v); // Libérer le voisin
         }
 
-        // Libérer le maillon de noeud lui-même
-        free(temp_noeud->nd);
-        free(temp_noeud);
+        // Libérer le noeud lui-même
+        free(tmp_cn->nd);
+        free(tmp_cn);
     }
 
-    // Libérer la mémoire associée à chaque maillon de la liste chainée des commodités
-    CellCommodite *current_commodite = res->commodites;
-    while (current_commodite != NULL) {
-        CellCommodite *temp_commodite = current_commodite; // Garder une référence temporaire pour supprimer le maillon
-        current_commodite = current_commodite->suiv; // Avancer au maillon suivant
-        free(temp_commodite); // Libérer le maillon de commodité
+    CellCommodite *cc = res->commodites;
+    while (cc != NULL) {
+        CellCommodite *tmp_cc = cc; // Garder une référence temporaire
+        cc = cc->suiv;
+        free(tmp_cc); // Libérer le commodité
     }
 
     // Libérer la structure Reseau elle-même

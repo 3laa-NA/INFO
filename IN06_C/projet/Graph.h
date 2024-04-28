@@ -35,4 +35,6 @@ Graphe* creerGraphe(Reseau* r);
 
 Sommet *RechercheCreeSommet(Graphe *G, double x, double y);
 
+int reorganiseReseau(Reseau* r);
+
 # endif

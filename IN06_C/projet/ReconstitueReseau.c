@@ -11,7 +11,7 @@ int main(){
     char input[256];
     FILE *fich;
 
-    do{      
+    do{ //demander le nom de fichier
         
         printf("Veuillez ecrire le nom du fichier .cha (ou tapez 'quit' pour quitter): ");
 
@@ -33,7 +33,7 @@ int main(){
 
     int m; //methode
 
-    do{      
+    do{ //afficher le menu avec les 3 choix
         
         printf("Veuillez choisir la méthode souhaitée parmi les suivanetes:\n1.liste\n2.table de hachage\n3.arbre\n(ou tapez 'quit' pour quitter): ");
 
