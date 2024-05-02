@@ -14,7 +14,7 @@ int main(){
 
     for(int i = 1; i<11; i++){
 
-        int nbch = i*50;
+        int nbch = i*500;
         int nbpts = nbch*100;
 
         cha = generationAleatoire(nbch, 100, 5000, 5000); //generer les chaines

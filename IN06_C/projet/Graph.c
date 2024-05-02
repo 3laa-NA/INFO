@@ -4,7 +4,7 @@
 #include <math.h>
 
 #include "Graph.h"
-#include "Struct_File.h"
+#include "Struct_Liste.h"
 #include "file.h"
 
 Sommet *RechercheCreeSommet(Graphe *G, double x, double y){
@@ -151,5 +151,4 @@ int plusPetitNbAretes(Graphe *G, int u, int v) {
     return minVal;
 
 }
-
 
