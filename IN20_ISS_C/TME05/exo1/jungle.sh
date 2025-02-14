@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "Choisissez la langue (VF ou VO) :"
 read langue
 
@@ -20,4 +19,5 @@ while read -r animal cri_fr cri_en; do
     else
         cowsay -f $animal "$cri_en"
     fi
-done < "/workspaces/INFO/IN20_(ISS)_(C)/TME05/exo1/blabla.csv"
+done < "/blabla.csv"
+

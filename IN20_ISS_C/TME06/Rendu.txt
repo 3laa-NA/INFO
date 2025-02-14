@@ -1,0 +1,7 @@
+EX1 :
+
+q1: grep -w 'localhost'$ /etc/hosts
+
+q2: lpoptions -l | cut -d "*" -f 2 | cut -d ' ' -f 1
+
+q3: ...

@@ -6,15 +6,7 @@ q2: ...
 
 q3: ...
 
-q4: j'utiliserai la commande export PATH="$PATH:chemin/vers/bin(contenant cowsay)" et on peut utiliser la commande "source" pour ne pas avoir a le faire a  chaque fois
+q4: j'utiliserai la commande export PATH="$PATH:~/prog/bin/"
+puisque  
 
-q5: ... 
-remarque : j'ai du changer la ligne 177 de cowsay de "  do $full;  " à  "  do "./$full";  " .
-
-pour que ca marche on se place dans "TME05" puis : ./jungle.sh
-pour pouvir le lancer de quelque part d'autre il faut modifier "$cowpath" dans cowsay ligne 19
-
-
-EX2 :
-
-q1: last -da > exo2/connexions.log
+q5: ...

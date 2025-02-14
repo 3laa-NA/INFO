@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+	 	<title>TD 2 - Formulaire d'enregistrement</title>
+	 	<meta charset="UTF-8">
+	 	<style>
+	 		body{
+				font-family: Verdana, arial, sans-serif;
+	 		}
+			h1{
+				text-align: center;
+				color: blue;
+				text-shadow: 1px 1px 1px black;
+			}
+	 		form{
+				margin: auto;
+	 			display: grid;
+				grid-template-columns: 150px 150px;
+				border: 3px solid;
+				padding: 10px;
+				width: 300px;
+	 		}
+			input{
+				margin-bottom: 15px;
+			}
+			label.text-center{
+				text-align: center;
+			}
+
+	 	</style>
+	</head>
+	<body>
+		<h1>Enregistrement</h1>
+		<form method="POST" action="javascript:connexion">
+			<label for="prenom" class="text-center">Prénom</label>
+			<label for="nom" class="text-center">Nom</label>
+			<input id="prenom"><input id="nom">
+			<label for="login">Login</label><input id="login">
+		    <label for="mdp">Mot de passe</label><input id="mdp">
+		    <label for="re_mpd">Retapez</label><input id="re_mpd">
+		    <button type="submit">Enregistrer</button>
+		    <button type="reset">Annuler</button>
+		</form>
+	
+
+</body></html>

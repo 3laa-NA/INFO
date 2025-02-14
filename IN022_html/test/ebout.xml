@@ -1,0 +1,72 @@
+<eboutique>
+	<categorie id="C1" libelle="Noeuds">
+		<article id="X21" prix="14.20" stock="3">
+			<media url="tie-clipart1.svg"/>
+			<genre>Homme</genre>
+			<description>Noeud Papilllon Extra Larges</description>
+			<mot-clef>Accessoire</mot-clef>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+		<article id="X33" prix="19.90" stock="8">
+			<media url="tie-clipart2.svg"/>
+			<genre>Homme</genre>
+			<genre>Femme</genre>
+			<description>Noeud Y à bouton ajustable</description>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+	</categorie>
+	<categorie id="C2" libelle="Chemises">
+		<article id="X78" prix="27.99" stock="5">
+			<media url="T-shirt_clipart1.svg"/>
+			<genre>Femme</genre>
+			<description>Chemisier à rayures avec boutons - Décontracté - Pour le bureau - En coton</description>
+			<mot-clef>Accessoire</mot-clef>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+		<article id="X88" prix="25.88" stock="12">
+			<media url="T-shirt_clipart2.svg"/>
+			<genre>Femme</genre>
+			<description>Blouses Chemise Longue Tunique</description>
+			<mot-clef>Accessoire</mot-clef>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+		<article id="X44" prix="26.53" stock="8">
+			<media url="T-shirt_clipart3.svg"/>
+			<genre>Homme</genre>
+			<description>Chemises en Lin Manches Longues été chemise de Plage</description>
+			<mot-clef>Accessoire</mot-clef>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+	</categorie>		
+	<categorie id="C3" libelle="Pantalons">
+		<article id="X75" prix="55.87" stock="7">
+			<media url="pants-clipart1.svg"/>
+			<genre>Homme</genre>
+			<description>Straight Fit Xm Extreme Motion Jeans</description>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+		<article id="X85" prix="69.95" stock="9">
+			<media url="pants-clipart2.svg"/>
+			<genre>Homme</genre>
+			<description>Levi's XX Chino Sandard II Pantalon</description>
+			<mot-clef>Accessoire</mot-clef>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+		<article id="X46" prix="89.95" stock="13">
+			<media url="pants-clipart3.svg"/>
+			<genre>Femme</genre>
+			<description>Smart 360 Flex Jean Cut Slim</description>
+			<mot-clef>Vêtement</mot-clef>
+		</article>
+	</categorie>		
+<!-- Credits
+T-shirt_clipart1.svg  /  Licence : CC BY 4.0  /  https://creazilla.com/fr/nodes/49542-t-shirt-clipart  / Auteur : Vincent Le Moign
+T-shirt_clipart2.svg  /  Licence : CC BY 4.0  /  https://creazilla.com/fr/nodes/58729-t-shirt-clipart / Auteur : Mozilla
+T-shirt_clipart3.svg  /  Licence : Domaine Public. Gratuit pour un usage personnel et commercial /  https://creazilla.com/fr/nodes/3154740-chemise-clipart / Auteur: Clker-Free-Vector-Images
+pants-clipart1.svg   /   Licence: Creazilla Open-Source License. Gratuit pour un usage personnel et commercial. / https://creazilla.com/fr/nodes/39338-pantalon-clipart / Auteur :  Creazilla
+pants-clipart2.svg   /   Licence: Creazilla Open-Source License. Gratuit pour un usage personnel et commercial. / https://creazilla.com/fr/nodes/39341-pantalon-clipart / Auteur :  Creazilla
+pants-clipart3.svg   /   Licence: Creazilla Open-Source License. Gratuit pour un usage personnel et commercial. / https://creazilla.com/fr/nodes/39334-pantalon-clipart / Auteur :  Creazilla
+tie-clipart1.svg       /   Licence : Domaine Public. Gratuit pour un usage personnel et commercial / https://creazilla.com/fr/nodes/3163996-cravate-clipart / Auteur : Clker-Free-Vector-Images
+tie-clipart2.svg       /   Licence : Domaine Public. Gratuit pour un usage personnel et commercial / https://creazilla.com/fr/nodes/3163996-cravate-clipart / Auteur : Clker-Free-Vector-Images
+tie-clipart3.svg       /   Licence : Domaine Public. Gratuit pour un usage personnel et commercial / https://creazilla.com/fr/nodes/3163996-cravate-clipart / Auteur : Clker-Free-Vector-Images
+--></eboutique>

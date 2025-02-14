@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <title>TD 2 - Acceuil</title>
+        <meta charset="UTF-8">
+        <style>
+            body{
+                display: flex;
+                flex-direction: column;
+            }
+            header{
+                display: flex;
+                background-color: black;
+                width: 100%;
+                height: 20%;
+            }
+            div#Logo{
+                background-color: goldenrod;
+                width: 25%;
+                height: 10%;
+
+            }
+            div#Search_zone{
+                display: grid;
+                grid-template-columns: 20% 80%;
+                background-color: rgb(24, 204, 48);
+                width: 50%;
+                height: 10%;
+
+            }
+            div#Links{
+                display: flex;
+                flex-direction: column;
+                background-color: rgb(218, 32, 32);
+                width: 25%;
+                height: 10%;
+
+            }
+            main{
+                display: flex;
+                flex-direction: row;
+                width: 100%;
+                height: 80%;
+            }
+            aside{
+                background-color: rebeccapurple;
+                width: 20%;
+                height: 100%;
+            }
+            div#msgs{
+
+                width: 80%;
+                height: 100%;
+            }
+            section#new_msgs{
+                background-color: lightseagreen;
+                width: 100%;
+                height: 50%;
+            }
+            section#liste_msgs{
+                background-color: palevioletred;
+                width: 100%;
+                height: 50%;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="Logo">1</div>
+            <div id="Search_zone">
+                <label for="search"> 🔍 </label><input id="search">
+                <label for="date_deb">Date début</label><input type = "date" id="date_deb">
+                <label for="date_fin">Date fin</label><input type = "date" id="date_fin">
+                <button type="submit">Rechercher</button>
+            </div>
+            <div id="Links">
+                <a id="Connect" href="login.html">Connexion</a>
+                <a id="Register" href="sign_up.html">Enregistrement</a>
+            </div>
+        </header>
+        <main>
+            <aside>4
+            </aside>
+            <div id =msgs>
+                <section id="new_msgs">
+                    <label for="add_msg">Nouveau message&thinsp;</label>
+                    <textarea id="text_new_comment" rows="2" cols="40"></textarea>
+                    <button type="submit">ᯓ➤</button>
+                </section>
+                <section id="liste_msgs">
+                    <ul>
+                        <li>
+                            <p><span>Utilisateur 1</span> -- <time>30/01/2024 à 13:53</time></p>
+                            <blockquote>Eh ca parle de quoi???? (<button>+</button>)</blockquote>
+                        </li>
+                        <li>
+                            <p><span>max</span> -- <time>30/01/2024 `a 13:51</time></p>
+                            <blockquote>Dinguerie mdr (<button>+</button>)
+                                <div id="msg20240130-135210">
+                                    <p><span>karl</span> -- <time>30/01/2024 à 13:52</time></p>
+                                    <blockquote>Je te jure XDDDDD (<button>+</button>)</blockquote>
+                                </div>
+                            </blockquote>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </main>
+    </body>
+</html>
