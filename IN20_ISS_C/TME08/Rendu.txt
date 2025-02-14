@@ -1,0 +1,17 @@
+EX 1 :
+
+q1: 
+sleep 30 &
+ps o pid,ppid,state --pid $!
+
+q2: ...
+
+q3: ...
+
+EX 2 :
+
+q1: ...
+
+q2:
+for letter in {A..Z}; do grep "^$letter" dico.txt > "dico/${letter}.txt"; done
+

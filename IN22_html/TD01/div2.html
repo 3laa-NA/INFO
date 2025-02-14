@@ -1,0 +1,33 @@
+#!/bin/sh 
+cat <<EOF
+Content-Type: text/html; charset=utf-8
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Tables de multiplication par 2</title>
+<style type='text/css'>tr:nth-child(2n) {background:beige;}</style>
+</head><body> 
+<table>
+<caption>Table de multiplication par 2 sur 2 lignes</caption>
+<tr>
+EOF
+i=0
+while [ $i -lt 10 ]
+do
+echo "<td>$i</td>" 
+i=$((i+1))
+done
+echo "</tr>"
+
+echo "<tr>"
+i=0
+while [ $i -lt 10 ]
+do
+echo "<td>$(($i*2))</td>" 
+i=$((i+1))
+done
+echo "</tr>"
+
+echo '</table></body></html>'
+
+

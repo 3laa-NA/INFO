@@ -1,0 +1,23 @@
+#!/bin/sh 
+
+cat <<EOF1
+Content-Type: text/html; charset=utf-8
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> Table de variables du serveur</title>
+<style type='text/css'>tr:nth-child(2n) {background:blueviolet;}</style>
+</head>
+<body>
+<table>
+<caption> Table de variables du serveur</caption>
+<tr><th>Nom</th><th>Valeur</th></tr>
+<tr><td>SCRIPT_NAME</td><td>$SCRIPT_NAME</td></tr>
+<tr><td>SERVER_SOFTWARE</td><td>$SERVER_SOFTWARE</td></tr>
+<tr><td>SERVER_ADDR</td><td>$SERVER_ADDR</td></tr>
+<tr><td>REMOTE_ADDR</td><td>$REMOTE_ADDR</td></tr>
+<tr><td>HTTP_USER_AGENT</td><td>$HTTP_USER_AGENT</td></tr>
+<tr><td>HTTP_ACCEPT_LANGUAGE</td><td>$HTTP_ACCEPT_LANGUAGE</td></tr>
+</table> 
+</body></html>
+EOF1

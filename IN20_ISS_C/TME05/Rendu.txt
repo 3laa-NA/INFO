@@ -1,0 +1,145 @@
+EX1 :
+
+q1: ...
+
+q2: ...
+
+q3: ...
+
+q4: j'utiliserai la commande export 
+
+" chmod +x /chemin/vers/bin/cowsay "                             //pour donner les permissions
+
+echo 'export PATH="$PATH:/chemin/ver/bin"' >> ~/.bashrc          //pour l'ajouter au fichier .bashrc
+
+source ~/.bashrc                                                 //pour enregistrer les changement
+
+
+
+q5: ...
+
+remarque : j'ai du changer la ligne 177 de cowsay de "  do $full;  " à  "  do "./$full";  " .
+et il faut se placer dans TME05
+
+pour que ca marche on se place dans "TME05" puis : ./jungle.sh
+pour pouvir le lancer de quelque part d'autre il faut modifier "$cowpath" dans cowsay ligne 19
+
+
+EX2 :
+
+q1: last -da > exo2/connexions.log
+
+q2: ...
+
+q3: ...
+
+q4: ...
+
+q5: ...
+
+q6: ...
+
+q7: ...
+
+q8: ...
+
+q9: ...
+
+q10: ...
+
+q11: ...
+
+q12: ...
+
+
+
+EX3 :
+
+q1: ...
+
+q2: on utilise man ps | wc -w
+6699 mot pour ps, seulement 195 pour mkdir
+
+q3: je trouve 280 comme ppid et (bash) comme nom dans le 2 eme champ
+
+q4: ...
+
+q5: j'ai:
+PID: 1517, Name: famille
+PID: 1515, Name: famille
+PID: 1513, Name: famille
+PID: 1511, Name: famille
+PID: 1510, Name: famille
+PID: 376, Name: bash
+PID: 160, Name: node
+PID: 65, Name: node
+PID: 61, Name: sh
+PID: 56, Name: sh
+PID: 55, Name: sh
+PID: 54, Name: init
+PID: 53, Name: init
+PID: 1, Name: init
+
+q6: ...
+
+init(53)───init(54)───sh(55)───sh(56)───sh(61)───node(65)─┬─node(102)─┬─node(305)─┬─{node}(306)
+                                                          │           │           ├─{node}(307)
+                                                          │           │           ├─{node}(308)
+                                                          │           │           ├─{node}(309)
+                                                          │           │           ├─{node}(310)
+                                                          │           │           └─{node}(311)
+                                                          │           ├─{node}(103)
+                                                          │           ├─{node}(104)
+                                                          │           ├─{node}(105)
+                                                          │           ├─{node}(106)
+                                                          │           ├─{node}(107)
+                                                          │           ├─{node}(108)
+                                                          │           ├─{node}(109)
+                                                          │           ├─{node}(110)
+                                                          │           ├─{node}(111)
+                                                          │           ├─{node}(112)
+                                                          │           └─{node}(153)
+                                                          ├─node(113)─┬─{node}(114)
+                                                          │           ├─{node}(115)
+                                                          │           ├─{node}(116)
+                                                          │           ├─{node}(117)
+                                                          │           ├─{node}(118)
+                                                          │           ├─{node}(119)
+                                                          │           ├─{node}(120)
+                                                          │           ├─{node}(121)
+                                                          │           ├─{node}(122)
+                                                          │           ├─{node}(123)
+                                                          │           ├─{node}(124)
+                                                          │           └─{node}(125)
+                                                          ├─node(160)─┬─bash(171)
+                                                          │           ├─bash(376)───famille(1510)─┬─famille(1511)─┬─famille(1513)─┬─famille(1515)─┬─famille(1517)
+                                                          │           │                           │               │               │               └─famille(1518)
+                                                          │           │                           │               │               └─famille(1516)
+                                                          │           │                           │               └─famille(1514)
+                                                          │           │                           └─famille(1512)
+                                                          │           ├─bash(792)───pstree(2058)
+                                                          │           ├─sh(2052)───cpuUsage.sh(2053)───sleep(2056)
+                                                          │           ├─{node}(161)
+                                                          │           ├─{node}(162)
+                                                          │           ├─{node}(163)
+                                                          │           ├─{node}(164)
+                                                          │           ├─{node}(165)
+                                                          │           ├─{node}(166)
+                                                          │           ├─{node}(167)
+                                                          │           ├─{node}(168)
+                                                          │           ├─{node}(169)
+                                                          │           ├─{node}(170)
+                                                          │           ├─{node}(172)
+                                                          │           ├─{node}(377)
+                                                          │           └─{node}(793)
+                                                          ├─{node}(66)
+                                                          ├─{node}(67)
+                                                          ├─{node}(68)
+                                                          ├─{node}(69)
+                                                          ├─{node}(70)
+                                                          ├─{node}(71)
+                                                          ├─{node}(72)
+                                                          ├─{node}(73)
+                                                          ├─{node}(74)
+                                                          └─{node}(75)
+

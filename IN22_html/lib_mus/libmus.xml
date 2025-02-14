@@ -1,0 +1,60 @@
+<music-library>
+	<album id='A1' artiste='Foals' annee='2008'>
+		<titre>Antidotes</titre>
+		<genre>Rock</genre>
+		<descr>Leur premier album.</descr>
+	</album>
+	<album id='A2' artiste='Foals' annee='2013'>
+		<titre>Holy Fire</titre>
+		<genre>Rock</genre>
+	</album>
+	<album id='A3' artiste='Foals' annee='2015'>
+		<titre>What Went Down</titre>
+		<genre>Rock</genre>
+	</album>
+	<album id='A4' artiste='Crazy-Frog' annee='2005'>
+		<titre>Crazy Frog Presents Crazy Hits</titre>
+		<genre>Indéfini</genre>
+		<descr>ring ding ding</descr>
+	</album>
+	<album id='A5' artiste='Technotronic' annee='1989'>
+		<titre>Pump Up the Jam</titre>
+		<genre>Eurodance</genre>
+		<descr>L'album qui leur fait connaître un succès planétaire</descr>
+	</album>
+	<album id='A6' artiste='Scatman' annee='1995'>
+		<titre>Scatman's World</titre>
+		<genre>Scat, Dance</genre>
+		<descr>Son premier album. Il s'est vendu à 3 millions d'exemplaires</descr>
+	</album>
+	<album id='A7' artiste='Kate-Bush' annee='1985'>
+		<titre>Hounds of Love</titre>
+		<genre>Art pop</genre>
+	</album>
+	<album id='A8' artiste='Kate-Bush' annee='1978'>
+		<titre>The Kick Inside</titre>
+		<genre>Art pop</genre>
+		<descr>Son tout premier album.</descr>
+	</album>
+	<artiste id='Foals'>
+		<nom>Foals</nom>
+		<contact>unsiteinternet.com/foals/contact</contact>
+	</artiste>
+	<artiste id='Crazy-Frog'>
+		<nom>Crazy Frog</nom>
+		<contact>dingding.com/contact</contact>
+	</artiste>
+	<artiste id='Technotronic'>
+		<nom>Technotronic</nom>
+		<contact>Pas de contact</contact>
+	</artiste>
+	<artiste id='Scatman'>
+		<nom>Scatman John</nom>
+		<contact>scatman.john.fr/contact</contact>
+	</artiste>
+	<artiste id='Kate-Bush'>
+		<nom>Kate Bush</nom>
+		<contact>unsiteinternet.com/katebush/contact</contact>
+	</artiste>
+</music-library>
+

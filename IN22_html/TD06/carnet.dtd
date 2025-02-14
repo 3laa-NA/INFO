@@ -1,0 +1,24 @@
+<!ELEMENT carnet (ami*)>
+<!ELEMENT ami (civilite? nom, (mail|mobile|adresse)+)>
+<!ELEMENT adresse (rue, ville, pays?)>
+<!ELEMENT mobile EMPTY>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT mail (#PCDATA)>
+<!ELEMENT rue (#PCDATA)>
+<!ELEMENT pays (#PCDATA)>
+<!ELEMENT ville (#PCDATA)>
+<!ELEMENT civilite (#PCDATA)>
+
+<!ATLIST ville 
+    codepostal CDATA #REQUIRED
+>
+
+<!ATLIST mobile 
+    telephone CDATA #REQUIRED
+    indicatif CDATA #IMPLIED 
+>
+
+<!ATLIST adresse 
+    telephone CDATA #IMPLIED
+    indicatif CDATA #IMPLIED 
+>

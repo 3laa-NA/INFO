@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML Basic 1.1//EN'
+        'http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' lang='fr'>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<title>RDV</title>
+<style type='text/css'>.erreur{border:2px dashed red}</style>
+</head>
+<body onload='class_from_cookie()'>
+<form action="" method="post" enctype="multipart/form-data">
+  <fieldset>
+        <label for='jour'>Jour</label>
+        <input name='jour' id='jour' value='20210621'/>
+        <label for='debut'>Commencement</label>
+        <input name='debut' id='debut' value='090000'/>
+        <label for='fin'>Fin</label>
+        <input name='fin' id='fin' value='100000'/>
+  </fieldset>
+  <fieldset>
+        <label for='ICS'>Agenda</label>
+        <input type='file' name='ICS' id='ICS' accept='text/calendar' />
+        <input type='submit' value='Demander ce rendez-vous' />
+  </fieldset>
+</form>
+<script type='text/javascript' src='class_from_cookie.js'></script>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML Basic 1.1//EN' 'http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' lang='fr'>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<title>Formulaire avec textarea</title>
+</head>
+<body><div><h1>Formulaire avec textarea</h1>
+<form action='' method='get'><fieldset>
+<label for='jour'>Jour</label> <input id='jour' name='jour'/>
+<label for='Url'>Url</label><textarea id='url' name='url'></textarea>
+<input type='submit'>
+</fieldset></form>
+</div></body></html>
+
+Test avec des cases à cocher :
+<pre>Array
+(
+    [0] => <input id='choixoption1' value='Option 1' name='choix[option1]' type='checkbox' /><label for='choixoption1'>Option 1</label>
+
+    [1] => <input id='choixoption2' value='Option 2' name='choix[option2]' type='checkbox' /><label for='choixoption2'>Option 2</label>
+
+    [2] => <input id='choixoption3' value='Option 3' name='choix[option3]' type='checkbox' /><label for='choixoption3'>Option 3</label>
+
+)
+</pre>Test avec des boutons radio :
+<pre>Array
+(
+    [0] => <input id='choixoption1' value='Option 1' name='choix' type='radio' /><label for='choixoption1'>Option 1</label>
+
+    [1] => <input id='choixoption2' value='Option 2' name='choix' type='radio' checked='checked' /><label for='choixoption2'>Option 2</label>
+
+    [2] => <input id='choixoption3' value='Option 3' name='choix' type='radio' /><label for='choixoption3'>Option 3</label>
+
+)
+</pre>
+
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML Basic 1.1//EN' 'http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' lang='fr'>
+<head>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<title>Possibilités</title>
+</head>
+<body><div><h1>Possibilités</h1>
+<form action='' method='get'><fieldset>
+<ul><li><input id='choix0' value='Paris' name='choix[0]' type='checkbox' /><label for='choix0'>Paris</label>
+</li>
+        <li><input id='choix1' value='Lyon' name='choix[1]' type='checkbox' /><label for='choix1'>Lyon</label>
+</li>
+        <li><input id='choix2' value='Marseille' name='choix[2]' type='checkbox' /><label for='choix2'>Marseille</label>
+</li></ul>
+<input type='submit' />
+</fieldset></form>
+</div></body></html>

@@ -1,0 +1,40 @@
+<carnet>
+<ami>
+  <civilite>M.</civilite>
+  <nom>A. Phone</nom>
+  <mail>a.phone@tisa.nomet</mail>
+  <adresse>
+    <rue>6 ter, place de la Muette</rue>
+    <ville codepostal='75016'>Paris</ville>
+  </adresse>
+</ami>
+<ami>
+  <nom>Al Gorithme</nom>
+  <adresse telephone='0123456789'>
+    <rue>8, boulevard de son moteur de recherche</rue>
+    <ville codepostal='75001'>Paris</ville>
+  </adresse>
+  <adresse telephone='0234567891' indicatif='33'>
+    <rue>Impasse des Evasions Fiscales</rue>
+    <ville codepostal='98000'>Monte-Carlo</ville>
+    <pays>Monaco</pays>
+  </adresse>
+</ami>
+<ami>
+  <civilite>Mlle</civilite>
+  <nom>Fleur de Style</nom>
+  <mobile telephone='0789123456' indicatif='33' />
+  <mail>0789123456@tel.fr</mail>
+  <adresse>
+    <rue>7, rue de la Typographie</rue>
+    <ville codepostal='75001'>Paris</ville>
+  </adresse>
+  <mail>0678912345@tel.fr</mail>
+  <mobile telephone='0678912345' />
+</ami>
+<ami>
+  <civilite>Mgr</civilite>
+  <nom>Vincent Domicile-Fixe</nom>
+  <mobile telephone='0654321987' />
+</ami>
+</carnet>

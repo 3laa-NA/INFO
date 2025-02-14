@@ -1,0 +1,18 @@
+<!ELEMENT music-library     (album*)>
+<!ELEMENT album	     (descr? titre, genre ) >
+<!ELEMENT artiste       (nom, contact) >
+<!ELEMENT titre    (#PCDATA) >
+<!ELEMENT genre     (#PCDATA) >
+<!ELEMENT descr        (#PCDATA) >
+<!ELEMENT nom        (#PCDATA) >
+<!ELEMENT contact      (#PCDATA) >
+
+<!ATTLIST album  
+    id  ID   #REQUIRED
+    artiste  IDREF   #REQUIRED
+    annee  CDATA   #REQUIRED
+>
+
+<!ATTLIST artiste 
+    id  ID   #REQUIRED
+>

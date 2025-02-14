@@ -1,0 +1,18 @@
+#!/bin/sh
+
+cat <<EOF
+Content-Type: text/html; charset=utf-8
+
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Le client et le serveur</title>
+<style type='text/css'>h1 {text-align:center}</style>
+</head>
+<body><div>
+<h1>Le client et le serveur</h1>
+Bonjour $HTTP_USER_AGENT, je suis le serveur $SERVER_SOFTWARE.
+</div></body></html>
+
+EOF
+
