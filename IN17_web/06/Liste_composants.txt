@@ -1,0 +1,63 @@
+Liste des composants et leurs détails
+
+1. App
+
+Fonction: Composant principal qui gère l’état global de l’application et orchestre l’affichage des composants enfants.
+
+    Props: 
+        Aucune
+
+    State:
+        userId: Identifiant de l’utilisateur saisi dans le formulaire
+
+        films: Liste des films pré-établie
+
+    Composants enfants:
+        formID
+
+        listFilms
+
+
+2. formID
+
+Fonction: Formulaire permettant de filtrer les films en fonction de l’identifiant utilisateur et de la date.
+
+    Props:
+        onFilterChange: Fonction pour mettre à jour les filtres dans App
+
+    State:
+        localUserId: Valeur saisie pour l’identifiant utilisateur
+
+    Composants enfants: 
+        Aucun
+
+
+
+3. listFilms
+
+Fonction: Affiche la liste des films filtrés selon les paramètres fournis.
+
+    Props:
+        films: Liste des films filtrés à afficher
+
+    State: 
+        Aucun
+
+    Composants enfants:
+        film
+
+
+4. film
+
+Fonction: Affiche un film sous forme de carte avec ses informations principales.
+
+    Props:
+        title: Titre du film
+
+        releaseDate: Date de sortie du film
+
+    State:    
+        Aucun
+
+    Composants enfants: 
+        Aucun
