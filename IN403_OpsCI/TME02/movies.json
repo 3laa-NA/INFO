@@ -1,0 +1,187 @@
+[
+  {
+    "title": "Inception",
+    "year": 2010,
+    "director": "Christopher Nolan",
+    "genre": "Sci-Fi",
+    "image_url": "/images/image_1.jpeg"
+  },
+  {
+    "title": "Interstellar",
+    "year": 2014,
+    "director": "Christopher Nolan",
+    "genre": "Sci-Fi",
+    "image_url": "/images/image_2.jpeg"
+  },
+  {
+    "title": "The Dark Knight",
+    "year": 2008,
+    "director": "Christopher Nolan",
+    "genre": "Action",
+    "image_url": "/images/image_3.jpeg"
+  },
+  {
+    "title": "Pulp Fiction",
+    "year": 1994,
+    "director": "Quentin Tarantino",
+    "genre": "Crime",
+    "image_url": "/images/image_4.jpeg"
+  },
+  {
+    "title": "Kill Bill: Vol. 1",
+    "year": 2003,
+    "director": "Quentin Tarantino",
+    "genre": "Action",
+    "image_url": "/images/image_5.jpeg"
+  },
+  {
+    "title": "The Shawshank Redemption",
+    "year": 1994,
+    "director": "Frank Darabont",
+    "genre": "Drama"
+  },
+  {
+    "title": "Forrest Gump",
+    "year": 1994,
+    "director": "Robert Zemeckis",
+    "genre": "Drama"
+  },
+  {
+    "title": "The Matrix",
+    "year": 1999,
+    "director": "Lana Wachowski, Lilly Wachowski",
+    "genre": "Sci-Fi"
+  },
+  {
+    "title": "Fight Club",
+    "year": 1999,
+    "director": "David Fincher",
+    "genre": "Drama"
+  },
+  {
+    "title": "Se7en",
+    "year": 1995,
+    "director": "David Fincher",
+    "genre": "Thriller"
+  },
+  {
+    "title": "The Social Network",
+    "year": 2010,
+    "director": "David Fincher",
+    "genre": "Drama"
+  },
+  {
+    "title": "The Godfather",
+    "year": 1972,
+    "director": "Francis Ford Coppola",
+    "genre": "Crime"
+  },
+  {
+    "title": "The Godfather Part II",
+    "year": 1974,
+    "director": "Francis Ford Coppola",
+    "genre": "Crime"
+  },
+  {
+    "title": "Goodfellas",
+    "year": 1990,
+    "director": "Martin Scorsese",
+    "genre": "Crime"
+  },
+  {
+    "title": "Taxi Driver",
+    "year": 1976,
+    "director": "Martin Scorsese",
+    "genre": "Drama"
+  },
+  {
+    "title": "Parasite",
+    "year": 2019,
+    "director": "Bong Joon-ho",
+    "genre": "Thriller"
+  },
+  {
+    "title": "Spirited Away",
+    "year": 2001,
+    "director": "Hayao Miyazaki",
+    "genre": "Animation"
+  },
+  {
+    "title": "Princess Mononoke",
+    "year": 1997,
+    "director": "Hayao Miyazaki",
+    "genre": "Animation"
+  },
+  {
+    "title": "Amélie",
+    "year": 2001,
+    "director": "Jean-Pierre Jeunet",
+    "genre": "Romance"
+  },
+  {
+    "title": "La Haine",
+    "year": 1995,
+    "director": "Mathieu Kassovitz",
+    "genre": "Drama"
+  },
+  {
+    "title": "The Intouchables",
+    "year": 2011,
+    "director": "Olivier Nakache, Éric Toledano",
+    "genre": "Comedy"
+  },
+  {
+    "title": "Gladiator",
+    "year": 2000,
+    "director": "Ridley Scott",
+    "genre": "Action"
+  },
+  {
+    "title": "Alien",
+    "year": 1979,
+    "director": "Ridley Scott",
+    "genre": "Sci-Fi"
+  },
+  {
+    "title": "Blade Runner 2049",
+    "year": 2017,
+    "director": "Denis Villeneuve",
+    "genre": "Sci-Fi"
+  },
+  {
+    "title": "Arrival",
+    "year": 2016,
+    "director": "Denis Villeneuve",
+    "genre": "Sci-Fi"
+  },
+  {
+    "title": "Whiplash",
+    "year": 2014,
+    "director": "Damien Chazelle",
+    "genre": "Drama"
+  },
+  {
+    "title": "La La Land",
+    "year": 2016,
+    "director": "Damien Chazelle",
+    "genre": "Musical"
+  },
+  {
+    "title": "Joker",
+    "year": 2019,
+    "director": "Todd Phillips",
+    "genre": "Drama"
+  },
+  {
+    "title": "Mad Max: Fury Road",
+    "year": 2015,
+    "director": "George Miller",
+    "genre": "Action"
+  },
+  {
+    "title": "The Grand Budapest Hotel",
+    "year": 2014,
+    "director": "Wes Anderson",
+    "genre": "Comedy"
+  }
+]

@@ -1,0 +1,41 @@
+=== INFORMATIONS MATÉRIEL ===
+Date: Mon Feb  2 10:53:06 PM CET 2026
+
+--- CPU ---
+Architecture:                         x86_64
+CPU(s):                               12
+On-line CPU(s) list:                  0-11
+Model name:                           AMD Ryzen 5 5500U with Radeon Graphics
+Thread(s) per core:                   2
+
+--- RAM ---
+               total        used        free      shared  buff/cache   available
+Mem:           3.6Gi       1.8Gi       1.7Gi       2.8Mi       280Mi       1.8Gi
+Swap:          1.0Gi          0B       1.0Gi
+
+--- DISQUE ---
+Filesystem      Size  Used Avail Use% Mounted on
+none            1.8G     0  1.8G   0% /usr/lib/modules/5.15.167.4-microsoft-standard-WSL2
+none            1.8G  4.0K  1.8G   1% /mnt/wsl
+drivers         476G  127G  350G  27% /usr/lib/wsl/drivers
+/dev/sdc       1007G  9.4G  947G   1% /
+none            1.8G  120K  1.8G   1% /mnt/wslg
+none            1.8G     0  1.8G   0% /usr/lib/wsl/lib
+rootfs          1.8G  2.2M  1.8G   1% /init
+none            1.8G     0  1.8G   0% /dev
+none            1.8G     0  1.8G   0% /run
+none            1.8G     0  1.8G   0% /run/lock
+none            1.8G     0  1.8G   0% /run/shm
+none            1.8G     0  1.8G   0% /run/user
+tmpfs           1.8G     0  1.8G   0% /sys/fs/cgroup
+none            1.8G   96K  1.8G   1% /mnt/wslg/versions.txt
+none            1.8G   96K  1.8G   1% /mnt/wslg/doc
+C:\             476G  127G  350G  27% /mnt/c
+
+--- SYSTÈME ---
+Linux 3laaNA 5.15.167.4-microsoft-standard-WSL2 #1 SMP Tue Nov 5 00:21:55 UTC 2024 x86_64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
